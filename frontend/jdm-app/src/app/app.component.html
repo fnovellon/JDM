@@ -1,21 +1,30 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div style="text-align:center">
   <mat-toolbar>
-    <span>Welcome to {{ title }}!</span>
+    <span></span>
     <span class="example-fill-remaining-space"></span>
 
     <mat-menu #appMenu="matMenu">
-      <button mat-menu-item>Settings</button>
-      <button mat-menu-item>Help</button>
+      <button mat-menu-item (click)="goToPref()">Mes préférences</button>
+      <button mat-menu-item>Aide</button>
+      <button mat-menu-item>À propos</button>
 
     </mat-menu>
     <button style="float: right" mat-icon-button [matMenuTriggerFor]="appMenu">
       <mat-icon>more_vert</mat-icon>
     </button>
   </mat-toolbar>
-  <h1>
+  <img width="300" alt="JeuxDeMots Logo" src="../assets/loupeJDM_Project.png">
 
-  </h1>
-  <img class="image" width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+  <form class="example-form">
+    <mat-form-field class="example-full-width">
+      <input type="text" placeholder="Saisissez un mot à rechercher" aria-label="Mot" matInput [matAutocomplete]="auto">
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let option of options" [value]="option">
+          {{option}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </form>
 </div>
 
