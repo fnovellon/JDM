@@ -16,15 +16,6 @@
   </mat-toolbar>
   <img width="300" alt="JeuxDeMots Logo" src="../assets/loupeJDM_Project.png">
 
-  <form class="example-form">
-    <mat-form-field class="example-full-width">
-      <input type="text" placeholder="Saisissez un mot à rechercher" aria-label="Mot" matInput [matAutocomplete]="auto">
-      <mat-autocomplete #auto="matAutocomplete">
-        <mat-option *ngFor="let option of options" [value]="option">
-          {{option}}
-        </mat-option>
-      </mat-autocomplete>
-    </mat-form-field>
-  </form>
+  <app-search></app-search>
 </div>
 
