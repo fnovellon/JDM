@@ -1,0 +1,23 @@
+
+.input-form {
+  margin-top: 5%;
+  margin-left: 25%;
+  width: 50%;
+}
+
+.input-bar {
+  width: 100%;
+}
+
+::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick{
+	color: #959595;
+}
+
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-thick{
+	color: #959595;
+}
+
+::ng-deep .mat-form-field-infix {
+    padding: .5em 0;
+    border-top: .5em solid transparent !important;
+}

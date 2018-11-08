@@ -1,10 +1,15 @@
-<form class="example-form">
-  <mat-form-field class="example-full-width">
-    <input type="text" placeholder="Saisissez un mot à rechercher" aria-label="Mot" matInput [matAutocomplete]="auto">
-    <mat-autocomplete #auto="matAutocomplete">
-      <mat-option *ngFor="let option of options" [value]="option">
-        {{option}}
-      </mat-option>
-    </mat-autocomplete>
+<div class="input-form"> 
+  <mat-form-field appearance="outline" class="input-bar">
+  	<input type="text" placeholder="Saisissez un mot à rechercher" aria-label="Mot" [(ngModel)]="value" matInput [matAutocomplete]="auto">
+  	<button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+  		<mat-icon>close</mat-icon>
+  	</button>
+
+  	<mat-autocomplete #auto="matAutocomplete">
+  		<mat-option *ngFor="let option of options" [value]="option">
+  			{{option}}
+  		</mat-option>
+  	</mat-autocomplete>
   </mat-form-field>
-</form>
+</div>
+
