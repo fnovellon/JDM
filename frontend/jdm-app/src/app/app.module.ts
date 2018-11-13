@@ -9,13 +9,17 @@ import { AppComponent } from './app.component';
 import { PreferenceComponent } from './preference/preference.component';
 import { ResultComponent } from './result/result.component';
 import { SearchComponent } from './search/search.component';
+import { SerachToolbarComponent } from './serach-toolbar/serach-toolbar.component';
+import { SearchToolbarComponent } from './search-toolbar/search-toolbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PreferenceComponent,
     ResultComponent,
-    SearchComponent
+    SearchComponent,
+    SerachToolbarComponent,
+    SearchToolbarComponent
   ],
   imports: [
     FormsModule,
