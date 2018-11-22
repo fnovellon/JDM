@@ -1,18 +1,4 @@
 
-@-moz-keyframes spin { 100% { -moz-transform: rotateZ(360deg); } }
-@-webkit-keyframes spin { 100% { -webkit-transform: rotateZ(360deg); } }
-@keyframes spin { 100% { -webkit-transform: rotateZ(360deg); transform:rotateZ(360deg); } }
-
-.example-fill-remaining-space {
-  /* This fills the remaining space, by using flexbox.
-     Every toolbar row uses a flexbox row layout. */
-  flex: 1 1 auto;
-}
-
-mat-toolbar{
-  background-color: white;
-}
-
 img{
   margin-top: 5%;
 }

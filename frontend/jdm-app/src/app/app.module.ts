@@ -9,8 +9,8 @@ import { AppComponent } from './app.component';
 import { PreferenceComponent } from './preference/preference.component';
 import { ResultComponent } from './result/result.component';
 import { SearchComponent } from './search/search.component';
-import { SerachToolbarComponent } from './serach-toolbar/serach-toolbar.component';
 import { SearchToolbarComponent } from './search-toolbar/search-toolbar.component';
+import { BasicToolbarComponent } from './basic-toolbar/basic-toolbar.component';
 
 @NgModule({
   declarations: [
@@ -18,8 +18,8 @@ import { SearchToolbarComponent } from './search-toolbar/search-toolbar.componen
     PreferenceComponent,
     ResultComponent,
     SearchComponent,
-    SerachToolbarComponent,
-    SearchToolbarComponent
+    SearchToolbarComponent,
+    BasicToolbarComponent
   ],
   imports: [
     FormsModule,

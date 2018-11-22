@@ -1,19 +1,6 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div style="text-align:center">
-  <mat-toolbar>
-    <span></span>
-    <span class="example-fill-remaining-space"></span>
-
-    <mat-menu #appMenu="matMenu">
-      <button mat-menu-item (click)="goToPref()">Mes préférences</button>
-      <button mat-menu-item>Aide</button>
-      <button mat-menu-item>À propos</button>
-
-    </mat-menu>
-    <button style="float: right" mat-icon-button [matMenuTriggerFor]="appMenu">
-      <mat-icon>more_vert</mat-icon>
-    </button>
-  </mat-toolbar>
+  <app-basic-toolbar></app-basic-toolbar>
   <img width="300" alt="JeuxDeMots Logo" src="../assets/loupeJDM_Project.png">
 
   <app-search></app-search>
