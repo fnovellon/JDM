@@ -1,3 +1,19 @@
-<p>
-  search-toolbar works!
-</p>
+<mat-toolbar>
+  <img width="80" alt="JeuxDeMots Logo" src="../assets/loupeJDM_Project.png">
+  <span class="example-spacer"></span>
+  <input type="search" matInput placeholder="Saisissez un mot à rechercher" aria-label="Mot" [(ngModel)]="value" matInput [matAutocomplete]="auto">
+  <mat-autocomplete #auto="matAutocomplete">
+    <mat-option *ngFor="let option of options" [value]="option">
+      {{option}}
+    </mat-option>
+  </mat-autocomplete>
+  <button style="float: right" mat-icon-button [matMenuTriggerFor]="appMenu">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+  <mat-menu #appMenu="matMenu" [overlapTrigger]="false">
+    <button mat-menu-item (click)="goToPref()">Mes préférences</button>
+    <button mat-menu-item>Aide</button>
+    <button mat-menu-item>À propos</button>
+  </mat-menu>
+
+</mat-toolbar>

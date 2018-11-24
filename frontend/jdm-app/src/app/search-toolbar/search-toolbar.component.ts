@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchToolbarComponent implements OnInit {
 
-  constructor() { }
+	value = '';
+  options: string[];
 
-  ngOnInit() {
+  constructor() { 
+  }
+
+  ngOnInit() {  	
+  	this.options = [""];
   }
 
 }
