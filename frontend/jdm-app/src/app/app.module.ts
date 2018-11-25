@@ -1,9 +1,21 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule, MatGridListModule, MatCheckboxModule, MatToolbarModule, MatMenuModule, MatIconModule, MatAutocompleteModule, MatFormFieldModule, MatInputModule, MatChipsModule, MatTableModule, MatDialogModule } from '@angular/material';
+import { MatButtonModule,
+  MatGridListModule,
+  MatCheckboxModule,
+  MatToolbarModule,
+  MatMenuModule,
+  MatIconModule,
+  MatAutocompleteModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatChipsModule,
+  MatTableModule,
+  MatDialogModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { PreferenceComponent } from './preference/preference.component';
@@ -24,9 +36,10 @@ import { AssociationComponent, ModalAssociation } from './association/associatio
     BasicToolbarComponent,
     ScrollToolbarComponent,
     AssociationComponent,
-    ModalAssociation 
+    ModalAssociation
   ],
   imports: [
+    HttpClientModule,
     FormsModule,
     BrowserModule,
     ReactiveFormsModule,
