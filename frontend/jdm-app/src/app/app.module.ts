@@ -7,12 +7,11 @@ import { MatButtonModule, MatGridListModule, MatCheckboxModule, MatToolbarModule
 
 import { AppComponent } from './app.component';
 import { PreferenceComponent } from './preference/preference.component';
-import { ResultComponent } from './result/result.component';
+import { ResultComponent, ModalAssociation } from './result/result.component';
 import { SearchComponent } from './search/search.component';
 import { SearchToolbarComponent } from './search-toolbar/search-toolbar.component';
 import { BasicToolbarComponent } from './basic-toolbar/basic-toolbar.component';
 import { ScrollToolbarComponent } from './scroll-toolbar/scroll-toolbar.component';
-import { AssociationComponent, ModalAssociation } from './association/association.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +22,6 @@ import { AssociationComponent, ModalAssociation } from './association/associatio
     SearchToolbarComponent,
     BasicToolbarComponent,
     ScrollToolbarComponent,
-    AssociationComponent,
     ModalAssociation 
   ],
   imports: [

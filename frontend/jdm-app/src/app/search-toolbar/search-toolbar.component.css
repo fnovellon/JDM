@@ -4,8 +4,8 @@
 
 mat-toolbar{
   height: 75px;
-  background-color: #cacbcc;
-  box-shadow: 10px 5px 5px grey;
+  background-color: white;
+  box-shadow: 0px 5px 5px grey;
 }
 
 input {

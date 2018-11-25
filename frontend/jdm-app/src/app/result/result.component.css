@@ -5,17 +5,41 @@ mat-form-field{
 	margin-left: 2%;
 }
 
+#favGen{
+	width: 100%;
+	overflow: auto;
+	margin-top: 2%;
+}
+
 #fav {
-	width: 10%;
+	display: block;
+	width: auto;
+	float: left;
+	margin-left: 2%;
+}
+
+#selection{
+	width: 100%;
+}
+
+#selec{
 	display: block;
 	float: left;
-	margin-top : 2%;
+	margin-top : 1%;
 	margin-left: 2%;
+}
+
+#listBtn {
+	min-width: 10px !important;
+	float: left;
+	margin-top: 3%;
 }
 
 #chipFav{
 	width: 80%;
 	display: block;
+	margin-top: 1%;
+	margin-left: 1%;
 }
 
 #chipSearch{
@@ -24,25 +48,26 @@ mat-form-field{
 	display: block;
 }
 
+#chipSelec{
+	width: 80%;
+	display: block;
+	margin-left: 1%;
+	margin-top: 1%;
+}
+
+#selection{
+	display: inline-block;
+}
 
 mat-chip{
 	float: left;
 	margin-left: 1%;
-	margin-top: 2%;
 	width: auto;
 }
 
 #searchAssoc{
 	width: 100%;
 	display: block;
-	height: 100px;
-}
-
-
-table {
-	margin-top: 5%;
-  width: 30%;
-  margin-left: 3%;
 }
 
 mat-menu content {

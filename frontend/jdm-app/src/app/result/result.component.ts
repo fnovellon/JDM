@@ -1,7 +1,7 @@
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
-import {Component, ElementRef, ViewChild } from '@angular/core';
+import {Component, ElementRef, ViewChild, OnInit, Inject } from '@angular/core';
 import {FormControl} from '@angular/forms';
-import {MatAutocompleteSelectedEvent, MatChipInputEvent, MatAutocomplete} from '@angular/material';
+import {MatAutocompleteSelectedEvent, MatChipInputEvent, MatAutocomplete, MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 
@@ -12,30 +12,29 @@ import {map, startWith} from 'rxjs/operators';
 })
 export class ResultComponent {
 
-	//préférences
   preference : string[];
-
-	//table
-	displayedColumns: string[] = ['name', 'poids', 'symbol'];
-
+  selectedAssociation : string[] = [];
   visible = true;
   selectable = true;
-  removable = true;
   addOnBlur = true;
   separatorKeysCodes: number[] = [ENTER, COMMA];
   associationCtrl = new FormControl();
-  filteredFruits: Observable<string[]>;
-  associations: string[] = ['is_a'];
-  allFruits: string[] = ['is_a', 'gender', 'synonyme', 'desc', 'width'];
+  filteredAssociations: Observable<string[]>;
+  allAssociations: string[] = ['is_a', 'gender', 'synonyme', 'desc', 'width'];
+  associations: string[] = [];
 
 
   @ViewChild('associationInput') associationInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto') matAutocomplete: MatAutocomplete;
 
-  constructor() {
-    this.filteredFruits = this.associationCtrl.valueChanges.pipe(
+  constructor(public dialog: MatDialog) {
+    this.filteredAssociations = this.associationCtrl.valueChanges.pipe(
         startWith(null),
-        map((association: string | null) => association ? this._filter(association) : this.allFruits.slice()));
+        map((association: string | null) => association ? this._filter(association) : this.allAssociations.slice()));
+  }
+
+  ngOnInit(){
+    this.preference = ["test1", "test2"];
   }
 
   add(event: MatChipInputEvent): void {
@@ -54,9 +53,15 @@ export class ResultComponent {
       if (input) {
         input.value = '';
       }
-
       this.associationCtrl.setValue(null);
     }
+  }
+  
+  addToAssoc(assoc: string){
+    this.selectedAssociation.push(assoc);
+    this.preference.forEach((item, index) => {
+     if(item === assoc) this.preference.splice(index,1);
+   });
   }
 
   remove(association: string): void {
@@ -67,8 +72,9 @@ export class ResultComponent {
     }
   }
 
+  //push la valeur de l'autocomplete dans les assoc selectionné
   selected(event: MatAutocompleteSelectedEvent): void {
-    this.associations.push(event.option.viewValue);
+    this.selectedAssociation.push(event.option.viewValue);
     this.associationInput.nativeElement.value = '';
     this.associationCtrl.setValue(null);
   }
@@ -76,6 +82,49 @@ export class ResultComponent {
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
 
-    return this.allFruits.filter(association => association.toLowerCase().indexOf(filterValue) === 0);
+    return this.allAssociations.filter(association => association.toLowerCase().indexOf(filterValue) === 0);
   }
+
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(ModalAssociation, {
+      width: '50%',
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result!=null){
+        this.selectedAssociation.push(result);
+      }
+    });
+  }
+}
+
+@Component({
+  selector: 'modalAssociation',
+  templateUrl: 'modalAssociation.html',
+  styleUrls: ['./modalAssociation.css']
+})
+export class ModalAssociation {
+
+
+  constructor(public dialogRef: MatDialogRef<ModalAssociation>) {}
+
+  associations: string[] = ['is_a', 'description','associaiton3', 'associaiton3','is_a', 'is_a','associaiton3', 'is_a', 'description','associaiton3', 'associaiton3','is_a', 'is_a','associaiton3', 'is_a','is_a', 'is_a'];
+  itemSelect: string[] = [];
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+
+  selectedItem(item: string){
+    this.itemSelect.push(item);
+    console.log(this.itemSelect);
+  }
+
+  removeSelection(doc: string){
+    this.itemSelect.forEach((item, index) => {
+     if(item === doc) this.itemSelect.splice(index,1);
+   });
+  }
+
 }
