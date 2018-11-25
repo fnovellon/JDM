@@ -1,0 +1,14 @@
+<div id="selec">
+	Associations Séléctionné :
+</div>
+<div id="chipFav">
+	<mat-chip *ngFor="let s of itemSelect" [selectable]="selectable" color="#aed581">
+		{{s}}
+		<mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+	</mat-chip>
+</div>
+<div id="allAssoc">
+	<div *ngFor="let assoc of associations" id="modal">
+		<mat-chip (click)="selectedItem(assoc)">{{assoc}}</mat-chip>
+	</div>
+</div>

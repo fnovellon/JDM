@@ -13,7 +13,7 @@ export class SearchComponent implements OnInit {
   }
 
   ngOnInit() {  	
-  	this.options = [];
+  	this.options = ["abb", "baac", "cdzad"];
   }
 
 }

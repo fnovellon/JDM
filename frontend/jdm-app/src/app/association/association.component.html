@@ -1,0 +1,48 @@
+<div id="preference">
+
+</div>
+<div id="searchAssoc">
+  <div id="favGen">
+    <div id="fav">
+      Associations favorites :
+    </div>
+  </div>
+  <div id="chipFav">
+    <mat-chip *ngFor="let pref of preference" [selectable]="selectable">
+      {{pref}}
+      <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+    </mat-chip>
+  </div>
+  <div id="chipSearch">
+    <mat-form-field class="example-chip-list">
+      <mat-chip-list #chipList>
+      <input
+      placeholder="Nouvelle association"
+      #associationInput
+      [formControl]="associationCtrl"
+      [matAutocomplete]="auto"
+      [matChipInputFor]="chipList"
+      [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+      [matChipInputAddOnBlur]="addOnBlur"
+      (matChipInputTokenEnd)="add($event)">
+    </mat-chip-list>
+    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+      <mat-option *ngFor="let all of filteredAssociations | async" [value]="association">
+        {{all}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+  <button id="listBtn" mat-button (click)="openDialog()"><mat-icon>list</mat-icon></button>
+</div>
+<div id="selection">
+<div id="selec">
+    Associations Séléctionné :
+  </div>
+  </div>
+  <div id="chipSelec">
+    <mat-chip *ngFor="let selec of selectedAssociation" [selectable]="selectable">
+      {{selec}}
+      <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+    </mat-chip>
+  </div>
+</div>

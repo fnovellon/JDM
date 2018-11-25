@@ -1,0 +1,21 @@
+#modal{
+	width: auto;
+	display: inline-block;
+	margin-top: 1%;
+	margin-left: 1%;
+}
+
+#selec{
+	width: auto;
+	margin-bottom: 2%;
+	display: block;
+}
+
+#chipFav{
+	width: 80%;
+	display: block;
+}
+
+#allAssoc{
+	margin-top: 2%;
+}
