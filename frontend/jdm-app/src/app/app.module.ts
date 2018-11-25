@@ -34,9 +34,6 @@ import { ScrollToolbarComponent } from './scroll-toolbar/scroll-toolbar.componen
     SearchToolbarComponent,
     BasicToolbarComponent,
     ScrollToolbarComponent,
-    AssociationComponent,
-    ModalAssociation
-    ModalAssociation 
   ],
   imports: [
     HttpClientModule,
