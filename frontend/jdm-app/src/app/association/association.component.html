@@ -10,7 +10,7 @@
   <div id="chipFav">
     <mat-chip *ngFor="let pref of preference" [selectable]="selectable">
       {{pref}}
-      <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+      <mat-icon matChipRemove style="color:red" *ngIf="removable">favorite</mat-icon>
     </mat-chip>
   </div>
   <div id="chipSearch">
