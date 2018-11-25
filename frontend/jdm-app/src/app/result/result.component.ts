@@ -20,6 +20,8 @@ export class ResultComponent {
   separatorKeysCodes: number[] = [ENTER, COMMA];
   associationCtrl = new FormControl();
   filteredAssociations: Observable<string[]>;
+
+  //Associations pour l'auto complete
   allAssociations: string[] = ['is_a', 'gender', 'synonyme', 'desc', 'width'];
   associations: string[] = [];
 
