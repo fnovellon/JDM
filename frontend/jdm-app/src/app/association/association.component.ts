@@ -26,6 +26,7 @@ export class AssociationComponent implements OnInit{
   associationCtrl = new FormControl();
   filteredAssociations: Observable<string[]>;
   allAssociations: string[] = ['is_a', 'gender', 'synonyme', 'desc', 'width'];
+  associations: string[] = [];
 
 
   @ViewChild('associationInput') associationInput: ElementRef<HTMLInputElement>;
@@ -117,6 +118,12 @@ export class ModalAssociation {
   selectedItem(item: string){
     this.itemSelect.push(item);
     console.log(this.itemSelect);
+  }
+
+  removeSelection(doc: string){
+    this.itemSelect.forEach((item, index) => {
+     if(item === doc) this.itemSelect.splice(index,1);
+   });
   }
 
 }
