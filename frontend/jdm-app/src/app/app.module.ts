@@ -21,9 +21,10 @@ import { AppComponent } from './app.component';
 import { PreferenceComponent } from './preference/preference.component';
 import { ResultComponent, ModalAssociation } from './result/result.component';
 import { SearchComponent } from './search/search.component';
-import { SearchToolbarComponent } from './search-toolbar/search-toolbar.component';
+import { ResultToolbarComponent } from './result-toolbar/result-toolbar.component';
 import { BasicToolbarComponent } from './basic-toolbar/basic-toolbar.component';
 import { ScrollToolbarComponent } from './scroll-toolbar/scroll-toolbar.component';
+import { PreferenceToolbarComponent } from './preference-toolbar/preference-toolbar.component';
 
 @NgModule({
   declarations: [
@@ -31,10 +32,11 @@ import { ScrollToolbarComponent } from './scroll-toolbar/scroll-toolbar.componen
     PreferenceComponent,
     ResultComponent,
     SearchComponent,
-    SearchToolbarComponent,
+    ResultToolbarComponent,
     BasicToolbarComponent,
     ScrollToolbarComponent,
-    ModalAssociation
+    ModalAssociation,
+    PreferenceToolbarComponent
   ],
   imports: [
     HttpClientModule,
