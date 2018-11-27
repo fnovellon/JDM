@@ -1,14 +1,28 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
+// Our components
+import { SearchComponent } from './search/search.component';
+import { ResultComponent } from './result/result.component';
+import { PreferenceComponent } from './preference/preference.component';
+
 const routes: Routes = [
   {
-    path: 'preference',
-    loadChildren: './preference/preference.module#PreferenceModule'
+    path: '',
+    redirectTo: '/search',
+    pathMatch: 'full'
   },
   {
-    path: 'result',
-    loadChildren: './result/result.module#ResultModule'
+    path: 'search',
+    component: SearchComponent
+  },
+  {
+    path: 'preferences',
+    component: PreferenceComponent
+  },
+  {
+    path: 'results',
+    component: ResultComponent
   },
 ];
 

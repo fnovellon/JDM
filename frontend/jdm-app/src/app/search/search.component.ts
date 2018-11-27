@@ -7,13 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchComponent implements OnInit {
 
-	options = [];
+  options = [];
 
-  constructor() { 
-  }
+  constructor() { }
 
-  ngOnInit() {  	
-  	this.options = ["abb", "baac", "cdzad"];
+  ngOnInit() {
+    this.options = ['abb', 'baac', 'cdzad'];
   }
 
 }

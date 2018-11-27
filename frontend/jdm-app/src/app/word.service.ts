@@ -15,17 +15,18 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class WordService {
-  private heroesUrl = 'mot/';  // URL to web api
+  private wordUrl = 'http://51.75.253.77/mot/';  // URL to web api
   constructor(private http: HttpClient) { }
 
-  getWord(id: string): Observable<ResWord> {
-    const url = `${this.heroesUrl}/${id}`;
+  getWord(name: string): Observable<ResWord> {
+    const url = `${this.wordUrl}${name}`;
+    console.log(url);
     return this.http.get<ResWord>(url).pipe(
       tap(data => {
-        console.log(`fetched hero id=${id}`);
-        console.log(data);
+        console.log(`fetched hero name=${name}`);
+        // console.log(data);
       }),
-      catchError(this.handleError<ResWord>(`getHero id=${id}`))
+      catchError(this.handleError<ResWord>(`getHero name=${name}`))
     );
   }
 
