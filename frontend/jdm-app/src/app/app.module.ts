@@ -15,7 +15,8 @@ import { MatButtonModule,
   MatInputModule,
   MatChipsModule,
   MatTableModule,
-  MatDialogModule } from '@angular/material';
+  MatDialogModule,
+  MatCardModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { PreferenceComponent } from './preference/preference.component';
@@ -26,6 +27,7 @@ import { BasicToolbarComponent } from './basic-toolbar/basic-toolbar.component';
 import { ScrollToolbarComponent } from './scroll-toolbar/scroll-toolbar.component';
 import { PreferenceToolbarComponent } from './preference-toolbar/preference-toolbar.component';
 import { AppRoutingModule } from './app-routing.module';
+import { DisplayResultsComponent } from './display-results/display-results.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,8 @@ import { AppRoutingModule } from './app-routing.module';
     BasicToolbarComponent,
     ScrollToolbarComponent,
     ModalAssociation,
-    PreferenceToolbarComponent
+    PreferenceToolbarComponent,
+    DisplayResultsComponent
   ],
   imports: [
     AppRoutingModule,
@@ -57,7 +60,8 @@ import { AppRoutingModule } from './app-routing.module';
     MatChipsModule,
     MatTableModule,
     MatDialogModule,
-    MatGridListModule
+    MatGridListModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent],

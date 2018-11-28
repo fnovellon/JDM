@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-preference-toolbar',
@@ -7,13 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PreferenceToolbarComponent implements OnInit {
 
-  constructor() { }
+  constructor(private route: ActivatedRoute, private location: Location) { }
 
   ngOnInit() {
   }
 
   backToPrevious(){
-  	console.log("A compléter");
+  	this.location.back();
   }
 
   savePreference(){

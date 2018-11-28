@@ -1,0 +1,15 @@
+.example-card {
+	margin-left: 1%;
+	margin-right: 1%;
+}
+
+.cardResult{
+	margin-left: 1%;
+	margin-right: 1%;
+	width: 98%;
+	display: flex;
+}
+
+.cards{
+	display: block;
+}

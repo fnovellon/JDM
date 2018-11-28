@@ -21,3 +21,7 @@ input {
     font-size: 0.75em;
     -webkit-appearance: none;
 }
+
+::ng-deep .mat-menu-content:not(:empty) {
+  display: block;
+}
