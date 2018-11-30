@@ -8,7 +8,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 import { ResWord } from './resWord';
 
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' })
 };
 
 @Injectable({
@@ -21,7 +21,7 @@ export class WordService {
   getWord(name: string): Observable<ResWord> {
     const url = `${this.wordUrl}${name}`;
     console.log(url);
-    return this.http.get<ResWord>(url).pipe(
+    return this.http.get<ResWord>(url, httpOptions).pipe(
       tap(data => {
         console.log(`fetched hero name=${name}`);
         // console.log(data);
