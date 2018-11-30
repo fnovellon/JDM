@@ -13,6 +13,7 @@ img{
 	width: 45%;
 	border-radius: 100px;
 	padding: 5px 16px;
+  text-align: left;
 }
 
 #searchIcon{

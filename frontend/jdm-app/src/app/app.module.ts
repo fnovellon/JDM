@@ -16,7 +16,8 @@ import { MatButtonModule,
   MatChipsModule,
   MatTableModule,
   MatDialogModule,
-  MatCardModule } from '@angular/material';
+  MatCardModule,
+  MatPaginatorModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { PreferenceComponent } from './preference/preference.component';
@@ -59,7 +60,8 @@ import { AppRoutingModule } from './app-routing.module';
     MatTableModule,
     MatDialogModule,
     MatGridListModule,
-    MatCardModule
+    MatCardModule,
+    MatPaginatorModule
   ],
   providers: [],
   bootstrap: [AppComponent],
