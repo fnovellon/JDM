@@ -38,10 +38,23 @@
   </div>
   </div>
   <div id="chipSelec">
-    <mat-chip *ngFor="let selec of selectedAssociation" [selectable]="selectable">
+    <mat-chip *ngFor="let selec of selectedAssociation">
       {{selec}}
-      <mat-icon matChipRemove>cancel</mat-icon>
+      <mat-icon matChipRemove (click)="removeAssocSelected(selec)">cancel</mat-icon>
     </mat-chip>
   </div>
 </div>
-<app-display-results></app-display-results>
+<div class="cardResult" *ngFor="let res of selectedAssociation" >
+  <div class="cards">
+    <mat-card class="example-card">
+      <mat-card-header>
+        <mat-card-title>{{res}}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p>
+          info de l'association
+        </p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

@@ -5,6 +5,10 @@ import {MatAutocompleteSelectedEvent, MatChipInputEvent, MatAutocomplete, MatDia
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 
+export interface DialogData {
+  itemSelect: string[];
+}
+
 @Component({
   selector: 'app-result',
   templateUrl: './result.component.html',
@@ -14,13 +18,10 @@ export class ResultComponent {
 
   preference : string[];
   selectedAssociation : string[] = [];
-  visible = true;
-  selectable = true;
-  addOnBlur = true;
   separatorKeysCodes: number[] = [ENTER, COMMA];
   associationCtrl = new FormControl();
   filteredAssociations: Observable<string[]>;
-
+  splitted: string[] = [];
   //Associations pour l'auto complete
   allAssociations: string[] = ['is_a', 'gender', 'synonyme', 'desc', 'width'];
   associations: string[] = [];
@@ -74,6 +75,12 @@ export class ResultComponent {
     }
   }
 
+  removeAssocSelected(assoc: string){
+    this.selectedAssociation.forEach((item, index) => {
+     if(item === assoc) this.selectedAssociation.splice(index,1);
+   });
+  }
+
   //push la valeur de l'autocomplete dans les assoc selectionné
   selected(event: MatAutocompleteSelectedEvent): void {
     this.selectedAssociation.push(event.option.viewValue);
@@ -91,11 +98,16 @@ export class ResultComponent {
   openDialog(): void {
     const dialogRef = this.dialog.open(ModalAssociation, {
       width: '50%',
+      data: {itemSelect: this.associations}
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if(result!=null){
-        this.selectedAssociation.push(result);
+        this.splitted = result.toString().split(",");
+        console.log("result : " + result);
+        for(let r of this.splitted){
+          this.selectedAssociation.push(r);
+        }
       }
     });
   }
@@ -109,24 +121,30 @@ export class ResultComponent {
 export class ModalAssociation {
 
 
-  constructor(public dialogRef: MatDialogRef<ModalAssociation>) {}
+  constructor(public dialogRef: MatDialogRef<ModalAssociation>, @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
 
-  associations: string[] = ['is_a', 'description','associaiton3', 'associaiton3','is_a', 'is_a','associaiton3', 'is_a', 'description','associaiton3', 'associaiton3','is_a', 'is_a','associaiton3', 'is_a','is_a', 'is_a'];
+  associations: string[] = ['is_a', 'description','associaiton3', 'associaiton4','is_a1', 'iéés_a','a&ssociaiton3', 'is_fa', 'desfscription','associagfiton3', 'associaifgton3','ifds_a', 'is_ag','assgdociaiton3', 'ihhys_a','fdifs_a', 'isdd_a'];
   itemSelect: string[] = [];
 
   onNoClick(): void {
     this.dialogRef.close();
   }
 
-  selectedItem(item: string){
-    this.itemSelect.push(item);
+  selectedItem(itemAssoc: string){
+    this.itemSelect.push(itemAssoc);
+
+    this.associations.forEach((item, index) => {
+     if(item === itemAssoc) this.associations.splice(index,1);
+   });
     console.log(this.itemSelect);
+    this.data.itemSelect = this.itemSelect;
   }
 
   removeSelection(doc: string){
     this.itemSelect.forEach((item, index) => {
      if(item === doc) this.itemSelect.splice(index,1);
    });
+    this.associations.push(doc);
   }
 
 }
