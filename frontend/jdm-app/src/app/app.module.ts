@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { CookieService } from 'ngx-cookie-service';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule,
@@ -17,7 +18,8 @@ import { MatButtonModule,
   MatTableModule,
   MatDialogModule,
   MatCardModule,
-  MatPaginatorModule } from '@angular/material';
+  MatPaginatorModule,
+  MatSortModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { PreferenceComponent } from './preference/preference.component';
@@ -61,9 +63,10 @@ import { AppRoutingModule } from './app-routing.module';
     MatDialogModule,
     MatGridListModule,
     MatCardModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatSortModule,
   ],
-  providers: [],
+  providers: [CookieService ],
   bootstrap: [AppComponent],
   entryComponents: [
         ModalAssociation

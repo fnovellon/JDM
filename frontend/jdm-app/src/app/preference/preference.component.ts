@@ -1,14 +1,16 @@
 import { Component, OnInit, ViewChild} from '@angular/core';
-import {SelectionModel} from '@angular/cdk/collections';
+import { SelectionModel } from '@angular/cdk/collections';
 
 // Material
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 
 // Services
 import { WordService } from '../word.service';
+import { AssociationsJsonService } from '../associations-json.service';
+import { CookieService } from 'ngx-cookie-service';
+
 
 // Models
-import { ResWord } from '../resWord';
 
 
 /*
@@ -33,19 +35,13 @@ const ELEMENT_DATA: PeriodicElement[] = [
 ];
 */
 
-export interface UserData {
-  id: string;
+export interface AssociationData {
+  id: number;
   name: string;
-  progress: string;
-  color: string;
+  popularity: number;
+  num: number;
+  state: number;
 }
-
-/** Constants used to fill up our data base. */
-const COLORS: string[] = ['maroon', 'red', 'orange', 'yellow', 'olive', 'green', 'purple',
-  'fuchsia', 'lime', 'teal', 'aqua', 'blue', 'navy', 'black', 'gray'];
-const NAMES: string[] = ['Maia', 'Asher', 'Olivia', 'Atticus', 'Amelia', 'Jack',
-  'Charlotte', 'Theodore', 'Isla', 'Oliver', 'Isabella', 'Jasper',
-  'Cora', 'Levi', 'Violet', 'Arthur', 'Mia', 'Thomas', 'Elizabeth'];
 
 @Component({
   selector: 'app-preference',
@@ -54,24 +50,50 @@ const NAMES: string[] = ['Maia', 'Asher', 'Olivia', 'Atticus', 'Amelia', 'Jack',
 })
 export class PreferenceComponent implements OnInit {
 
-  displayedColumns: string[] = ['id', 'name', 'progress', 'color'];
-  dataSource: MatTableDataSource<UserData>;
-  selection = new SelectionModel<UserData>(true, []);
+  displayedColumns: string[] = ['select', 'id', 'name', 'popularity', 'num', 'state'];
+  dataSource: MatTableDataSource<AssociationData>;
+  selection = new SelectionModel<AssociationData>(true, []);
+  associations: AssociationData[] = [];
+
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private wordService: WordService) {
-    const users = Array.from({length: 100}, (_, k) => createNewUser(k + 1));
-
-    // Assign the data to the data source for the table to render
-    this.dataSource = new MatTableDataSource(users);
-  }
+  constructor(private wordService: WordService,
+    private associationsJsonService: AssociationsJsonService,
+    private cookieService: CookieService ) { }
 
   ngOnInit() {
     // this.getWord('singe');
+    if (this.cookieService.check('JDM_Preferences_Cookie')) {
+      const data = JSON.parse(this.cookieService.get('JDM_Preferences_Cookie'));
+      this.initTable(data);
+      console.log('Cookie');
+    } else {
+      this.associationsJsonService.getJSON().subscribe(data => {
+        this.initTable(data);
+        console.log('Local');
+    });
+    }
+  }
+
+  initTable(data) {
+    data.forEach(assoc => {
+      this.associations.push(assoc);
+    });
+    // Assign the data to the data source for the table to render
+    this.dataSource = new MatTableDataSource(this.associations);
+
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+  }
+
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
   }
 
   /** Whether the number of selected elements matches the total number of rows. */
@@ -88,23 +110,40 @@ export class PreferenceComponent implements OnInit {
         this.dataSource.data.forEach(row => this.selection.select(row));
   }
 
+  updateVisibility(id: number, oldState: number) {
+    console.log('Visibility => id : ' + id + ' / oldState : ' + oldState);
+    const index = this.associations.findIndex(element => {
+      return element.id === id;
+    });
+    if (oldState !== -1) {
+      this.associations[index].state = -1;
+    } else {
+      this.associations[index].state = 0;
+    }
+  }
+
+  updateFav(id: number, oldState: number) {
+    console.log('Fav => id : ' + id + ' / oldState : ' + oldState);
+    const index = this.associations.findIndex(element => {
+      return element.id === id;
+    });
+    if (oldState !== 1) {
+      this.associations[index].state = 1;
+    } else {
+      this.associations[index].state = 0;
+    }
+  }
+
+  // Doesn't work on localhost
+  savePreferences(event) {
+    this.cookieService.set('JDM_Preferences_Cookie', JSON.stringify(this.associations));
+    console.log(this.cookieService.check('JDM_Preferences_Cookie'));
+    console.log('Save !');
+  }
+
   /*getWord(word: string): void {
     this.wordService.getWord(word)
       .subscribe(resWord => console.log(resWord));
   }*/
 
-}
-
-/* Builds and returns a new User. */
-function createNewUser(id: number): UserData {
-  const name =
-      NAMES[Math.round(Math.random() * (NAMES.length - 1))] + ' ' +
-      NAMES[Math.round(Math.random() * (NAMES.length - 1))].charAt(0) + '.';
-
-  return {
-    id: id.toString(),
-    name: name,
-    progress: Math.round(Math.random() * 100).toString(),
-    color: COLORS[Math.round(Math.random() * (COLORS.length - 1))]
-  };
 }

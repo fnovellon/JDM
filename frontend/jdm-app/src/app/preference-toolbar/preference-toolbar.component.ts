@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, HostListener, EventEmitter } from '@angular/core';
 import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 
@@ -9,17 +9,27 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class PreferenceToolbarComponent implements OnInit {
 
+  @Output()
+  savePreferences: EventEmitter<null> = new EventEmitter();
+
+
   constructor(private route: ActivatedRoute, private location: Location) { }
 
   ngOnInit() {
   }
 
-  backToPrevious(){
-  	this.location.back();
+  /*@HostListener('click')
+  click() {
+    this.clickOnSave.emit();
+  }*/
+
+  backToPrevious() {
+    this.location.back();
   }
 
-  savePreference(){
-  	console.log("A compléter");
+  clickSavePreference() {
+    console.log('Need Save Toolbar');
+    this.savePreferences.emit();
   }
 
 }
