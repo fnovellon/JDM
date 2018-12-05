@@ -47,9 +47,11 @@
 <div class="cardResult" *ngFor="let res of selectedAssociation" >
   <div class="cards">
     <mat-card class="example-card">
+      <div id="closeCard"><mat-icon (click)="removeAssocSelected(res)">close</mat-icon></div>
       <mat-card-header>
         <mat-card-title>{{res}}</mat-card-title>
       </mat-card-header>
+      <mat-divider [inset]="true" ></mat-divider>
       <mat-card-content>
         <p>
           info de l'association

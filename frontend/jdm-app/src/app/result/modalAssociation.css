@@ -18,11 +18,15 @@
 
 #allAssoc{
 	margin-top: 2%;
+	width: 100%;
+	height: 300px;
+	overflow: auto;
 }
 
 .colorChip{
 	background-color: #c5e1a5;
 	margin-left: 1%;
+	margin-top: 1%;
 }
 
 #confirm{

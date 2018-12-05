@@ -19,7 +19,8 @@ import { MatButtonModule,
   MatDialogModule,
   MatCardModule,
   MatPaginatorModule,
-  MatSortModule } from '@angular/material';
+  MatSortModule,
+  MatDividerModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { PreferenceComponent } from './preference/preference.component';
@@ -65,6 +66,7 @@ import { AppRoutingModule } from './app-routing.module';
     MatCardModule,
     MatPaginatorModule,
     MatSortModule,
+    MatDividerModule
   ],
   providers: [CookieService ],
   bootstrap: [AppComponent],

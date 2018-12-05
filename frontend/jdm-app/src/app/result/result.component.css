@@ -108,3 +108,12 @@ button.mat-menu-item {
 	display: block;
 	width: 100%;
 }
+
+#closeCard{
+	float: right;
+	cursor: pointer;
+}
+
+mat-card-content{
+	margin-top: 2%;
+}

@@ -5,6 +5,9 @@ import {MatAutocompleteSelectedEvent, MatChipInputEvent, MatAutocomplete, MatDia
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 
+import { AssociationsJsonService } from '../associations-json.service';
+
+
 export interface DialogData {
   itemSelect: string[];
 }
@@ -14,7 +17,7 @@ export interface DialogData {
   templateUrl: './result.component.html',
   styleUrls: ['./result.component.css']
 })
-export class ResultComponent {
+export class ResultComponent implements OnInit {
 
   preference : string[];
   selectedAssociation : string[] = [];
@@ -30,7 +33,7 @@ export class ResultComponent {
   @ViewChild('associationInput') associationInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto') matAutocomplete: MatAutocomplete;
 
-  constructor(public dialog: MatDialog) {
+  constructor(public dialog: MatDialog, private associationsJsonService: AssociationsJsonService) {
     this.filteredAssociations = this.associationCtrl.valueChanges.pipe(
         startWith(null),
         map((association: string | null) => association ? this._filter(association) : this.allAssociations.slice()));
@@ -38,6 +41,11 @@ export class ResultComponent {
 
   ngOnInit(){
     this.preference = ["test1", "test2"];
+    this.associationsJsonService.getJSON().subscribe(data => {
+      data.forEach(assoc => {
+        this.allAssociations.push(assoc.name);
+      });
+    });
   }
 
   add(event: MatChipInputEvent): void {
@@ -118,16 +126,24 @@ export class ResultComponent {
   templateUrl: 'modalAssociation.html',
   styleUrls: ['./modalAssociation.css']
 })
-export class ModalAssociation {
+export class ModalAssociation implements OnInit {
 
 
-  constructor(public dialogRef: MatDialogRef<ModalAssociation>, @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
+  constructor(public dialogRef: MatDialogRef<ModalAssociation>, @Inject(MAT_DIALOG_DATA) public data: DialogData, private associationsJsonService: AssociationsJsonService) {}
 
-  associations: string[] = ['is_a', 'description','associaiton3', 'associaiton4','is_a1', 'iéés_a','a&ssociaiton3', 'is_fa', 'desfscription','associagfiton3', 'associaifgton3','ifds_a', 'is_ag','assgdociaiton3', 'ihhys_a','fdifs_a', 'isdd_a'];
+  associations: string[] = [];
   itemSelect: string[] = [];
 
   onNoClick(): void {
     this.dialogRef.close();
+  }
+
+  ngOnInit(){
+    this.associationsJsonService.getJSON().subscribe(data => {
+      data.forEach(assoc => {
+        this.associations.push(assoc.name);
+      });
+    });
   }
 
   selectedItem(itemAssoc: string){
