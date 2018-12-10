@@ -5,8 +5,7 @@ import {MatAutocompleteSelectedEvent, MatChipInputEvent, MatAutocomplete, MatDia
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 
-import { AssociationsJsonService } from '../associations-json.service';
-
+import { AssociationsJsonService, AssociationData} from '../associations-json.service';
 
 export interface DialogData {
   itemSelect: string[];
@@ -26,7 +25,8 @@ export class ResultComponent implements OnInit {
   filteredAssociations: Observable<string[]>;
   splitted: string[] = [];
   //Associations pour l'auto complete
-  allAssociations: string[] = ['is_a', 'gender', 'synonyme', 'desc', 'width'];
+  allAssociations: string[] = [];
+  allAssociations_r : string[] = [];
   associations: string[] = [];
 
 
@@ -40,10 +40,11 @@ export class ResultComponent implements OnInit {
   }
 
   ngOnInit(){
-    this.preference = ["test1", "test2"];
+    this.preference = ["test1dad", "test2"];
     this.associationsJsonService.getJSON().subscribe(data => {
       data.forEach(assoc => {
-        this.allAssociations.push(assoc.name);
+        this.allAssociations.push(assoc.name_fr);
+        this.allAssociations_r.push(assoc.name);
       });
     });
   }
@@ -141,7 +142,7 @@ export class ModalAssociation implements OnInit {
   ngOnInit(){
     this.associationsJsonService.getJSON().subscribe(data => {
       data.forEach(assoc => {
-        this.associations.push(assoc.name);
+        this.associations.push(assoc.name_fr);
       });
     });
   }

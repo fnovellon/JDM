@@ -6,8 +6,9 @@ import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 
 // Services
 import { WordService } from '../word.service';
-import { AssociationsJsonService } from '../associations-json.service';
+import { AssociationsJsonService, AssociationData } from '../associations-json.service';
 import { CookieService } from 'ngx-cookie-service';
+
 
 
 // Models
@@ -35,14 +36,6 @@ const ELEMENT_DATA: PeriodicElement[] = [
 ];
 */
 
-export interface AssociationData {
-  id: number;
-  name: string;
-  popularity: number;
-  num: number;
-  state: number;
-}
-
 @Component({
   selector: 'app-preference',
   templateUrl: './preference.component.html',
@@ -50,7 +43,7 @@ export interface AssociationData {
 })
 export class PreferenceComponent implements OnInit {
 
-  displayedColumns: string[] = ['select', 'id', 'name', 'popularity', 'num', 'state'];
+  displayedColumns: string[] = ['select', 'id', 'name', 'name_fr', 'popularity', 'num', 'state'];
   dataSource: MatTableDataSource<AssociationData>;
   selection = new SelectionModel<AssociationData>(true, []);
   associations: AssociationData[] = [];
