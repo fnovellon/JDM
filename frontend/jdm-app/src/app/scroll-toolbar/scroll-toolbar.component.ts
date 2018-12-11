@@ -13,6 +13,7 @@ export class ScrollToolbarComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    
   }
 
 

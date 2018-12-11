@@ -3,7 +3,9 @@ import {Component, ElementRef, ViewChild, OnInit, Inject } from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {MatAutocompleteSelectedEvent, MatChipInputEvent, MatAutocomplete, MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import {Observable} from 'rxjs';
-import {map, startWith} from 'rxjs/operators';
+import {debounceTime, distinctUntilChanged, switchMap, map, startWith} from 'rxjs/operators';
+
+import { AssociationsJsonService, AssociationData} from '../associations-json.service';
 
 export interface DialogData {
   itemSelect: string[];
@@ -14,7 +16,7 @@ export interface DialogData {
   templateUrl: './result.component.html',
   styleUrls: ['./result.component.css']
 })
-export class ResultComponent {
+export class ResultComponent implements OnInit {
 
   preference : string[];
   selectedAssociation : string[] = [];
@@ -23,22 +25,38 @@ export class ResultComponent {
   filteredAssociations: Observable<string[]>;
   splitted: string[] = [];
   //Associations pour l'auto complete
-  allAssociations: string[] = ['is_a', 'gender', 'synonyme', 'desc', 'width'];
+  allAssociations: string[] = [];
+  allAssociations_r : string[] = [];
   associations: string[] = [];
 
 
   @ViewChild('associationInput') associationInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto') matAutocomplete: MatAutocomplete;
 
-  constructor(public dialog: MatDialog) {
-    this.filteredAssociations = this.associationCtrl.valueChanges.pipe(
-        startWith(null),
-        map((association: string | null) => association ? this._filter(association) : this.allAssociations.slice()));
+  constructor(public dialog: MatDialog, private associationsJsonService: AssociationsJsonService) {
   }
 
   ngOnInit(){
-    this.preference = ["test1", "test2"];
+    this.filteredAssociations = this.associationCtrl.valueChanges.pipe(
+      debounceTime(800),
+      distinctUntilChanged(),
+      startWith(''),
+      map((association: string) => this._filter(association)));
+
+    this.preference = ["test1dad", "test2"];
+    this.associationsJsonService.getJSON().subscribe(data => {
+      data.forEach(assoc => {
+        this.allAssociations.push(assoc.name_fr);
+        this.allAssociations_r.push(assoc.name);
+      });
+    });
   }
+
+  private _filter(value: string): string[]{
+    const filterValue = value.toLowerCase();
+    return this.allAssociations.filter(option => option.toLowerCase().includes(filterValue));
+  }
+
 
   add(event: MatChipInputEvent): void {
     // Add association only when MatAutocomplete is not open
@@ -88,13 +106,6 @@ export class ResultComponent {
     this.associationCtrl.setValue(null);
   }
 
-  private _filter(value: string): string[] {
-    const filterValue = value.toLowerCase();
-
-    return this.allAssociations.filter(association => association.toLowerCase().indexOf(filterValue) === 0);
-  }
-
-
   openDialog(): void {
     const dialogRef = this.dialog.open(ModalAssociation, {
       width: '50%',
@@ -118,16 +129,24 @@ export class ResultComponent {
   templateUrl: 'modalAssociation.html',
   styleUrls: ['./modalAssociation.css']
 })
-export class ModalAssociation {
+export class ModalAssociation implements OnInit {
 
 
-  constructor(public dialogRef: MatDialogRef<ModalAssociation>, @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
+  constructor(public dialogRef: MatDialogRef<ModalAssociation>, @Inject(MAT_DIALOG_DATA) public data: DialogData, private associationsJsonService: AssociationsJsonService) {}
 
-  associations: string[] = ['is_a', 'description','associaiton3', 'associaiton4','is_a1', 'iéés_a','a&ssociaiton3', 'is_fa', 'desfscription','associagfiton3', 'associaifgton3','ifds_a', 'is_ag','assgdociaiton3', 'ihhys_a','fdifs_a', 'isdd_a'];
+  associations: string[] = [];
   itemSelect: string[] = [];
 
   onNoClick(): void {
     this.dialogRef.close();
+  }
+
+  ngOnInit(){
+    this.associationsJsonService.getJSON().subscribe(data => {
+      data.forEach(assoc => {
+        this.associations.push(assoc.name_fr);
+      });
+    });
   }
 
   selectedItem(itemAssoc: string){

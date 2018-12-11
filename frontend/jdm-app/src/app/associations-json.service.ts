@@ -4,6 +4,15 @@ import { Observable } from 'rxjs';
 
 import { CookieService } from 'ngx-cookie-service';
 
+export interface AssociationData {
+  id: number;
+  name: string;
+  name_fr: string;
+  popularity: number;
+  num: number;
+  state: number;
+}
+
 @Injectable({
   providedIn: 'root'
 })

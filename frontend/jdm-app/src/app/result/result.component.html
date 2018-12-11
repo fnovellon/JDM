@@ -1,20 +1,17 @@
 <app-result-toolbar></app-result-toolbar>
+<blockquote id="description"><p>Ceci est un test de description elle est un peu longue dzadjezfdjez dezfezfref dfezfezfezfezfelle est un peu longue dzadjezfdjez dezfezfref dfezfezfezfezfelle est un peu longue dzadjezfdjez dezfezfref dfezfezfezfezfelle est un peu longue dzadjezfdjez dezfezfref dfezfezfezfezf</p></blockquote>
 <div id="searchAssoc">
-  <div id="favGen">
-    <div id="fav">
-      Associations favorites :
-    </div>
-  </div>
   <div id="chipFav">
     <mat-chip *ngFor="let pref of preference" (click)='addToAssoc(pref)' [selectable]="selectable">
-      {{pref}}
       <mat-icon style="color:#ef9a9a">favorite</mat-icon>
+      <div class="fav"> {{pref}}</div>
     </mat-chip>
   </div>
   <div id="chipSearch">
     <mat-form-field class="example-chip-list">
       <mat-chip-list #chipList>
       <input
+      type="text"
       placeholder="Nouvelle association"
       #associationInput
       [formControl]="associationCtrl"
@@ -33,7 +30,7 @@
   <button id="listBtn" mat-button (click)="openDialog()"><mat-icon>list</mat-icon></button>
 </div>
 <div id="selection">
-<div id="selec">
+<div id="selec" *ngIf="selectedAssociation != ''">
     Associations Séléctionné :
   </div>
   </div>
@@ -44,12 +41,15 @@
     </mat-chip>
   </div>
 </div>
+<app-scroll-toolbar></app-scroll-toolbar>
 <div class="cardResult" *ngFor="let res of selectedAssociation" >
   <div class="cards">
     <mat-card class="example-card">
+      <div id="closeCard"><mat-icon (click)="removeAssocSelected(res)">close</mat-icon></div>
       <mat-card-header>
         <mat-card-title>{{res}}</mat-card-title>
       </mat-card-header>
+      <mat-divider [inset]="true" ></mat-divider>
       <mat-card-content>
         <p>
           info de l'association

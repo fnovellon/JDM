@@ -1,5 +1,5 @@
 <mat-toolbar class="mat-elevation-z6">
-  <img width="80" alt="JeuxDeMots Logo" src="../assets/loupeJDM_Project.png">
+  <a routerLink='/search' ><img width="80" alt="JeuxDeMots Logo" src="../assets/loupeJDM_Project.png"></a>
   <span class="example-spacer"></span>
   <input type="search" matInput placeholder="Saisissez un mot à rechercher" aria-label="Mot" [(ngModel)]="value" matInput [matAutocomplete]="auto">
   <mat-autocomplete #auto="matAutocomplete">

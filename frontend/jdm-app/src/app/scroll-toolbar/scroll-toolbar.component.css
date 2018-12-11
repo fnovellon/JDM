@@ -5,14 +5,13 @@
 mat-toolbar{
   height: 75px;
   background-color: white;
-  box-shadow: 0px 3px 3px grey;  
 }
 
 input {
     color: #333;
     border: none;
     border-radius: 100px;
-    background-color: #fafafa;
+    background-color: #e2e2e2;
     outline: none;
     width: 20%;
     padding: 5px 16px;
