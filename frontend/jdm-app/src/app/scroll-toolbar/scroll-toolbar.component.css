@@ -4,7 +4,7 @@
 
 mat-toolbar{
   height: 75px;
-  background-color: white;
+  background-color: #fafafa;
 }
 
 input {
@@ -13,7 +13,7 @@ input {
     border-radius: 100px;
     background-color: #e2e2e2;
     outline: none;
-    width: 20%;
+    width: 30%;
     padding: 5px 16px;
     margin-left: 8px;
     height: 60%;

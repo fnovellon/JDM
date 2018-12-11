@@ -1,5 +1,6 @@
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
-import {Component, ElementRef, ViewChild, OnInit, Inject } from '@angular/core';
+import {Component, AfterViewInit, ElementRef, ViewChild, HostListener, OnInit, Inject } from '@angular/core';
+import {trigger, state, style, animate, transition } from '@angular/animations';
 import {FormControl} from '@angular/forms';
 import {MatAutocompleteSelectedEvent, MatChipInputEvent, MatAutocomplete, MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import {Observable} from 'rxjs';
@@ -29,13 +30,30 @@ export class ResultComponent implements OnInit {
   allAssociations_r : string[] = [];
   associations: string[] = [];
 
-
   @ViewChild('associationInput') associationInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto') matAutocomplete: MatAutocomplete;
+  @ViewChild('stickyMenu') menuElement: ElementRef;
+
+  sticky: boolean = false;
+  elementPosition: any;
 
   constructor(public dialog: MatDialog, private associationsJsonService: AssociationsJsonService) {
   }
 
+  //Scroll 
+  ngAfterViewInit(){
+    this.elementPosition = this.menuElement.nativeElement.offsetTop;
+  }
+
+  @HostListener('window:scroll', ['$event'])
+    handleScroll(){
+      const windowScroll = window.pageYOffset;
+      if(windowScroll >= this.elementPosition){
+        this.sticky = true;
+      } else {
+        this.sticky = false;
+      }
+    }
   ngOnInit(){
     this.filteredAssociations = this.associationCtrl.valueChanges.pipe(
       debounceTime(800),
@@ -108,7 +126,7 @@ export class ResultComponent implements OnInit {
 
   openDialog(): void {
     const dialogRef = this.dialog.open(ModalAssociation, {
-      width: '50%',
+      width: '80%',
       data: {itemSelect: this.associations}
     });
 
