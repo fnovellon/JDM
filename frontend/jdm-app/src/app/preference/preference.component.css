@@ -13,7 +13,7 @@ table {
 }
 
 .state.fav.active {
-  color:#ef9a9a;
+  color:#f16f6f;
 }
 
 .state.fav {
@@ -26,5 +26,34 @@ table {
 
 .state.visibility {
   color:#acacac;
+}
+
+.headerTable {
+  width: 100%;
+  overflow: auto;
+  background-color: white;
+}
+
+.actionButton {
+  float: right;
+}
+
+.actionButton button {
+  margin: 10px 10px 10px 0;
+}
+
+#favButton.enabled{
+  background-color:#f16f6f;
+  color: white;
+}
+
+#neutralButton.enabled {
+  background-color:#8d8c8c;
+  color: white;
+}
+
+#hideButton.enabled {
+  background-color:#000000;
+  color: white;
 }
 

@@ -6,6 +6,31 @@
   </mat-form-field>
   
   <div class="mat-elevation-z8">
+    <div class="headerTable">
+      <div class="actionButton">
+        <button mat-raised-button 
+          [disabled]="!selection.hasValue()" 
+          [class.enabled]="selection.hasValue()" 
+          (click)="addSelectionByState(1)"
+          id="favButton">
+            Ajouter aux favoris
+        </button>
+        <button mat-raised-button 
+          [disabled]="!selection.hasValue()" 
+          [class.enabled]="selection.hasValue()" 
+          (click)="addSelectionByState(0)"
+          id="neutralButton">
+            Rendre neutre
+        </button>
+        <button mat-raised-button 
+          [disabled]="!selection.hasValue()" 
+          [class.enabled]="selection.hasValue()" 
+          (click)="addSelectionByState(-1)"
+          id="hideButton">
+            Masquer
+        </button>
+      </div>
+    </div>
     <table mat-table [dataSource]="dataSource" matSort>
   
       <!-- Checkbox Column -->

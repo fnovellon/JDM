@@ -112,26 +112,35 @@ export class PreferenceComponent implements OnInit {
 
   updateVisibility(id: number, oldState: number) {
     console.log('Visibility => id : ' + id + ' / oldState : ' + oldState);
-    const index = this.associations.findIndex(element => {
-      return element.id === id;
-    });
     if (oldState !== -1) {
-      this.associations[index].state = -1;
+      this.updateAsso(id, -1);
     } else {
-      this.associations[index].state = 0;
+      this.updateAsso(id, 0);
     }
   }
 
   updateFav(id: number, oldState: number) {
     console.log('Fav => id : ' + id + ' / oldState : ' + oldState);
+    if (oldState !== 1) {
+      this.updateAsso(id, 1);
+    } else {
+      this.updateAsso(id, 0);
+    }
+  }
+
+  updateAsso(id: number, newState: number) {
     const index = this.associations.findIndex(element => {
       return element.id === id;
     });
-    if (oldState !== 1) {
-      this.associations[index].state = 1;
-    } else {
-      this.associations[index].state = 0;
-    }
+    this.associations[index].state = newState;
+  }
+
+  addSelectionByState(state: number) {
+    console.log('addSelectionByState');
+    this.selection.selected.forEach(association => {
+      this.updateAsso(association.id, state);
+    });
+    this.selection.clear();
   }
 
   // Doesn't work on localhost
