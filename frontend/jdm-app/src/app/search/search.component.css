@@ -39,6 +39,11 @@ input {
     -webkit-appearance: none;
 }
 
+#searchButton {
+  margin-top: 5%;
+}
+
+
 .image{
   -webkit-animation:spin 6s linear infinite;
   -moz-animation:spin 6s linear infinite;
