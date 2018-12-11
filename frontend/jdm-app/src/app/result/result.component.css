@@ -46,14 +46,13 @@ mat-form-field{
 #selec{
 	display: block;
 	float: left;
-	margin-top : 1%;
 	margin-left: 2%;
 }
 
 #listBtn {
 	min-width: 10px !important;
 	float: left;
-	margin-top: 3%;
+	margin-top: 2%;
 }
 
 #chipFav{

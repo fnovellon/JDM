@@ -3,7 +3,7 @@ import {Component, ElementRef, ViewChild, OnInit, Inject } from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {MatAutocompleteSelectedEvent, MatChipInputEvent, MatAutocomplete, MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import {Observable} from 'rxjs';
-import {map, startWith} from 'rxjs/operators';
+import {debounceTime, distinctUntilChanged, switchMap, map, startWith} from 'rxjs/operators';
 
 import { AssociationsJsonService, AssociationData} from '../associations-json.service';
 
@@ -34,12 +34,15 @@ export class ResultComponent implements OnInit {
   @ViewChild('auto') matAutocomplete: MatAutocomplete;
 
   constructor(public dialog: MatDialog, private associationsJsonService: AssociationsJsonService) {
-    this.filteredAssociations = this.associationCtrl.valueChanges.pipe(
-        startWith(null),
-        map((association: string | null) => association ? this._filter(association) : this.allAssociations.slice()));
   }
 
   ngOnInit(){
+    this.filteredAssociations = this.associationCtrl.valueChanges.pipe(
+      debounceTime(800),
+      distinctUntilChanged(),
+      startWith(''),
+      map((association: string) => this._filter(association)));
+
     this.preference = ["test1dad", "test2"];
     this.associationsJsonService.getJSON().subscribe(data => {
       data.forEach(assoc => {
@@ -48,6 +51,12 @@ export class ResultComponent implements OnInit {
       });
     });
   }
+
+  private _filter(value: string): string[]{
+    const filterValue = value.toLowerCase();
+    return this.allAssociations.filter(option => option.toLowerCase().includes(filterValue));
+  }
+
 
   add(event: MatChipInputEvent): void {
     // Add association only when MatAutocomplete is not open
@@ -96,13 +105,6 @@ export class ResultComponent implements OnInit {
     this.associationInput.nativeElement.value = '';
     this.associationCtrl.setValue(null);
   }
-
-  private _filter(value: string): string[] {
-    const filterValue = value.toLowerCase();
-
-    return this.allAssociations.filter(association => association.toLowerCase().indexOf(filterValue) === 0);
-  }
-
 
   openDialog(): void {
     const dialogRef = this.dialog.open(ModalAssociation, {

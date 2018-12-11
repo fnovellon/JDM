@@ -11,6 +11,7 @@
     <mat-form-field class="example-chip-list">
       <mat-chip-list #chipList>
       <input
+      type="text"
       placeholder="Nouvelle association"
       #associationInput
       [formControl]="associationCtrl"
@@ -40,6 +41,7 @@
     </mat-chip>
   </div>
 </div>
+<app-scroll-toolbar></app-scroll-toolbar>
 <div class="cardResult" *ngFor="let res of selectedAssociation" >
   <div class="cards">
     <mat-card class="example-card">
