@@ -154,12 +154,24 @@ mat-card-content{
   overflow: hidden;
   z-index: 10;
   width: 100%;
-  background-color: #fff;
 }
 
 #scroll{
     overflow: auto;
     width: 100%;
+}
+
+#containerScrollToolbar {
+	min-height: 75px;
+}
+
+::ng-deep .sticky app-scroll-toolbar mat-toolbar {
+	background-color: white;
+	box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px 0px rgba(0, 0, 0, 0.14), 0px 1px 18px 0px rgba(0, 0, 0, 0.12);
+}
+
+::ng-deep .noSticky app-scroll-toolbar mat-toolbar {
+	background-color: #fafafa;
 }
 
 @media (max-width: 800px){
