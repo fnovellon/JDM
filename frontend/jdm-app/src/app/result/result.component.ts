@@ -47,8 +47,13 @@ export class ResultComponent implements OnInit {
 
   @HostListener('window:scroll', ['$event'])
     handleScroll(){
+      if(this.sticky == false){
+        this.elementPosition = this.menuElement.nativeElement.offsetTop;
+      }
       const windowScroll = window.pageYOffset;
-      if(windowScroll >= this.elementPosition){
+      console.log(this.elementPosition);
+      console.log(windowScroll);
+      if(windowScroll > this.elementPosition){
         this.sticky = true;
       } else {
         this.sticky = false;

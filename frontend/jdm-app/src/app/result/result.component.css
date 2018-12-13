@@ -77,6 +77,7 @@ mat-form-field{
 }
 
 #chipSelec{
+	overflow: auto;
 	width: 96%;
 	margin-left: 1%;
 	margin-top: 1%;
@@ -94,6 +95,7 @@ mat-chip{
 }
 
 #searchAssoc{
+	overflow: auto;
 	width: 100%;
 	display: block;
 }
@@ -152,6 +154,12 @@ mat-card-content{
   overflow: hidden;
   z-index: 10;
   width: 100%;
+  background-color: #fff;
+}
+
+#scroll{
+    overflow: auto;
+    width: 100%;
 }
 
 @media (max-width: 800px){
