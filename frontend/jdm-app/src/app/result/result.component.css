@@ -161,7 +161,6 @@ mat-card-content{
     width: 100%;
 }
 
-<<<<<<< HEAD
 ::ng-deep .mat-card-content {
     margin-bottom: 0px;
 }
@@ -181,7 +180,8 @@ mat-card-content{
 
 .poidsResult{
 	width: 20%;
-=======
+}
+
 #containerScrollToolbar {
 	min-height: 75px;
 }
@@ -193,7 +193,6 @@ mat-card-content{
 
 ::ng-deep .noSticky app-scroll-toolbar mat-toolbar {
 	background-color: #fafafa;
->>>>>>> 25d83dd2e5cf0dbcd50852d6480a97e27bc17e54
 }
 
 @media (max-width: 800px){
