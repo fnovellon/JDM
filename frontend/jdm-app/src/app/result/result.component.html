@@ -41,9 +41,12 @@
     </mat-chip>
   </div>
 </div>
-<div id="scroll" #stickyMenu [class.sticky] = "sticky">
+<div id="containerScrollToolbar">
+  <div id="scroll" #stickyMenu [class.noSticky]= "!sticky" [class.sticky] = "sticky">
   <app-scroll-toolbar *ngIf="selectedAssociation != ''"></app-scroll-toolbar>
 </div>
+</div>
+
 <div class="cardResult" *ngFor="let res of selectedAssociation" >
   <div class="cards">
     <mat-card class="example-card">
