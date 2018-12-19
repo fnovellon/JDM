@@ -41,6 +41,7 @@
     </mat-chip>
   </div>
 </div>
+<mat-divider *ngIf="selectedAssociation != ''"></mat-divider>
 <div id="containerScrollToolbar">
   <div id="scroll" #stickyMenu [class.noSticky]= "!sticky" [class.sticky] = "sticky">
   <app-scroll-toolbar *ngIf="selectedAssociation != ''"></app-scroll-toolbar>

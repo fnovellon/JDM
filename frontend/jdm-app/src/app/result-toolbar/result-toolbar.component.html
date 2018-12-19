@@ -1,13 +1,40 @@
 <mat-toolbar class="mat-elevation-z6">
-  <a routerLink='/search' ><img width="80" alt="JeuxDeMots Logo" src="../assets/loupeJDM_Project.png"></a>
-  <span class="example-spacer"></span>
-  <input type="search" matInput placeholder="Saisissez un mot à rechercher" aria-label="Mot" [(ngModel)]="value" matInput [matAutocomplete]="auto">
-  <mat-autocomplete #auto="matAutocomplete">
-    <mat-option *ngFor="let option of options" [value]="option">
-      {{option}}
-    </mat-option>
-  </mat-autocomplete>
-  <button style="float: right" mat-icon-button [matMenuTriggerFor]="appMenu">
+  <a *ngIf="showPreSearchBar()" routerLink='/search' ><img width="80" alt="JeuxDeMots Logo" src="../assets/loupeJDM_Project.png"></a>
+  <span *ngIf="showPreSearchBar()" id="searchedWord">Chien</span>
+  
+  <span *ngIf="showPreSearchBar()" class="example-spacer"></span>
+
+  <button *ngIf="showPreSearchBar()" mat-icon-button (click)="initiateSearch()">
+    <mat-icon aria-label="search icon-button">search</mat-icon>
+  </button>
+  
+
+  <!-- Search bar -->
+  <div *ngIf="showSearchBar()" class="search-bar">
+
+    <button id="searchBarSearch" mat-icon-button (click)="submit()">
+      <mat-icon>search</mat-icon>
+    </button>
+
+    <!-- Input Text -->
+    <mat-form-field>
+      <!-- <label for="search">Search</label> -->
+      <input matInput [(ngModel)]="this.searchValue" id="search-input" type="text" />
+    </mat-form-field>
+
+    <!--<input type="search" matInput placeholder="Saisissez un mot à rechercher" aria-label="Mot" [(ngModel)]="value" matInput [matAutocomplete]="auto">
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option *ngFor="let option of options" [value]="option">
+        {{option}}
+      </mat-option>
+    </mat-autocomplete>-->
+
+    <button id="searchBarClose" mat-icon-button (click)="endSearchBar()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  
+  <button *ngIf="showPreSearchBar()" style="float: right" mat-icon-button [matMenuTriggerFor]="appMenu">
     <mat-icon>more_vert</mat-icon>
   </button>
   <mat-menu id="menu" #appMenu="matMenu" [overlapTrigger]="false">

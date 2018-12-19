@@ -19,4 +19,5 @@ input {
     height: 60%;
     font-size: 0.75em;
     -webkit-appearance: none;
+    text-align: left;
 }

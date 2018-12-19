@@ -7,14 +7,34 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ResultToolbarComponent implements OnInit {
 
-	value = '';
-  options: string[];
+  search = false;
+  searchValue = '';
 
-  constructor() { 
+  constructor() { }
+
+  ngOnInit() { }
+
+  initiateSearch() {
+    console.log('initiateSearch');
+    this.search = true;
   }
 
-  ngOnInit() {  	
-  	this.options = [""];
+  showPreSearchBar() {
+    console.log('showPreSearchBar');
+    return this.search === false;
   }
 
+  showSearchBar() {
+    console.log('showSearchBar');
+    return this.search !== false;
+  }
+
+  endSearchBar() {
+    console.log('endSearchBar');
+    return this.search = false;
+  }
+
+  submit() {
+    console.log('submit');
+  }
 }

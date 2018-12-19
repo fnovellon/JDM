@@ -7,7 +7,7 @@ mat-toolbar{
   background-color: white;
 }
 
-input {
+/*input {
     color: #333;
     border: none;
     border-radius: 100px;
@@ -20,8 +20,25 @@ input {
     font-size: 0.75em;
     text-align: left;
     -webkit-appearance: none;
-}
+}*/
 
 ::ng-deep .mat-menu-content:not(:empty) {
   display: block;
+}
+
+#searchedWord {
+  margin-right: 2%;
+  margin-left: 2%;
+}
+
+.search-bar {
+  width: 100%; 
+  text-align: left;
+}
+.search-bar * { color: black !important; }
+.search-bar input { border-bottom-color: black; }
+
+#formFieldInput {
+  display: flex;
+  flex-direction: column;
 }
