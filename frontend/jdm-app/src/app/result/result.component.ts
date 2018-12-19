@@ -5,7 +5,7 @@ import {FormControl} from '@angular/forms';
 import {MatAutocompleteSelectedEvent, MatChipInputEvent, MatAutocomplete, MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import {Observable} from 'rxjs';
 import {debounceTime, distinctUntilChanged, switchMap, map, startWith} from 'rxjs/operators';
-
+import {AssocWord} from '../assocWord';
 import { AssociationsJsonService, AssociationData} from '../associations-json.service';
 
 export interface DialogData {
@@ -30,6 +30,9 @@ export class ResultComponent implements OnInit {
   allAssociations_r : string[] = [];
   associations: string[] = [];
 
+  //resultat de l'assoc
+  resultAssoc: AssocWord[] = [];
+
   @ViewChild('associationInput') associationInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto') matAutocomplete: MatAutocomplete;
   @ViewChild('stickyMenu') menuElement: ElementRef;
@@ -38,6 +41,135 @@ export class ResultComponent implements OnInit {
   elementPosition: any;
 
   constructor(public dialog: MatDialog, private associationsJsonService: AssociationsJsonService) {
+    this.resultAssoc = [
+      { id: 0, nom: "Test", mots: [{
+          nom:"test1", 
+          id: 101, 
+          poids: 10
+        },
+        {
+          nom:"test2", 
+          id: 102, 
+          poids: 12
+        },
+        {
+          nom:"testavecuntitreunpeulong3", 
+          id: 103, 
+          poids: 13
+        },
+        {
+          nom:"teses tavecu ntitreunp eulon g4", 
+          id: 104, 
+          poids: 14
+        },
+        {
+          nom:"test5", 
+          id: 105, 
+          poids: 15
+        },
+        {
+          nom:"test6", 
+          id: 106, 
+          poids: 16
+        },
+        {
+          nom:"test7", 
+          id: 107, 
+          poids: 17
+        },
+        {
+          nom:"test8", 
+          id: 108, 
+          poids: 18
+        },
+        {
+          nom:"test9", 
+          id: 109, 
+          poids: 19
+        },
+        {
+          nom:"test2", 
+          id: 102, 
+          poids: 12
+        },
+        {
+          nom:"testavecuntitreunpeulong3", 
+          id: 103, 
+          poids: 13
+        },
+        {
+          nom:"teses tavecu ntitreunp eulon g4", 
+          id: 104, 
+          poids: 14
+        },
+        {
+          nom:"test5", 
+          id: 105, 
+          poids: 15
+        },
+        {
+          nom:"test6", 
+          id: 106, 
+          poids: 16
+        },
+        {
+          nom:"test7", 
+          id: 107, 
+          poids: 17
+        },
+        {
+          nom:"test8", 
+          id: 108, 
+          poids: 18
+        },
+        {
+          nom:"test9", 
+          id: 109, 
+          poids: 19
+        },
+        {
+          nom:"test2", 
+          id: 102, 
+          poids: 12
+        },
+        {
+          nom:"testavecuntitreunpeulong3", 
+          id: 103, 
+          poids: 13
+        },
+        {
+          nom:"teses tavecu ntitreunp eulon g4", 
+          id: 104, 
+          poids: 14
+        },
+        {
+          nom:"test5", 
+          id: 105, 
+          poids: 15
+        },
+        {
+          nom:"test6", 
+          id: 106, 
+          poids: 16
+        },
+        {
+          nom:"test7", 
+          id: 107, 
+          poids: 17
+        },
+        {
+          nom:"test8", 
+          id: 108, 
+          poids: 18
+        },
+        {
+          nom:"test9", 
+          id: 109, 
+          poids: 19
+        },
+        ],
+      },
+    ];
   }
 
   //Scroll 
@@ -66,7 +198,7 @@ export class ResultComponent implements OnInit {
       startWith(''),
       map((association: string) => this._filter(association)));
 
-    this.preference = ["test1dad", "test2"];
+    this.preference = ["test1", "test2"];
     this.associationsJsonService.getJSON().subscribe(data => {
       data.forEach(assoc => {
         this.allAssociations.push(assoc.name_fr);

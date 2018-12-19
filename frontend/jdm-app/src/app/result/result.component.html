@@ -57,10 +57,18 @@
       </mat-card-header>
       <mat-divider [inset]="true" ></mat-divider>
       <mat-card-content>
-        <p>
-          info de l'association
-        </p>
+        <mat-grid-list cols="3" rowHeight="30px">
+          <mat-grid-tile *ngFor="let ra of resultAssoc[0].mots">
+              <div class="nomResult">{{ra.nom}}:</div> <div class="poidsResult">{{ra.poids}}</div>
+          </mat-grid-tile>
+        </mat-grid-list>
       </mat-card-content>
+      <mat-paginator [length]="resultAssoc[0].mots.length"
+                [pageSize]="size"
+                [pageIndex]="page"
+                [pageSizeOptions]="[2, 4, 6]"
+                (page)="getData($event)">
+      </mat-paginator>
     </mat-card>
   </div>
 </div>
