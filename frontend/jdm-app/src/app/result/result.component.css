@@ -162,6 +162,27 @@ mat-card-content{
     width: 100%;
 }
 
+::ng-deep .mat-card-content {
+    margin-bottom: 0px;
+}
+
+::ng-deep .mat-grid-tile .mat-figure{
+	border-left: 1px solid #c1c1c1;
+}
+
+.nomResult{
+	width: 75%;
+	margin-left: 5%;
+	text-align: left;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+.poidsResult{
+	width: 20%;
+}
+
 @media (max-width: 800px){
 	.mat-card-header .mat-card-title{
 		font-size: 12px;

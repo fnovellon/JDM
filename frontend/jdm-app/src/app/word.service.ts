@@ -5,7 +5,7 @@ import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
 // Model
-import { ResWord } from './resWord';
+import { AssocWord } from './assocWord';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' })
@@ -18,15 +18,15 @@ export class WordService {
   private wordUrl = 'http://51.75.253.77/mot/';  // URL to web api
   constructor(private http: HttpClient) { }
 
-  getWord(name: string): Observable<ResWord> {
+  getWord(name: string): Observable<AssocWord> {
     const url = `${this.wordUrl}${name}`;
     console.log(url);
-    return this.http.get<ResWord>(url, httpOptions).pipe(
+    return this.http.get<AssocWord>(url, httpOptions).pipe(
       tap(data => {
         console.log(`fetched hero name=${name}`);
         // console.log(data);
       }),
-      catchError(this.handleError<ResWord>(`getHero name=${name}`))
+      catchError(this.handleError<AssocWord>(`getHero name=${name}`))
     );
   }
 
