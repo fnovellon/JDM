@@ -35,10 +35,21 @@ mat-toolbar{
   width: 100%; 
   text-align: left;
 }
-.search-bar * { color: black !important; }
-.search-bar input { border-bottom-color: black; }
+.search-bar * {
+  color: black !important;
+}
+.search-bar input {
+  border-bottom-color: black;
+}
+
+#searchBarSearch {
+  width: 2.5%
+}
 
 #formFieldInput {
-  display: flex;
-  flex-direction: column;
+  width: 95%
+}
+
+#searchBarClose {
+  width: 2.5%
 }

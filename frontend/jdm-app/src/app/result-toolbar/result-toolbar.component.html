@@ -16,11 +16,15 @@
       <mat-icon>search</mat-icon>
     </button>
 
+    
+
     <!-- Input Text -->
-    <mat-form-field>
+    <mat-form-field id="formFieldInput">
       <!-- <label for="search">Search</label> -->
       <input matInput [(ngModel)]="this.searchValue" id="search-input" type="text" />
     </mat-form-field>
+
+    
 
     <!--<input type="search" matInput placeholder="Saisissez un mot à rechercher" aria-label="Mot" [(ngModel)]="value" matInput [matAutocomplete]="auto">
     <mat-autocomplete #auto="matAutocomplete">

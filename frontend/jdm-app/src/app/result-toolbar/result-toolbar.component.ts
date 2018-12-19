@@ -15,22 +15,22 @@ export class ResultToolbarComponent implements OnInit {
   ngOnInit() { }
 
   initiateSearch() {
-    console.log('initiateSearch');
+    //console.log('initiateSearch');
     this.search = true;
   }
 
   showPreSearchBar() {
-    console.log('showPreSearchBar');
+    //console.log('showPreSearchBar');
     return this.search === false;
   }
 
   showSearchBar() {
-    console.log('showSearchBar');
+    //console.log('showSearchBar');
     return this.search !== false;
   }
 
   endSearchBar() {
-    console.log('endSearchBar');
+    //console.log('endSearchBar');
     return this.search = false;
   }
 
