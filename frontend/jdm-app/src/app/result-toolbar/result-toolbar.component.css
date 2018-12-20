@@ -5,6 +5,7 @@
 mat-toolbar{
   height: 75px;
   background-color: white;
+  padding: 0 !important;
 }
 
 /*input {
@@ -34,6 +35,7 @@ mat-toolbar{
 .search-bar {
   width: 100%; 
   text-align: left;
+  display: flex;
 }
 .search-bar * {
   color: black !important;
@@ -43,13 +45,21 @@ mat-toolbar{
 }
 
 #searchBarSearch {
-  width: 2.5%
+  width: 50px;
 }
 
 #formFieldInput {
-  width: 95%
+  flex: 1;
 }
 
 #searchBarClose {
-  width: 2.5%
+  width: 50px;
+}
+
+.rightSideMargin {
+  margin-right: 1%;
+}
+
+.leftSideMargin {
+  margin-left: 1%;
 }

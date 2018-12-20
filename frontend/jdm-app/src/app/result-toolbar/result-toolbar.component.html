@@ -1,5 +1,5 @@
 <mat-toolbar class="mat-elevation-z6">
-  <a *ngIf="showPreSearchBar()" routerLink='/search' ><img width="80" alt="JeuxDeMots Logo" src="../assets/loupeJDM_Project.png"></a>
+  <a class="leftSideMargin" *ngIf="showPreSearchBar()" routerLink='/search' ><img width="80" alt="JeuxDeMots Logo" src="../assets/loupeJDM_Project.png"></a>
   <span *ngIf="showPreSearchBar()" id="searchedWord">Chien</span>
   
   <span *ngIf="showPreSearchBar()" class="example-spacer"></span>
@@ -38,7 +38,7 @@
     </button>
   </div>
   
-  <button *ngIf="showPreSearchBar()" style="float: right" mat-icon-button [matMenuTriggerFor]="appMenu">
+  <button class="rightSideMargin" *ngIf="showPreSearchBar()" style="float: right" mat-icon-button [matMenuTriggerFor]="appMenu">
     <mat-icon>more_vert</mat-icon>
   </button>
   <mat-menu id="menu" #appMenu="matMenu" [overlapTrigger]="false">
