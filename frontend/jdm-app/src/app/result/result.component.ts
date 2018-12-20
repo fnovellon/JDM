@@ -6,6 +6,8 @@ import {MatAutocompleteSelectedEvent, MatChipInputEvent, MatAutocomplete, MatDia
 import {Observable} from 'rxjs';
 import {debounceTime, distinctUntilChanged, switchMap, map, startWith} from 'rxjs/operators';
 import {AssocWord} from '../assocWord';
+import {Word} from '../word';
+import {TooltipPosition} from '@angular/material';
 import { AssociationsJsonService, AssociationData} from '../associations-json.service';
 
 export interface DialogData {
@@ -19,19 +21,25 @@ export interface DialogData {
 })
 export class ResultComponent implements OnInit {
 
-  preference : string[];
-  selectedAssociation : string[] = [];
+  preferences : AssociationData[];
+  selectedAssociation : AssociationData[] = [];
   separatorKeysCodes: number[] = [ENTER, COMMA];
   associationCtrl = new FormControl();
   filteredAssociations: Observable<string[]>;
   splitted: string[] = [];
+
   //Associations pour l'auto complete
-  allAssociations: string[] = [];
+  allAssociations: AssociationData[] = [];
   allAssociations_r : string[] = [];
-  associations: string[] = [];
+  associations: AssociationData[] = [];
 
   //resultat de l'assoc
-  resultAssoc: AssocWord[] = [];
+  resultAssoc: AssocWord;
+  resultAssocData: Word[] = [];
+
+  //page 
+  page = 0;
+  size = 18;
 
   @ViewChild('associationInput') associationInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto') matAutocomplete: MatAutocomplete;
@@ -40,142 +48,7 @@ export class ResultComponent implements OnInit {
   sticky: boolean = false;
   elementPosition: any;
 
-  constructor(public dialog: MatDialog, private associationsJsonService: AssociationsJsonService) {
-    this.resultAssoc = [
-      { id: 0, nom: "Test", mots: [{
-          nom:"test1", 
-          id: 101, 
-          poids: 10
-        },
-        {
-          nom:"test2", 
-          id: 102, 
-          poids: 12
-        },
-        {
-          nom:"testavecuntitreunpeulong3", 
-          id: 103, 
-          poids: 13
-        },
-        {
-          nom:"teses tavecu ntitreunp eulon g4", 
-          id: 104, 
-          poids: 14
-        },
-        {
-          nom:"test5", 
-          id: 105, 
-          poids: 15
-        },
-        {
-          nom:"test6", 
-          id: 106, 
-          poids: 16
-        },
-        {
-          nom:"test7", 
-          id: 107, 
-          poids: 17
-        },
-        {
-          nom:"test8", 
-          id: 108, 
-          poids: 18
-        },
-        {
-          nom:"test9", 
-          id: 109, 
-          poids: 19
-        },
-        {
-          nom:"test2", 
-          id: 102, 
-          poids: 12
-        },
-        {
-          nom:"testavecuntitreunpeulong3", 
-          id: 103, 
-          poids: 13
-        },
-        {
-          nom:"teses tavecu ntitreunp eulon g4", 
-          id: 104, 
-          poids: 14
-        },
-        {
-          nom:"test5", 
-          id: 105, 
-          poids: 15
-        },
-        {
-          nom:"test6", 
-          id: 106, 
-          poids: 16
-        },
-        {
-          nom:"test7", 
-          id: 107, 
-          poids: 17
-        },
-        {
-          nom:"test8", 
-          id: 108, 
-          poids: 18
-        },
-        {
-          nom:"test9", 
-          id: 109, 
-          poids: 19
-        },
-        {
-          nom:"test2", 
-          id: 102, 
-          poids: 12
-        },
-        {
-          nom:"testavecuntitreunpeulong3", 
-          id: 103, 
-          poids: 13
-        },
-        {
-          nom:"teses tavecu ntitreunp eulon g4", 
-          id: 104, 
-          poids: 14
-        },
-        {
-          nom:"test5", 
-          id: 105, 
-          poids: 15
-        },
-        {
-          nom:"test6", 
-          id: 106, 
-          poids: 16
-        },
-        {
-          nom:"test7", 
-          id: 107, 
-          poids: 17
-        },
-        {
-          nom:"test8", 
-          id: 108, 
-          poids: 18
-        },
-        {
-          nom:"test9", 
-          id: 109, 
-          poids: 19
-        },
-        ],
-      },
-    ];
-  }
-
-  //Scroll 
-  ngAfterViewInit(){
-    this.elementPosition = this.menuElement.nativeElement.offsetTop;
-  }
+  constructor(public dialog: MatDialog, private associationsJsonService: AssociationsJsonService) {}
 
   @HostListener('window:scroll', ['$event'])
     handleScroll(){
@@ -191,28 +64,46 @@ export class ResultComponent implements OnInit {
         this.sticky = false;
       }
     }
+
   ngOnInit(){
-    this.filteredAssociations = this.associationCtrl.valueChanges.pipe(
+      this.filteredAssociations = this.associationCtrl.valueChanges.pipe(
       debounceTime(800),
       distinctUntilChanged(),
       startWith(''),
-      map((association: string) => this._filter(association)));
+      map((association: AssociationData) => this._filter(association)));
 
-    this.preference = ["test1", "test2"];
     this.associationsJsonService.getJSON().subscribe(data => {
       data.forEach(assoc => {
-        this.allAssociations.push(assoc.name_fr);
-        this.allAssociations_r.push(assoc.name);
+        this.allAssociations.push(assoc);
       });
+      this.preferences = this.allAssociations.filter(assoc => assoc.state == 1);
+      console.log(this.preferences)
+    });
+
+    this.associationsJsonService.getJSONWord().subscribe(data => {
+      this.resultAssoc = data;
     });
   }
 
-  private _filter(value: string): string[]{
-    const filterValue = value.toLowerCase();
-    return this.allAssociations.filter(option => option.toLowerCase().includes(filterValue));
+    //Scroll 
+  ngAfterViewInit(){
+    this.elementPosition = this.menuElement.nativeElement.offsetTop;
   }
 
+  private _filter(value: AssociationData): AssociationData[]{
+    const filterValue = value.name_fr;
+    return this.allAssociations.filter(option => option.name_fr.toLowerCase().includes(filterValue));
+  }
+  
+  addToAssoc(assoc: AssociationData){
+    this.selectedAssociation.push(assoc);
+    this.preferences.forEach((item, index) => {
+     if(item.name_fr === assoc.name_fr) this.preferences.splice(index,1);
+   });
+    this.getData({pageIndex: this.page, pageSize: this.size}, "0");
+  }
 
+/*
   add(event: MatChipInputEvent): void {
     // Add association only when MatAutocomplete is not open
     // To make sure this does not conflict with OptionSelected Event
@@ -232,31 +123,40 @@ export class ResultComponent implements OnInit {
       this.associationCtrl.setValue(null);
     }
   }
-  
-  addToAssoc(assoc: string){
-    this.selectedAssociation.push(assoc);
-    this.preference.forEach((item, index) => {
-     if(item === assoc) this.preference.splice(index,1);
-   });
-  }
 
-  remove(association: string): void {
+  remove(association: AssociationData): void {
     const index = this.associations.indexOf(association);
 
     if (index >= 0) {
       this.associations.splice(index, 1);
     }
   }
+  */
 
-  removeAssocSelected(assoc: string){
+  removeAssocSelected(assoc: AssociationData){
     this.selectedAssociation.forEach((item, index) => {
-     if(item === assoc) this.selectedAssociation.splice(index,1);
+     if(item.name_fr === assoc.name_fr) this.selectedAssociation.splice(index,1);
    });
+  }
+
+  //page des cards
+  getData(obj, idAssoc: string) {
+    let index=0,
+        startingIndex=obj.pageIndex * obj.pageSize,
+        endingIndex=startingIndex + obj.pageSize;
+
+    this.resultAssocData = this.resultAssoc.relations_sortantes[idAssoc].filter(() => {
+      index++;
+      return (index > startingIndex && index <= endingIndex) ? true : false;
+    });
   }
 
   //push la valeur de l'autocomplete dans les assoc selectionné
   selected(event: MatAutocompleteSelectedEvent): void {
-    this.selectedAssociation.push(event.option.viewValue);
+    const tmpAssoc = this.allAssociations.find(assoc => {
+      return assoc.name_fr === event.option.viewValue;
+    });
+    this.selectedAssociation.push(tmpAssoc);
     this.associationInput.nativeElement.value = '';
     this.associationCtrl.setValue(null);
   }
@@ -272,7 +172,10 @@ export class ResultComponent implements OnInit {
         this.splitted = result.toString().split(",");
         console.log("result : " + result);
         for(let r of this.splitted){
-          this.selectedAssociation.push(r);
+          const tmpAssoc = this.allAssociations.find(assoc => {
+            return assoc.name_fr === r;
+          });
+          this.selectedAssociation.push(tmpAssoc);
         }
       }
     });

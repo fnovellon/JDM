@@ -2,9 +2,9 @@
 <blockquote id="description"><p>Ceci est un test de description elle est un peu longue dzadjezfdjez dezfezfref dfezfezfezfezfelle est un peu longue dzadjezfdjez dezfezfref dfezfezfezfezfelle est un peu longue dzadjezfdjez dezfezfref dfezfezfezfezfelle est un peu longue dzadjezfdjez dezfezfref dfezfezfezfezf</p></blockquote>
 <div id="searchAssoc">
   <div id="chipFav">
-    <mat-chip *ngFor="let pref of preference" (click)='addToAssoc(pref)' [selectable]="selectable">
+    <mat-chip *ngFor="let pref of preferences" (click)='addToAssoc(pref)' [selectable]="selectable">
       <mat-icon style="color:#ef9a9a">favorite</mat-icon>
-      <div class="fav"> {{pref}}</div>
+      <div class="fav"> {{pref.name_fr}}</div>
     </mat-chip>
   </div>
   <div id="chipSearch">
@@ -16,10 +16,7 @@
       #associationInput
       [formControl]="associationCtrl"
       [matAutocomplete]="auto"
-      [matChipInputFor]="chipList"
-      [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-      [matChipInputAddOnBlur]="addOnBlur"
-      (matChipInputTokenEnd)="add($event)">
+      [matChipInputFor]="chipList">
     </mat-chip-list>
     <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
       <mat-option *ngFor="let all of filteredAssociations | async" [value]="association">
@@ -36,7 +33,7 @@
   </div>
   <div id="chipSelec">
     <mat-chip *ngFor="let selec of selectedAssociation">
-      {{selec}}
+      {{selec.name_fr}}
       <mat-icon matChipRemove (click)="removeAssocSelected(selec)">cancel</mat-icon>
     </mat-chip>
   </div>
@@ -53,20 +50,21 @@
     <mat-card class="example-card">
       <div id="closeCard"><mat-icon (click)="removeAssocSelected(res)">close</mat-icon></div>
       <mat-card-header>
-        <mat-card-title>{{res}}</mat-card-title>
+        <mat-card-title>{{res.name_fr}}</mat-card-title>
       </mat-card-header>
       <mat-divider [inset]="true" ></mat-divider>
-      <mat-card-content>
-        <mat-grid-list cols="3" rowHeight="30px">
-          <mat-grid-tile *ngFor="let ra of resultAssoc[0].mots">
-              <div class="nomResult">{{ra.nom}}:</div> <div class="poidsResult">{{ra.poids}}</div>
+      <mat-card-content *ngIf="resultAssoc.relations_sortantes[res.id] != null">
+        <mat-grid-list cols="2" rowHeight="30px">
+          <mat-grid-tile *ngFor="let ra of resultAssocData">
+              <div class="nomResult" matTooltip="{{ra.nom}}" matTooltipPosition="above" matTooltipShowDelay="400">{{ra.nom}}:</div> <div class="poidsResult">{{ra.poids}}</div>
           </mat-grid-tile>
         </mat-grid-list>
       </mat-card-content>
-      <mat-paginator [length]="resultAssoc[0].mots.length"
+      <p *ngIf="resultAssoc.relations_sortantes[res.id] == null">Cette association ne comporte aucun mot</p>
+      <mat-paginator *ngIf="resultAssoc.relations_sortantes[res.id] != null" [length]='resultAssoc.relations_sortantes[res.id].length'
                 [pageSize]="size"
                 [pageIndex]="page"
-                [pageSizeOptions]="[2, 4, 6]"
+                [pageSizeOptions]="[18, 36, 54]"
                 (page)="getData($event)">
       </mat-paginator>
     </mat-card>
