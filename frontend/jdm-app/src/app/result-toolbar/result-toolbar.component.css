@@ -46,6 +46,7 @@ mat-toolbar{
 
 #searchBarSearch {
   width: 50px;
+  margin: auto;
 }
 
 #formFieldInput {
@@ -54,6 +55,7 @@ mat-toolbar{
 
 #searchBarClose {
   width: 50px;
+  margin: auto;
 }
 
 .rightSideMargin {
