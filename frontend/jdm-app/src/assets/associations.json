@@ -1,9 +1,9 @@
 [
-{"id": 0, "name": "r_associated" , "name_fr": "idée associé", "popularity": 57.482, "num": 104831733, "state": 0},
+{"id": 0, "name": "r_associated" , "name_fr": "idée associé", "popularity": 57.482, "num": 104831733, "state": 1},
 {"id": 3, "name": "r_domain" , "name_fr": "domaine", "popularity": 0.562, "num": 1025013, "state": 0},
 {"id": 4, "name": "r_pos" , "name_fr": "POS", "popularity": 6.991, "num": 12749841, "state": 0},
-{"id": 5, "name": "r_syn" , "name_fr": "synonyme", "popularity": 0.478, "num": 871869, "state": 0},
-{"id": 6, "name": "r_isa" , "name_fr": "générique", "popularity": 2.49, "num": 4540364, "state": 0},
+{"id": 5, "name": "r_syn" , "name_fr": "synonyme", "popularity": 0.478, "num": 871869, "state": 1},
+{"id": 6, "name": "r_isa" , "name_fr": "générique", "popularity": 2.49, "num": 4540364, "state": 1},
 {"id": 7, "name": "r_anto" , "name_fr": "contraire", "popularity": 0.046, "num": 83095, "state": 0},
 {"id": 8, "name": "r_hypo" , "name_fr": "spécifique", "popularity": 0.451, "num": 823225, "state": 0},
 {"id": 9, "name": "r_has_part" , "name_fr": "partie", "popularity": 2.394, "num": 4366151, "state": 0},

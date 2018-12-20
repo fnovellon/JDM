@@ -23,4 +23,8 @@ export class AssociationsJsonService {
   public getJSON(): Observable<any> {
     return this.http.get('./assets/associations.json');
   }
+
+  public getJSONWord(): Observable<any> {
+    return this.http.get('./assets/exempleMot.json');
+  }
 }

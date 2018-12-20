@@ -60,6 +60,7 @@ mat-form-field{
 	display: block;
 	margin-top: 1%;
 	margin-left: 1%;
+	overflow: auto;
 }
 
 .fav{
@@ -92,6 +93,7 @@ mat-chip{
 	margin-left: 1%;
 	margin-bottom: 1%;
 	width: auto;
+	white-space: nowrap;
 }
 
 #searchAssoc{
@@ -163,7 +165,8 @@ mat-card-content{
 }
 
 ::ng-deep .mat-card-content {
-    margin-bottom: 0px;
+    margin-bottom: 0px !important;
+    min-height: 185px;
 }
 
 ::ng-deep .mat-grid-tile .mat-figure{
@@ -206,5 +209,18 @@ mat-card-content{
 
 	mat-form-field{
 		width: 80%; 
+	}
+
+	::ng-deep .mat-toolbar .mat-input-element {
+		width: 60%;
+	}
+
+	.cardResult{
+		margin-top: 2%;
+		margin-left: 1%;
+		margin-right: 1%;
+		width: 98%;
+		display: inline-block;
+		float: left;
 	}
 }

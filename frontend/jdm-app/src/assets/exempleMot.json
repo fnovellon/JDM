@@ -1,0 +1,5031 @@
+{  
+   "nom":"requin",
+   "id":73126,
+   "type":1,
+   "poids":0,
+   "definition":"Pas de définition disponible ou définition répartie dans les raffinements sémantiques (voir relation \"r_raff_sem\").",
+   "voisinage":{  
+
+   },
+   "relations_entrantes":{  
+
+   },
+   "relations_sortantes":{  
+      "0":[  
+         {  
+            "poids":6,
+            "nom":"requin d'estuaire",
+            "noeud":{  
+               "nom":"requin d'estuaire",
+               "id":2583778,
+               "type":1,
+               "poids":0,
+               "motFormate":"requin d'estuaire"
+            }
+         },
+         {  
+            "poids":6,
+            "nom":"requin granuleux",
+            "noeud":{  
+               "nom":"requin granuleux",
+               "id":2403785,
+               "type":1,
+               "poids":0,
+               "motFormate":"requin granuleux"
+            }
+         },
+         {  
+            "poids":7,
+            "nom":"requin marsouin",
+            "noeud":{  
+               "nom":"requin marsouin",
+               "id":376238,
+               "type":1,
+               "poids":50,
+               "motFormate":"requin marsouin"
+            }
+         },
+         {  
+            "poids":7,
+            "nom":"requin tapis",
+            "noeud":{  
+               "nom":"requin tapis",
+               "id":376239,
+               "type":1,
+               "poids":50,
+               "motFormate":"requin tapis"
+            }
+         },
+         {  
+            "poids":7,
+            "nom":"requin bouclé",
+            "noeud":{  
+               "nom":"requin bouclé",
+               "id":376237,
+               "type":1,
+               "poids":50,
+               "motFormate":"requin bouclé"
+            }
+         },
+         {  
+            "poids":7,
+            "nom":"requin festonné",
+            "noeud":{  
+               "nom":"requin festonné",
+               "id":2363421,
+               "type":1,
+               "poids":0,
+               "motFormate":"requin festonné"
+            }
+         },
+         {  
+            "poids":8,
+            "nom":"requin dormeur mexicain",
+            "noeud":{  
+               "nom":"requin dormeur mexicain",
+               "id":2362545,
+               "type":1,
+               "poids":0,
+               "motFormate":"requin dormeur mexicain"
+            }
+         },
+         {  
+            "poids":8,
+            "nom":"requin renard commun",
+            "noeud":{  
+               "nom":"requin renard commun",
+               "id":1223298,
+               "type":1,
+               "poids":0,
+               "motFormate":"requin renard commun"
+            }
+         },
+         {  
+            "poids":8,
+            "nom":"requin féroce",
+            "noeud":{  
+               "nom":"requin féroce",
+               "id":1223300,
+               "type":1,
+               "poids":0,
+               "motFormate":"requin féroce"
+            }
+         },
+         {  
+            "poids":9,
+            "nom":"carcharhiniforme",
+            "noeud":{  
+               "nom":"carcharhiniforme",
+               "id":1351187,
+               "type":1,
+               "poids":0,
+               "motFormate":"carcharhiniforme"
+            }
+         },
+         {  
+            "poids":9,
+            "nom":"requin marteau lisse",
+            "noeud":{  
+               "nom":"requin marteau lisse",
+               "id":462524,
+               "type":777,
+               "poids":50,
+               "motFormate":"requin marteau lisse"
+            }
+         },
+         {  
+            "poids":10,
+            "nom":"requin gris de récif",
+            "noeud":{  
+               "nom":"requin gris de récif",
+               "id":278822,
+               "type":777,
+               "poids":50,
+               "motFormate":"requin gris de récif"
+            }
+         },
+         {  
+            "poids":10,
+            "nom":"requin du Zambèze",
+            "noeud":{  
+               "nom":"requin du Zambèze",
+               "id":292398,
+               "type":777,
+               "poids":50,
+               "motFormate":"requin du Zambèze"
+            }
+         },
+         {  
+            "poids":10,
+            "nom":"requin à collerettes",
+            "noeud":{  
+               "nom":"requin à collerettes",
+               "id":2373314,
+               "type":1,
+               "poids":0,
+               "motFormate":"requin à collerettes"
+            }
+         },
+         {  
+            "poids":10,
+            "nom":"requin obèse",
+            "noeud":{  
+               "nom":"requin obèse",
+               "id":2571767,
+               "type":1,
+               "poids":0,
+               "motFormate":"requin obèse"
+            }
+         },
+         {  
+            "poids":10,
+            "nom":"requin lutin",
+            "noeud":{  
+               "nom":"requin lutin",
+               "id":2559558,
+               "type":1,
+               "poids":0,
+               "motFormate":"requin lutin"
+            }
+         },
+         {  
+            "poids":10,
+            "nom":"requin taupe du Pacifique",
+            "noeud":{  
+               "nom":"requin taupe du Pacifique",
+               "id":2529558,
+               "type":1,
+               "poids":0,
+               "motFormate":"requin taupe du Pacifique"
+            }
+         },
+         {  
+            "poids":10,
+            "nom":"requin lézard",
+            "noeud":{  
+               "nom":"requin lézard",
+               "id":2525248,
+               "type":1,
+               "poids":0,
+               "motFormate":"requin lézard"
+            }
+         },
+         {  
+            "poids":10,
+            "nom":"requin du Groenland",
+            "noeud":{  
+               "nom":"requin du Groenland",
+               "id":2523319,
+               "type":1,
+               "poids":0,
+               "motFormate":"requin du Groenland"
+            }
+         },
+         {  
+            "poids":10,
+            "nom":"requin épineux",
+            "noeud":{  
+               "nom":"requin épineux",
+               "id":2521410,
+               "type":1,
+               "poids":0,
+               "motFormate":"requin épineux"
+            }
+         },
+         {  
+            "poids":10,
+            "nom":"raie manta",
+            "noeud":{  
+               "nom":"raie manta",
+               "id":215276,
+               "type":1,
+               "poids":54,
+               "motFormate":"raie manta"
+            }
+         },
+         {  
+            "poids":10,
+            "nom":"célomate",
+            "noeud":{  
+               "nom":"célomate",
+               "id":391009,
+               "type":1,
+               "poids":50,
+               "motFormate":"célomate"
+            }
+         },
+         {  
+            "poids":10,
+            "nom":"organisme animal",
+            "noeud":{  
+               "nom":"organisme animal",
+               "id":267642,
+               "type":1,
+               "poids":4,
+               "motFormate":"organisme animal"
+            }
+         },
+         {  
+            "poids":10,
+            "nom":"coelomate",
+            "noeud":{  
+               "nom":"coelomate",
+               "id":87789,
+               "type":1,
+               "poids":50,
+               "motFormate":"coelomate"
+            }
+         },
+         {  
+            "poids":10,
+            "nom":"coelomé",
+            "noeud":{  
+               "nom":"coelomé",
+               "id":391010,
+               "type":1,
+               "poids":50,
+               "motFormate":"coelomé"
+            }
+         },
+         {  
+            "poids":11,
+            "nom":"bras",
+            "noeud":{  
+               "nom":"bras",
+               "id":26363,
+               "type":1,
+               "poids":3646,
+               "motFormate":"bras"
+            }
+         },
+         {  
+            "poids":11,
+            "nom":"requin chagrin",
+            "noeud":{  
+               "nom":"requin chagrin",
+               "id":2550145,
+               "type":1,
+               "poids":0,
+               "motFormate":"requin chagrin"
+            }
+         },
+         {  
+            "poids":11,
+            "nom":"ingrédient de recette de cuisine",
+            "noeud":{  
+               "nom":"ingrédient de recette de cuisine",
+               "id":3762435,
+               "type":1,
+               "poids":2,
+               "motFormate":"ingrédient de recette de cuisine"
+            }
+         },
+         {  
+            "poids":11,
+            "nom":"poisson de mer",
+            "noeud":{  
+               "nom":"poisson de mer",
+               "id":153478,
+               "type":1,
+               "poids":88,
+               "motFormate":"poisson de mer"
+            }
+         },
+         {  
+            "poids":12,
+            "nom":"requin frangé",
+            "noeud":{  
+               "nom":"requin frangé",
+               "id":2377644,
+               "type":1,
+               "poids":0,
+               "motFormate":"requin frangé"
+            }
+         },
+         {  
+            "poids":12,
+            "nom":"carcharodon",
+            "noeud":{  
+               "nom":"carcharodon",
+               "id":49963,
+               "type":1,
+               "poids":52,
+               "motFormate":"carcharodon"
+            }
+         },
+         {  
+            "poids":12,
+            "nom":"squale nain",
+            "noeud":{  
+               "nom":"squale nain",
+               "id":750886,
+               "type":777,
+               "poids":0,
+               "motFormate":"squale nain"
+            }
+         },
+         {  
+            "poids":13,
+            "nom":"tête>390963",
+            "noeud":{  
+               "nom":"tête>390963",
+               "id":233138,
+               "type":1,
+               "poids":42,
+               "motFormate":"tête>extrémité supérieure du corps"
+            }
+         },
+         {  
+            "poids":13,
+            "nom":"bouche",
+            "noeud":{  
+               "nom":"bouche",
+               "id":16110,
+               "type":1,
+               "poids":4174,
+               "motFormate":"bouche"
+            }
+         },
+         {  
+            "poids":13,
+            "nom":"corps",
+            "noeud":{  
+               "nom":"corps",
+               "id":74846,
+               "type":1,
+               "poids":4626,
+               "motFormate":"corps"
+            }
+         },
+         {  
+            "poids":13,
+            "nom":"main",
+            "noeud":{  
+               "nom":"main",
+               "id":81934,
+               "type":1,
+               "poids":6496,
+               "motFormate":"main"
+            }
+         },
+         {  
+            "poids":13,
+            "nom":"ADN",
+            "noeud":{  
+               "nom":"ADN",
+               "id":139779,
+               "type":1,
+               "poids":662,
+               "motFormate":"ADN"
+            }
+         },
+         {  
+            "poids":13,
+            "nom":"carcharhinidé",
+            "noeud":{  
+               "nom":"carcharhinidé",
+               "id":1351180,
+               "type":1,
+               "poids":0,
+               "motFormate":"carcharhinidé"
+            }
+         },
+         {  
+            "poids":13,
+            "nom":"requin taupe commun",
+            "noeud":{  
+               "nom":"requin taupe commun",
+               "id":1223299,
+               "type":1,
+               "poids":0,
+               "motFormate":"requin taupe commun"
+            }
+         },
+         {  
+            "poids":13,
+            "nom":"requin-chat",
+            "noeud":{  
+               "nom":"requin-chat",
+               "id":2372762,
+               "type":1,
+               "poids":0,
+               "motFormate":"requin-chat"
+            }
+         },
+         {  
+            "poids":14,
+            "nom":"branchies",
+            "noeud":{  
+               "nom":"branchies",
+               "id":114984,
+               "type":1,
+               "poids":94,
+               "motFormate":"branchies"
+            }
+         },
+         {  
+            "poids":14,
+            "nom":"oeil>330323",
+            "noeud":{  
+               "nom":"oeil>330323",
+               "id":225934,
+               "type":1,
+               "poids":106,
+               "motFormate":"oeil>organe de la vue"
+            }
+         },
+         {  
+            "poids":14,
+            "nom":"queue",
+            "noeud":{  
+               "nom":"queue",
+               "id":95256,
+               "type":1,
+               "poids":2448,
+               "motFormate":"queue"
+            }
+         },
+         {  
+            "poids":14,
+            "nom":"gueule>215755",
+            "noeud":{  
+               "nom":"gueule>215755",
+               "id":215758,
+               "type":1,
+               "poids":14,
+               "motFormate":"gueule>bouche animale"
+            }
+         },
+         {  
+            "poids":14,
+            "nom":"estomac",
+            "noeud":{  
+               "nom":"estomac",
+               "id":101938,
+               "type":1,
+               "poids":804,
+               "motFormate":"estomac"
+            }
+         },
+         {  
+            "poids":14,
+            "nom":"peau",
+            "noeud":{  
+               "nom":"peau",
+               "id":109785,
+               "type":1,
+               "poids":3124,
+               "motFormate":"peau"
+            }
+         },
+         {  
+            "poids":14,
+            "nom":"queue>214624>68467",
+            "noeud":{  
+               "nom":"queue>214624>68467",
+               "id":214601,
+               "type":1,
+               "poids":16,
+               "motFormate":"queue>queue d'animal>poisson"
+            }
+         },
+         {  
+            "poids":14,
+            "nom":"ventre",
+            "noeud":{  
+               "nom":"ventre",
+               "id":108463,
+               "type":1,
+               "poids":960,
+               "motFormate":"ventre"
+            }
+         },
+         {  
+            "poids":14,
+            "nom":"dos",
+            "noeud":{  
+               "nom":"dos",
+               "id":126285,
+               "type":1,
+               "poids":952,
+               "motFormate":"dos"
+            }
+         },
+         {  
+            "poids":14,
+            "nom":"tête",
+            "noeud":{  
+               "nom":"tête",
+               "id":144846,
+               "type":1,
+               "poids":5452,
+               "motFormate":"tête"
+            }
+         },
+         {  
+            "poids":14,
+            "nom":"branchie",
+            "noeud":{  
+               "nom":"branchie",
+               "id":44160,
+               "type":1,
+               "poids":170,
+               "motFormate":"branchie"
+            }
+         },
+         {  
+            "poids":14,
+            "nom":"dent>45311",
+            "noeud":{  
+               "nom":"dent>45311",
+               "id":216283,
+               "type":1,
+               "poids":236,
+               "motFormate":"dent>dentaire"
+            }
+         },
+         {  
+            "poids":14,
+            "nom":"yeux",
+            "noeud":{  
+               "nom":"yeux",
+               "id":77008,
+               "type":1,
+               "poids":4016,
+               "motFormate":"yeux"
+            }
+         },
+         {  
+            "poids":14,
+            "nom":"squelette",
+            "noeud":{  
+               "nom":"squelette",
+               "id":116980,
+               "type":1,
+               "poids":1070,
+               "motFormate":"squelette"
+            }
+         },
+         {  
+            "poids":14,
+            "nom":"coeur",
+            "noeud":{  
+               "nom":"coeur",
+               "id":96211,
+               "type":1,
+               "poids":2122,
+               "motFormate":"coeur"
+            }
+         },
+         {  
+            "poids":14,
+            "nom":"pied",
+            "noeud":{  
+               "nom":"pied",
+               "id":34898,
+               "type":1,
+               "poids":4050,
+               "motFormate":"pied"
+            }
+         },
+         {  
+            "poids":14,
+            "nom":"jambes",
+            "noeud":{  
+               "nom":"jambes",
+               "id":140715,
+               "type":1,
+               "poids":678,
+               "motFormate":"jambes"
+            }
+         },
+         {  
+            "poids":15,
+            "nom":"gueule",
+            "noeud":{  
+               "nom":"gueule",
+               "id":77727,
+               "type":1,
+               "poids":654,
+               "motFormate":"gueule"
+            }
+         },
+         {  
+            "poids":15,
+            "nom":"arête>68467",
+            "noeud":{  
+               "nom":"arête>68467",
+               "id":240590,
+               "type":1,
+               "poids":16,
+               "motFormate":"arête>poisson"
+            }
+         },
+         {  
+            "poids":15,
+            "nom":"arêtes",
+            "noeud":{  
+               "nom":"arêtes",
+               "id":152946,
+               "type":1,
+               "poids":96,
+               "motFormate":"arêtes"
+            }
+         },
+         {  
+            "poids":15,
+            "nom":"colonne vertébrale",
+            "noeud":{  
+               "nom":"colonne vertébrale",
+               "id":47319,
+               "type":1,
+               "poids":260,
+               "motFormate":"colonne vertébrale"
+            }
+         },
+         {  
+            "poids":15,
+            "nom":"corps>112609",
+            "noeud":{  
+               "nom":"corps>112609",
+               "id":219363,
+               "type":1,
+               "poids":148,
+               "motFormate":"corps>anatomie"
+            }
+         },
+         {  
+            "poids":15,
+            "nom":"squelette>112609",
+            "noeud":{  
+               "nom":"squelette>112609",
+               "id":240720,
+               "type":1,
+               "poids":102,
+               "motFormate":"squelette>anatomie"
+            }
+         },
+         {  
+            "poids":15,
+            "nom":"requin renard à gros yeux",
+            "noeud":{  
+               "nom":"requin renard à gros yeux",
+               "id":1223297,
+               "type":1,
+               "poids":0,
+               "motFormate":"requin renard à gros yeux"
+            }
+         },
+         {  
+            "poids":15,
+            "nom":"requin marteau à ailes blanches",
+            "noeud":{  
+               "nom":"requin marteau à ailes blanches",
+               "id":309325,
+               "type":777,
+               "poids":50,
+               "motFormate":"requin marteau à ailes blanches"
+            }
+         },
+         {  
+            "poids":15,
+            "nom":"laimargue dormeur",
+            "noeud":{  
+               "nom":"laimargue dormeur",
+               "id":308583,
+               "type":777,
+               "poids":50,
+               "motFormate":"laimargue dormeur"
+            }
+         },
+         {  
+            "poids":15,
+            "nom":"requin-limon faucille",
+            "noeud":{  
+               "nom":"requin-limon faucille",
+               "id":307072,
+               "type":777,
+               "poids":50,
+               "motFormate":"requin-limon faucille"
+            }
+         },
+         {  
+            "poids":15,
+            "nom":"requin-renard à gros yeux",
+            "noeud":{  
+               "nom":"requin-renard à gros yeux",
+               "id":1223705,
+               "type":777,
+               "poids":0,
+               "motFormate":"requin-renard à gros yeux"
+            }
+         },
+         {  
+            "poids":15,
+            "nom":"requin-marteau commun",
+            "noeud":{  
+               "nom":"requin-marteau commun",
+               "id":462523,
+               "type":777,
+               "poids":50,
+               "motFormate":"requin-marteau commun"
+            }
+         },
+         {  
+            "poids":15,
+            "nom":"requin-lutin",
+            "noeud":{  
+               "nom":"requin-lutin",
+               "id":1553398,
+               "type":1,
+               "poids":0,
+               "motFormate":"requin-lutin"
+            }
+         },
+         {  
+            "poids":15,
+            "nom":"requin cornu",
+            "noeud":{  
+               "nom":"requin cornu",
+               "id":256149,
+               "type":1,
+               "poids":50,
+               "motFormate":"requin cornu"
+            }
+         },
+         {  
+            "poids":15,
+            "nom":"écaille",
+            "noeud":{  
+               "nom":"écaille",
+               "id":141480,
+               "type":1,
+               "poids":390,
+               "motFormate":"écaille"
+            }
+         },
+         {  
+            "poids":16,
+            "nom":"bouche>112609",
+            "noeud":{  
+               "nom":"bouche>112609",
+               "id":221019,
+               "type":1,
+               "poids":158,
+               "motFormate":"bouche>anatomie"
+            }
+         },
+         {  
+            "poids":16,
+            "nom":"articulation",
+            "noeud":{  
+               "nom":"articulation",
+               "id":126388,
+               "type":1,
+               "poids":600,
+               "motFormate":"articulation"
+            }
+         },
+         {  
+            "poids":16,
+            "nom":"sang froid",
+            "noeud":{  
+               "nom":"sang froid",
+               "id":154845,
+               "type":1,
+               "poids":98,
+               "motFormate":"sang froid"
+            }
+         },
+         {  
+            "poids":16,
+            "nom":"lamniforme",
+            "noeud":{  
+               "nom":"lamniforme",
+               "id":579549,
+               "type":1,
+               "poids":0,
+               "motFormate":"lamniforme"
+            }
+         },
+         {  
+            "poids":16,
+            "nom":"requin grogneur",
+            "noeud":{  
+               "nom":"requin grogneur",
+               "id":1675275,
+               "type":1,
+               "poids":0,
+               "motFormate":"requin grogneur"
+            }
+         },
+         {  
+            "poids":16,
+            "nom":"squatiniforme",
+            "noeud":{  
+               "nom":"squatiniforme",
+               "id":1766279,
+               "type":1,
+               "poids":0,
+               "motFormate":"squatiniforme"
+            }
+         },
+         {  
+            "poids":16,
+            "nom":"Les dents de la mer",
+            "noeud":{  
+               "nom":"Les dents de la mer",
+               "id":228806,
+               "type":666,
+               "poids":50,
+               "motFormate":"Les dents de la mer"
+            }
+         },
+         {  
+            "poids":16,
+            "nom":"animal>117095>325656",
+            "noeud":{  
+               "nom":"animal>117095>325656",
+               "id":325657,
+               "type":1,
+               "poids":8,
+               "motFormate":"animal>zoologie>être animé non humain"
+            }
+         },
+         {  
+            "poids":16,
+            "nom":"accident",
+            "noeud":{  
+               "nom":"accident",
+               "id":143577,
+               "type":1,
+               "poids":2076,
+               "motFormate":"accident"
+            }
+         },
+         {  
+            "poids":16,
+            "nom":"les dents de la mer",
+            "noeud":{  
+               "nom":"les dents de la mer",
+               "id":156488,
+               "type":1,
+               "poids":54,
+               "motFormate":"les dents de la mer"
+            }
+         },
+         {  
+            "poids":16,
+            "nom":"humanité",
+            "noeud":{  
+               "nom":"humanité",
+               "id":103906,
+               "type":1,
+               "poids":660,
+               "motFormate":"humanité"
+            }
+         },
+         {  
+            "poids":16,
+            "nom":"chien espagnol>73126",
+            "noeud":{  
+               "nom":"chien espagnol>73126",
+               "id":332486,
+               "type":1,
+               "poids":50,
+               "motFormate":"chien espagnol>requin"
+            }
+         },
+         {  
+            "poids":16,
+            "nom":"Gollum",
+            "noeud":{  
+               "nom":"Gollum",
+               "id":228836,
+               "type":666,
+               "poids":32,
+               "motFormate":"Gollum"
+            }
+         },
+         {  
+            "poids":16,
+            "nom":"animal dangereux",
+            "noeud":{  
+               "nom":"animal dangereux",
+               "id":4891735,
+               "type":1,
+               "poids":0,
+               "motFormate":"animal dangereux"
+            }
+         },
+         {  
+            "poids":17,
+            "nom":"visage",
+            "noeud":{  
+               "nom":"visage",
+               "id":145953,
+               "type":1,
+               "poids":2330,
+               "motFormate":"visage"
+            }
+         },
+         {  
+            "poids":17,
+            "nom":"cou",
+            "noeud":{  
+               "nom":"cou",
+               "id":95422,
+               "type":1,
+               "poids":990,
+               "motFormate":"cou"
+            }
+         },
+         {  
+            "poids":17,
+            "nom":"système nerveux",
+            "noeud":{  
+               "nom":"système nerveux",
+               "id":103311,
+               "type":1,
+               "poids":246,
+               "motFormate":"système nerveux"
+            }
+         },
+         {  
+            "poids":17,
+            "nom":"nerf",
+            "noeud":{  
+               "nom":"nerf",
+               "id":83944,
+               "type":1,
+               "poids":810,
+               "motFormate":"nerf"
+            }
+         },
+         {  
+            "poids":17,
+            "nom":"règne animal",
+            "noeud":{  
+               "nom":"règne animal",
+               "id":120157,
+               "type":1,
+               "poids":72,
+               "motFormate":"règne animal"
+            }
+         },
+         {  
+            "poids":17,
+            "nom":"tube digestif",
+            "noeud":{  
+               "nom":"tube digestif",
+               "id":57875,
+               "type":1,
+               "poids":108,
+               "motFormate":"tube digestif"
+            }
+         },
+         {  
+            "poids":17,
+            "nom":"foie",
+            "noeud":{  
+               "nom":"foie",
+               "id":115155,
+               "type":1,
+               "poids":830,
+               "motFormate":"foie"
+            }
+         },
+         {  
+            "poids":17,
+            "nom":"sexe>218086",
+            "noeud":{  
+               "nom":"sexe>218086",
+               "id":228289,
+               "type":1,
+               "poids":168,
+               "motFormate":"sexe>organe sexuel"
+            }
+         },
+         {  
+            "poids":17,
+            "nom":"Euprotomicrus bispinatus",
+            "noeud":{  
+               "nom":"Euprotomicrus bispinatus",
+               "id":306594,
+               "type":777,
+               "poids":50,
+               "motFormate":"Euprotomicrus bispinatus"
+            }
+         },
+         {  
+            "poids":17,
+            "nom":"requin-tigre",
+            "noeud":{  
+               "nom":"requin-tigre",
+               "id":305560,
+               "type":777,
+               "poids":50,
+               "motFormate":"requin-tigre"
+            }
+         },
+         {  
+            "poids":17,
+            "nom":"ange de mer épineux",
+            "noeud":{  
+               "nom":"ange de mer épineux",
+               "id":580172,
+               "type":777,
+               "poids":0,
+               "motFormate":"ange de mer épineux"
+            }
+         },
+         {  
+            "poids":17,
+            "nom":"danger",
+            "noeud":{  
+               "nom":"danger",
+               "id":12655,
+               "type":1,
+               "poids":1104,
+               "motFormate":"danger"
+            }
+         },
+         {  
+            "poids":18,
+            "nom":"nez",
+            "noeud":{  
+               "nom":"nez",
+               "id":107477,
+               "type":1,
+               "poids":2541,
+               "motFormate":"nez"
+            }
+         },
+         {  
+            "poids":19,
+            "nom":"nageoires",
+            "noeud":{  
+               "nom":"nageoires",
+               "id":152711,
+               "type":1,
+               "poids":86,
+               "motFormate":"nageoires"
+            }
+         },
+         {  
+            "poids":19,
+            "nom":"jambe",
+            "noeud":{  
+               "nom":"jambe",
+               "id":142086,
+               "type":1,
+               "poids":3152,
+               "motFormate":"jambe"
+            }
+         },
+         {  
+            "poids":21,
+            "nom":"houperou",
+            "noeud":{  
+               "nom":"houperou",
+               "id":222532,
+               "type":1,
+               "poids":50,
+               "motFormate":"houperou"
+            }
+         },
+         {  
+            "poids":21,
+            "nom":"entité physique",
+            "noeud":{  
+               "nom":"entité physique",
+               "id":316850,
+               "type":1,
+               "poids":50,
+               "motFormate":"entité physique"
+            }
+         },
+         {  
+            "poids":21,
+            "nom":"organisme marin",
+            "noeud":{  
+               "nom":"organisme marin",
+               "id":262763,
+               "type":1,
+               "poids":24,
+               "motFormate":"organisme marin"
+            }
+         },
+         {  
+            "poids":21,
+            "nom":"être",
+            "noeud":{  
+               "nom":"être",
+               "id":13369,
+               "type":1,
+               "poids":806,
+               "motFormate":"être"
+            }
+         },
+         {  
+            "poids":21,
+            "nom":"mangeur d'hommes",
+            "noeud":{  
+               "nom":"mangeur d'hommes",
+               "id":162052,
+               "type":1,
+               "poids":50,
+               "motFormate":"mangeur d'hommes"
+            }
+         },
+         {  
+            "poids":21,
+            "nom":"disparition",
+            "noeud":{  
+               "nom":"disparition",
+               "id":120760,
+               "type":1,
+               "poids":250,
+               "motFormate":"disparition"
+            }
+         },
+         {  
+            "poids":21,
+            "nom":"Les Dents de la Mer",
+            "noeud":{  
+               "nom":"Les Dents de la Mer",
+               "id":122075,
+               "type":1,
+               "poids":58,
+               "motFormate":"Les Dents de la Mer"
+            }
+         },
+         {  
+            "poids":21,
+            "nom":"poisson marin",
+            "noeud":{  
+               "nom":"poisson marin",
+               "id":155246,
+               "type":1,
+               "poids":78,
+               "motFormate":"poisson marin"
+            }
+         },
+         {  
+            "poids":21,
+            "nom":"raie",
+            "noeud":{  
+               "nom":"raie",
+               "id":12843,
+               "type":1,
+               "poids":172,
+               "motFormate":"raie"
+            }
+         },
+         {  
+            "poids":21,
+            "nom":"organisme",
+            "noeud":{  
+               "nom":"organisme",
+               "id":58768,
+               "type":1,
+               "poids":244,
+               "motFormate":"organisme"
+            }
+         },
+         {  
+            "poids":22,
+            "nom":"brigand",
+            "noeud":{  
+               "nom":"brigand",
+               "id":75466,
+               "type":1,
+               "poids":126,
+               "motFormate":"brigand"
+            }
+         },
+         {  
+            "poids":22,
+            "nom":"adn",
+            "noeud":{  
+               "nom":"adn",
+               "id":16747,
+               "type":1,
+               "poids":156,
+               "motFormate":"adn"
+            }
+         },
+         {  
+            "poids":22,
+            "nom":"requin-griset",
+            "noeud":{  
+               "nom":"requin-griset",
+               "id":1655839,
+               "type":1,
+               "poids":0,
+               "motFormate":"requin-griset"
+            }
+         },
+         {  
+            "poids":22,
+            "nom":"samoussa",
+            "noeud":{  
+               "nom":"samoussa",
+               "id":214178,
+               "type":1,
+               "poids":12,
+               "motFormate":"samoussa"
+            }
+         },
+         {  
+            "poids":22,
+            "nom":"mâchoire>112609",
+            "noeud":{  
+               "nom":"mâchoire>112609",
+               "id":222595,
+               "type":1,
+               "poids":32,
+               "motFormate":"mâchoire>anatomie"
+            }
+         },
+         {  
+            "poids":22,
+            "nom":"squale de haute mer",
+            "noeud":{  
+               "nom":"squale de haute mer",
+               "id":381077,
+               "type":1,
+               "poids":50,
+               "motFormate":"squale de haute mer"
+            }
+         },
+         {  
+            "poids":23,
+            "nom":"oeil",
+            "noeud":{  
+               "nom":"oeil",
+               "id":77424,
+               "type":1,
+               "poids":2980,
+               "motFormate":"oeil"
+            }
+         },
+         {  
+            "poids":23,
+            "nom":"ventre>112609",
+            "noeud":{  
+               "nom":"ventre>112609",
+               "id":241352,
+               "type":1,
+               "poids":46,
+               "motFormate":"ventre>anatomie"
+            }
+         },
+         {  
+            "poids":23,
+            "nom":"loup",
+            "noeud":{  
+               "nom":"loup",
+               "id":1125,
+               "type":1,
+               "poids":1144,
+               "motFormate":"loup"
+            }
+         },
+         {  
+            "poids":23,
+            "nom":"tête>112609",
+            "noeud":{  
+               "nom":"tête>112609",
+               "id":390927,
+               "type":1,
+               "poids":60,
+               "motFormate":"tête>anatomie"
+            }
+         },
+         {  
+            "poids":23,
+            "nom":"rapace>71721",
+            "noeud":{  
+               "nom":"rapace>71721",
+               "id":214315,
+               "type":1,
+               "poids":52,
+               "motFormate":"rapace>avide"
+            }
+         },
+         {  
+            "poids":23,
+            "nom":"acide désoxyribonucléique",
+            "noeud":{  
+               "nom":"acide désoxyribonucléique",
+               "id":114327,
+               "type":1,
+               "poids":136,
+               "motFormate":"acide désoxyribonucléique"
+            }
+         },
+         {  
+            "poids":23,
+            "nom":"oeil>44335",
+            "noeud":{  
+               "nom":"oeil>44335",
+               "id":1636805,
+               "type":1,
+               "poids":50,
+               "motFormate":"oeil>organe"
+            }
+         },
+         {  
+            "poids":23,
+            "nom":"estomac>112609",
+            "noeud":{  
+               "nom":"estomac>112609",
+               "id":236940,
+               "type":1,
+               "poids":64,
+               "motFormate":"estomac>anatomie"
+            }
+         },
+         {  
+            "poids":23,
+            "nom":"nageoire caudale",
+            "noeud":{  
+               "nom":"nageoire caudale",
+               "id":214630,
+               "type":1,
+               "poids":6,
+               "motFormate":"nageoire caudale"
+            }
+         },
+         {  
+            "poids":24,
+            "nom":"vautour>262420",
+            "noeud":{  
+               "nom":"vautour>262420",
+               "id":332214,
+               "type":1,
+               "poids":52,
+               "motFormate":"vautour>personne avide"
+            }
+         },
+         {  
+            "poids":24,
+            "nom":"os>116980",
+            "noeud":{  
+               "nom":"os>116980",
+               "id":213644,
+               "type":1,
+               "poids":282,
+               "motFormate":"os>squelette"
+            }
+         },
+         {  
+            "poids":24,
+            "nom":"chorde",
+            "noeud":{  
+               "nom":"chorde",
+               "id":119845,
+               "type":1,
+               "poids":56,
+               "motFormate":"chorde"
+            }
+         },
+         {  
+            "poids":26,
+            "nom":"faune",
+            "noeud":{  
+               "nom":"faune",
+               "id":36886,
+               "type":1,
+               "poids":380,
+               "motFormate":"faune"
+            }
+         },
+         {  
+            "poids":26,
+            "nom":"système nerveux en position dorsale",
+            "noeud":{  
+               "nom":"système nerveux en position dorsale",
+               "id":326146,
+               "type":1,
+               "poids":56,
+               "motFormate":"système nerveux en position dorsale"
+            }
+         },
+         {  
+            "poids":26,
+            "nom":"vautour",
+            "noeud":{  
+               "nom":"vautour",
+               "id":72426,
+               "type":1,
+               "poids":136,
+               "motFormate":"vautour"
+            }
+         },
+         {  
+            "poids":26,
+            "nom":"rapace",
+            "noeud":{  
+               "nom":"rapace",
+               "id":51054,
+               "type":1,
+               "poids":394,
+               "motFormate":"rapace"
+            }
+         },
+         {  
+            "poids":26,
+            "nom":"magouilleur",
+            "noeud":{  
+               "nom":"magouilleur",
+               "id":44625,
+               "type":1,
+               "poids":76,
+               "motFormate":"magouilleur"
+            }
+         },
+         {  
+            "poids":26,
+            "nom":"ichthyologie",
+            "noeud":{  
+               "nom":"ichthyologie",
+               "id":265176,
+               "type":1,
+               "poids":52,
+               "motFormate":"ichthyologie"
+            }
+         },
+         {  
+            "poids":26,
+            "nom":"forban",
+            "noeud":{  
+               "nom":"forban",
+               "id":116549,
+               "type":1,
+               "poids":78,
+               "motFormate":"forban"
+            }
+         },
+         {  
+            "poids":26,
+            "nom":"maillet",
+            "noeud":{  
+               "nom":"maillet",
+               "id":39528,
+               "type":1,
+               "poids":62,
+               "motFormate":"maillet"
+            }
+         },
+         {  
+            "poids":26,
+            "nom":"chair",
+            "noeud":{  
+               "nom":"chair",
+               "id":61835,
+               "type":1,
+               "poids":382,
+               "motFormate":"chair"
+            }
+         },
+         {  
+            "poids":26,
+            "nom":"intestin",
+            "noeud":{  
+               "nom":"intestin",
+               "id":22889,
+               "type":1,
+               "poids":560,
+               "motFormate":"intestin"
+            }
+         },
+         {  
+            "poids":26,
+            "nom":"individu",
+            "noeud":{  
+               "nom":"individu",
+               "id":68439,
+               "type":1,
+               "poids":5782,
+               "motFormate":"individu"
+            }
+         },
+         {  
+            "poids":27,
+            "nom":"nageoire dorsale",
+            "noeud":{  
+               "nom":"nageoire dorsale",
+               "id":225786,
+               "type":1,
+               "poids":14,
+               "motFormate":"nageoire dorsale"
+            }
+         },
+         {  
+            "poids":27,
+            "nom":"bandit",
+            "noeud":{  
+               "nom":"bandit",
+               "id":105567,
+               "type":1,
+               "poids":698,
+               "motFormate":"bandit"
+            }
+         },
+         {  
+            "poids":27,
+            "nom":"margoulin",
+            "noeud":{  
+               "nom":"margoulin",
+               "id":74355,
+               "type":1,
+               "poids":54,
+               "motFormate":"margoulin"
+            }
+         },
+         {  
+            "poids":27,
+            "nom":"Requin",
+            "noeud":{  
+               "nom":"Requin",
+               "id":406994,
+               "type":1,
+               "poids":50,
+               "motFormate":"Requin"
+            }
+         },
+         {  
+            "poids":27,
+            "nom":"Zoologie",
+            "noeud":{  
+               "nom":"Zoologie",
+               "id":152125,
+               "type":1,
+               "poids":208,
+               "motFormate":"Zoologie"
+            }
+         },
+         {  
+            "poids":27,
+            "nom":"arête",
+            "noeud":{  
+               "nom":"arête",
+               "id":32791,
+               "type":1,
+               "poids":160,
+               "motFormate":"arête"
+            }
+         },
+         {  
+            "poids":27,
+            "nom":"corsaire",
+            "noeud":{  
+               "nom":"corsaire",
+               "id":142497,
+               "type":1,
+               "poids":226,
+               "motFormate":"corsaire"
+            }
+         },
+         {  
+            "poids":27,
+            "nom":"ouïe>68467",
+            "noeud":{  
+               "nom":"ouïe>68467",
+               "id":232082,
+               "type":1,
+               "poids":6,
+               "motFormate":"ouïe>poisson"
+            }
+         },
+         {  
+            "poids":27,
+            "nom":"ouie",
+            "noeud":{  
+               "nom":"ouie",
+               "id":152503,
+               "type":1,
+               "poids":86,
+               "motFormate":"ouie"
+            }
+         },
+         {  
+            "poids":27,
+            "nom":"dent de requin",
+            "noeud":{  
+               "nom":"dent de requin",
+               "id":159130,
+               "type":1,
+               "poids":52,
+               "motFormate":"dent de requin"
+            }
+         },
+         {  
+            "poids":27,
+            "nom":"appareil respiratoire",
+            "noeud":{  
+               "nom":"appareil respiratoire",
+               "id":155243,
+               "type":1,
+               "poids":70,
+               "motFormate":"appareil respiratoire"
+            }
+         },
+         {  
+            "poids":27,
+            "nom":"machoire",
+            "noeud":{  
+               "nom":"machoire",
+               "id":152290,
+               "type":1,
+               "poids":218,
+               "motFormate":"machoire"
+            }
+         },
+         {  
+            "poids":28,
+            "nom":"cordé>117095",
+            "noeud":{  
+               "nom":"cordé>117095",
+               "id":330964,
+               "type":1,
+               "poids":36,
+               "motFormate":"cordé>zoologie"
+            }
+         },
+         {  
+            "poids":28,
+            "nom":"sélacien",
+            "noeud":{  
+               "nom":"sélacien",
+               "id":150449,
+               "type":1,
+               "poids":50,
+               "motFormate":"sélacien"
+            }
+         },
+         {  
+            "poids":28,
+            "nom":"entité vivante",
+            "noeud":{  
+               "nom":"entité vivante",
+               "id":260820,
+               "type":1,
+               "poids":64,
+               "motFormate":"entité vivante"
+            }
+         },
+         {  
+            "poids":28,
+            "nom":"Ichthyologie",
+            "noeud":{  
+               "nom":"Ichthyologie",
+               "id":175647,
+               "type":1,
+               "poids":50,
+               "motFormate":"Ichthyologie"
+            }
+         },
+         {  
+            "poids":28,
+            "nom":"lamie",
+            "noeud":{  
+               "nom":"lamie",
+               "id":7978,
+               "type":1,
+               "poids":54,
+               "motFormate":"lamie"
+            }
+         },
+         {  
+            "poids":28,
+            "nom":"queue>214624",
+            "noeud":{  
+               "nom":"queue>214624",
+               "id":214602,
+               "type":1,
+               "poids":58,
+               "motFormate":"queue>queue d'animal"
+            }
+         },
+         {  
+            "poids":28,
+            "nom":"cartilage",
+            "noeud":{  
+               "nom":"cartilage",
+               "id":113050,
+               "type":1,
+               "poids":252,
+               "motFormate":"cartilage"
+            }
+         },
+         {  
+            "poids":28,
+            "nom":"cellule>35143",
+            "noeud":{  
+               "nom":"cellule>35143",
+               "id":215534,
+               "type":1,
+               "poids":100,
+               "motFormate":"cellule>biologie"
+            }
+         },
+         {  
+            "poids":29,
+            "nom":"risque",
+            "noeud":{  
+               "nom":"risque",
+               "id":146003,
+               "type":1,
+               "poids":356,
+               "motFormate":"risque"
+            }
+         },
+         {  
+            "poids":29,
+            "nom":"nageoire",
+            "noeud":{  
+               "nom":"nageoire",
+               "id":74082,
+               "type":1,
+               "poids":312,
+               "motFormate":"nageoire"
+            }
+         },
+         {  
+            "poids":29,
+            "nom":"requin à pointes noires",
+            "noeud":{  
+               "nom":"requin à pointes noires",
+               "id":191301,
+               "type":1,
+               "poids":50,
+               "motFormate":"requin à pointes noires"
+            }
+         },
+         {  
+            "poids":29,
+            "nom":"requin mako",
+            "noeud":{  
+               "nom":"requin mako",
+               "id":191287,
+               "type":1,
+               "poids":2,
+               "motFormate":"requin mako"
+            }
+         },
+         {  
+            "poids":29,
+            "nom":"symétrie bilatérale",
+            "noeud":{  
+               "nom":"symétrie bilatérale",
+               "id":247057,
+               "type":1,
+               "poids":6,
+               "motFormate":"symétrie bilatérale"
+            }
+         },
+         {  
+            "poids":29,
+            "nom":"zoologie",
+            "noeud":{  
+               "nom":"zoologie",
+               "id":117095,
+               "type":1,
+               "poids":1542,
+               "motFormate":"zoologie"
+            }
+         },
+         {  
+            "poids":29,
+            "nom":"ptérygopode",
+            "noeud":{  
+               "nom":"ptérygopode",
+               "id":325301,
+               "type":666,
+               "poids":50,
+               "motFormate":"ptérygopode"
+            }
+         },
+         {  
+            "poids":29,
+            "nom":"aileron de requin>117095",
+            "noeud":{  
+               "nom":"aileron de requin>117095",
+               "id":322706,
+               "type":1,
+               "poids":50,
+               "motFormate":"aileron de requin>zoologie"
+            }
+         },
+         {  
+            "poids":29,
+            "nom":"requin taureau",
+            "noeud":{  
+               "nom":"requin taureau",
+               "id":171004,
+               "type":1,
+               "poids":50,
+               "motFormate":"requin taureau"
+            }
+         },
+         {  
+            "poids":29,
+            "nom":"pirate",
+            "noeud":{  
+               "nom":"pirate",
+               "id":140238,
+               "type":1,
+               "poids":352,
+               "motFormate":"pirate"
+            }
+         },
+         {  
+            "poids":29,
+            "nom":"corbeau",
+            "noeud":{  
+               "nom":"corbeau",
+               "id":15208,
+               "type":1,
+               "poids":232,
+               "motFormate":"corbeau"
+            }
+         },
+         {  
+            "poids":29,
+            "nom":"ligne latérale",
+            "noeud":{  
+               "nom":"ligne latérale",
+               "id":258619,
+               "type":1,
+               "poids":54,
+               "motFormate":"ligne latérale"
+            }
+         },
+         {  
+            "poids":29,
+            "nom":"os",
+            "noeud":{  
+               "nom":"os",
+               "id":74558,
+               "type":1,
+               "poids":2572,
+               "motFormate":"os"
+            }
+         },
+         {  
+            "poids":30,
+            "nom":"escroquerie",
+            "noeud":{  
+               "nom":"escroquerie",
+               "id":18114,
+               "type":1,
+               "poids":226,
+               "motFormate":"escroquerie"
+            }
+         },
+         {  
+            "poids":30,
+            "nom":"avarice",
+            "noeud":{  
+               "nom":"avarice",
+               "id":77389,
+               "type":1,
+               "poids":278,
+               "motFormate":"avarice"
+            }
+         },
+         {  
+            "poids":30,
+            "nom":"requin>102641",
+            "noeud":{  
+               "nom":"requin>102641",
+               "id":213337,
+               "type":1,
+               "poids":24,
+               "motFormate":"requin>voleur"
+            }
+         },
+         {  
+            "poids":30,
+            "nom":"gangster",
+            "noeud":{  
+               "nom":"gangster",
+               "id":16512,
+               "type":1,
+               "poids":132,
+               "motFormate":"gangster"
+            }
+         },
+         {  
+            "poids":30,
+            "nom":"brigandeau",
+            "noeud":{  
+               "nom":"brigandeau",
+               "id":118762,
+               "type":1,
+               "poids":50,
+               "motFormate":"brigandeau"
+            }
+         },
+         {  
+            "poids":30,
+            "nom":"houperon",
+            "noeud":{  
+               "nom":"houperon",
+               "id":222531,
+               "type":1,
+               "poids":2,
+               "motFormate":"houperon"
+            }
+         },
+         {  
+            "poids":30,
+            "nom":"être>68439",
+            "noeud":{  
+               "nom":"être>68439",
+               "id":237445,
+               "type":1,
+               "poids":28,
+               "motFormate":"être>individu"
+            }
+         },
+         {  
+            "poids":30,
+            "nom":"individu>24956",
+            "noeud":{  
+               "nom":"individu>24956",
+               "id":396247,
+               "type":1,
+               "poids":62,
+               "motFormate":"individu>être humain"
+            }
+         },
+         {  
+            "poids":30,
+            "nom":"dentition",
+            "noeud":{  
+               "nom":"dentition",
+               "id":133921,
+               "type":1,
+               "poids":386,
+               "motFormate":"dentition"
+            }
+         },
+         {  
+            "poids":30,
+            "nom":"ouïe",
+            "noeud":{  
+               "nom":"ouïe",
+               "id":50751,
+               "type":1,
+               "poids":360,
+               "motFormate":"ouïe"
+            }
+         },
+         {  
+            "poids":31,
+            "nom":"choano-organisme",
+            "noeud":{  
+               "nom":"choano-organisme",
+               "id":329657,
+               "type":1,
+               "poids":62,
+               "motFormate":"choano-organisme"
+            }
+         },
+         {  
+            "poids":31,
+            "nom":"système digestif",
+            "noeud":{  
+               "nom":"système digestif",
+               "id":234743,
+               "type":1,
+               "poids":32,
+               "motFormate":"système digestif"
+            }
+         },
+         {  
+            "poids":31,
+            "nom":"viande>20965",
+            "noeud":{  
+               "nom":"viande>20965",
+               "id":261738,
+               "type":1,
+               "poids":148,
+               "motFormate":"viande>nourriture"
+            }
+         },
+         {  
+            "poids":31,
+            "nom":"duper",
+            "noeud":{  
+               "nom":"duper",
+               "id":6474,
+               "type":1,
+               "poids":182,
+               "motFormate":"duper"
+            }
+         },
+         {  
+            "poids":31,
+            "nom":"être humain",
+            "noeud":{  
+               "nom":"être humain",
+               "id":24956,
+               "type":1,
+               "poids":738,
+               "motFormate":"être humain"
+            }
+         },
+         {  
+            "poids":31,
+            "nom":"être humain>74860",
+            "noeud":{  
+               "nom":"être humain>74860",
+               "id":244620,
+               "type":1,
+               "poids":102,
+               "motFormate":"être humain>homme"
+            }
+         },
+         {  
+            "poids":32,
+            "nom":"proie",
+            "noeud":{  
+               "nom":"proie",
+               "id":86046,
+               "type":1,
+               "poids":268,
+               "motFormate":"proie"
+            }
+         },
+         {  
+            "poids":32,
+            "nom":"requin océanique",
+            "noeud":{  
+               "nom":"requin océanique",
+               "id":191290,
+               "type":1,
+               "poids":50,
+               "motFormate":"requin océanique"
+            }
+         },
+         {  
+            "poids":32,
+            "nom":"être vivant>123933",
+            "noeud":{  
+               "nom":"être vivant>123933",
+               "id":234036,
+               "type":1,
+               "poids":248,
+               "motFormate":"être vivant>entité"
+            }
+         },
+         {  
+            "poids":32,
+            "nom":"griset",
+            "noeud":{  
+               "nom":"griset",
+               "id":133362,
+               "type":1,
+               "poids":52,
+               "motFormate":"griset"
+            }
+         },
+         {  
+            "poids":32,
+            "nom":"taupe de mer",
+            "noeud":{  
+               "nom":"taupe de mer",
+               "id":216169,
+               "type":1,
+               "poids":2,
+               "motFormate":"taupe de mer"
+            }
+         },
+         {  
+            "poids":34,
+            "nom":"superprédateur",
+            "noeud":{  
+               "nom":"superprédateur",
+               "id":128439,
+               "type":1,
+               "poids":56,
+               "motFormate":"superprédateur"
+            }
+         },
+         {  
+            "poids":34,
+            "nom":"requin>68467",
+            "noeud":{  
+               "nom":"requin>68467",
+               "id":213336,
+               "type":1,
+               "poids":68,
+               "motFormate":"requin>poisson"
+            }
+         },
+         {  
+            "poids":34,
+            "nom":"requin baleine",
+            "noeud":{  
+               "nom":"requin baleine",
+               "id":171005,
+               "type":1,
+               "poids":8,
+               "motFormate":"requin baleine"
+            }
+         },
+         {  
+            "poids":34,
+            "nom":"requin bleu",
+            "noeud":{  
+               "nom":"requin bleu",
+               "id":191264,
+               "type":1,
+               "poids":50,
+               "motFormate":"requin bleu"
+            }
+         },
+         {  
+            "poids":34,
+            "nom":"requin-marteau",
+            "noeud":{  
+               "nom":"requin-marteau",
+               "id":191315,
+               "type":1,
+               "poids":50,
+               "motFormate":"requin-marteau"
+            }
+         },
+         {  
+            "poids":34,
+            "nom":"aileron de requin",
+            "noeud":{  
+               "nom":"aileron de requin",
+               "id":219833,
+               "type":1,
+               "poids":8,
+               "motFormate":"aileron de requin"
+            }
+         },
+         {  
+            "poids":34,
+            "nom":"organisme vivant",
+            "noeud":{  
+               "nom":"organisme vivant",
+               "id":65081,
+               "type":1,
+               "poids":116,
+               "motFormate":"organisme vivant"
+            }
+         },
+         {  
+            "poids":34,
+            "nom":"organisme>71624",
+            "noeud":{  
+               "nom":"organisme>71624",
+               "id":225847,
+               "type":1,
+               "poids":64,
+               "motFormate":"organisme>être vivant"
+            }
+         },
+         {  
+            "poids":34,
+            "nom":"être vivant non humain",
+            "noeud":{  
+               "nom":"être vivant non humain",
+               "id":1483990,
+               "type":1,
+               "poids":4,
+               "motFormate":"être vivant non humain"
+            }
+         },
+         {  
+            "poids":34,
+            "nom":"vertébrés",
+            "noeud":{  
+               "nom":"vertébrés",
+               "id":143669,
+               "type":1,
+               "poids":80,
+               "motFormate":"vertébrés"
+            }
+         },
+         {  
+            "poids":35,
+            "nom":"mer>218698",
+            "noeud":{  
+               "nom":"mer>218698",
+               "id":233638,
+               "type":1,
+               "poids":176,
+               "motFormate":"mer>étendue d'eau"
+            }
+         },
+         {  
+            "poids":35,
+            "nom":"grand requin blanc",
+            "noeud":{  
+               "nom":"grand requin blanc",
+               "id":37211,
+               "type":1,
+               "poids":72,
+               "motFormate":"grand requin blanc"
+            }
+         },
+         {  
+            "poids":35,
+            "nom":"requin pèlerin",
+            "noeud":{  
+               "nom":"requin pèlerin",
+               "id":171003,
+               "type":1,
+               "poids":4,
+               "motFormate":"requin pèlerin"
+            }
+         },
+         {  
+            "poids":35,
+            "nom":"ichtyologie",
+            "noeud":{  
+               "nom":"ichtyologie",
+               "id":106404,
+               "type":1,
+               "poids":118,
+               "motFormate":"ichtyologie"
+            }
+         },
+         {  
+            "poids":35,
+            "nom":"homme",
+            "noeud":{  
+               "nom":"homme",
+               "id":74860,
+               "type":1,
+               "poids":28236,
+               "motFormate":"homme"
+            }
+         },
+         {  
+            "poids":35,
+            "nom":"rangées de dents",
+            "noeud":{  
+               "nom":"rangées de dents",
+               "id":6069043,
+               "type":1,
+               "poids":0,
+               "motFormate":"rangées de dents"
+            }
+         },
+         {  
+            "poids":35,
+            "nom":"requins",
+            "noeud":{  
+               "nom":"requins",
+               "id":11088,
+               "type":1,
+               "poids":50,
+               "motFormate":"requins"
+            }
+         },
+         {  
+            "poids":35,
+            "nom":"=shark - fish=",
+            "noeud":{  
+               "nom":"=shark - fish=",
+               "id":6948577,
+               "type":1,
+               "poids":0,
+               "motFormate":"=shark - fish="
+            }
+         },
+         {  
+            "poids":36,
+            "nom":"requin pointe noire",
+            "noeud":{  
+               "nom":"requin pointe noire",
+               "id":171009,
+               "type":1,
+               "poids":50,
+               "motFormate":"requin pointe noire"
+            }
+         },
+         {  
+            "poids":36,
+            "nom":"rangée de dents",
+            "noeud":{  
+               "nom":"rangée de dents",
+               "id":6069044,
+               "type":1,
+               "poids":0,
+               "motFormate":"rangée de dents"
+            }
+         },
+         {  
+            "poids":37,
+            "nom":"roussette",
+            "noeud":{  
+               "nom":"roussette",
+               "id":11426,
+               "type":1,
+               "poids":68,
+               "motFormate":"roussette"
+            }
+         },
+         {  
+            "poids":37,
+            "nom":"requin d'eau douce",
+            "noeud":{  
+               "nom":"requin d'eau douce",
+               "id":145821,
+               "type":1,
+               "poids":50,
+               "motFormate":"requin d'eau douce"
+            }
+         },
+         {  
+            "poids":37,
+            "nom":"poisson cartilagineux",
+            "noeud":{  
+               "nom":"poisson cartilagineux",
+               "id":232534,
+               "type":1,
+               "poids":46,
+               "motFormate":"poisson cartilagineux"
+            }
+         },
+         {  
+            "poids":38,
+            "nom":"mangeur d'homme",
+            "noeud":{  
+               "nom":"mangeur d'homme",
+               "id":151966,
+               "type":1,
+               "poids":60,
+               "motFormate":"mangeur d'homme"
+            }
+         },
+         {  
+            "poids":39,
+            "nom":"arnaqueur",
+            "noeud":{  
+               "nom":"arnaqueur",
+               "id":144327,
+               "type":1,
+               "poids":170,
+               "motFormate":"arnaqueur"
+            }
+         },
+         {  
+            "poids":40,
+            "nom":"poissons",
+            "noeud":{  
+               "nom":"poissons",
+               "id":108750,
+               "type":1,
+               "poids":392,
+               "motFormate":"poissons"
+            }
+         },
+         {  
+            "poids":40,
+            "nom":"chondrichtyen",
+            "noeud":{  
+               "nom":"chondrichtyen",
+               "id":64722,
+               "type":1,
+               "poids":68,
+               "motFormate":"chondrichtyen"
+            }
+         },
+         {  
+            "poids":41,
+            "nom":"animaux",
+            "noeud":{  
+               "nom":"animaux",
+               "id":71539,
+               "type":1,
+               "poids":1378,
+               "motFormate":"animaux"
+            }
+         },
+         {  
+            "poids":42,
+            "nom":"biologie",
+            "noeud":{  
+               "nom":"biologie",
+               "id":35143,
+               "type":1,
+               "poids":1808,
+               "motFormate":"biologie"
+            }
+         },
+         {  
+            "poids":43,
+            "nom":"humain",
+            "noeud":{  
+               "nom":"humain",
+               "id":49293,
+               "type":1,
+               "poids":2270,
+               "motFormate":"humain"
+            }
+         },
+         {  
+            "poids":43,
+            "nom":"requin nourrice",
+            "noeud":{  
+               "nom":"requin nourrice",
+               "id":171007,
+               "type":1,
+               "poids":50,
+               "motFormate":"requin nourrice"
+            }
+         },
+         {  
+            "poids":44,
+            "nom":"mâchoire",
+            "noeud":{  
+               "nom":"mâchoire",
+               "id":13115,
+               "type":1,
+               "poids":418,
+               "motFormate":"mâchoire"
+            }
+         },
+         {  
+            "poids":47,
+            "nom":"hydrodynamique",
+            "noeud":{  
+               "nom":"hydrodynamique",
+               "id":61501,
+               "type":1,
+               "poids":52,
+               "motFormate":"hydrodynamique"
+            }
+         },
+         {  
+            "poids":50,
+            "nom":"Iago",
+            "noeud":{  
+               "nom":"Iago",
+               "id":313839,
+               "type":1,
+               "poids":52,
+               "motFormate":"Iago"
+            }
+         },
+         {  
+            "poids":51,
+            "nom":"requin gris",
+            "noeud":{  
+               "nom":"requin gris",
+               "id":171008,
+               "type":1,
+               "poids":2,
+               "motFormate":"requin gris"
+            }
+         },
+         {  
+            "poids":51,
+            "nom":"chat marin",
+            "noeud":{  
+               "nom":"chat marin",
+               "id":191256,
+               "type":1,
+               "poids":50,
+               "motFormate":"chat marin"
+            }
+         },
+         {  
+            "poids":51,
+            "nom":"émissolle",
+            "noeud":{  
+               "nom":"émissolle",
+               "id":191257,
+               "type":1,
+               "poids":50,
+               "motFormate":"émissolle"
+            }
+         },
+         {  
+            "poids":51,
+            "nom":"mégalodon",
+            "noeud":{  
+               "nom":"mégalodon",
+               "id":191261,
+               "type":1,
+               "poids":52,
+               "motFormate":"mégalodon"
+            }
+         },
+         {  
+            "poids":51,
+            "nom":"requin citron faucille",
+            "noeud":{  
+               "nom":"requin citron faucille",
+               "id":191269,
+               "type":1,
+               "poids":50,
+               "motFormate":"requin citron faucille"
+            }
+         },
+         {  
+            "poids":51,
+            "nom":"requin dormeur du Pacifique",
+            "noeud":{  
+               "nom":"requin dormeur du Pacifique",
+               "id":191277,
+               "type":1,
+               "poids":50,
+               "motFormate":"requin dormeur du Pacifique"
+            }
+         },
+         {  
+            "poids":51,
+            "nom":"requin dormeur nekozame",
+            "noeud":{  
+               "nom":"requin dormeur nekozame",
+               "id":191278,
+               "type":1,
+               "poids":50,
+               "motFormate":"requin dormeur nekozame"
+            }
+         },
+         {  
+            "poids":51,
+            "nom":"requin à longue dorsale",
+            "noeud":{  
+               "nom":"requin à longue dorsale",
+               "id":191297,
+               "type":1,
+               "poids":50,
+               "motFormate":"requin à longue dorsale"
+            }
+         },
+         {  
+            "poids":51,
+            "nom":"requin à nageoires rondes",
+            "noeud":{  
+               "nom":"requin à nageoires rondes",
+               "id":191299,
+               "type":1,
+               "poids":50,
+               "motFormate":"requin à nageoires rondes"
+            }
+         },
+         {  
+            "poids":51,
+            "nom":"requin-chabot moine",
+            "noeud":{  
+               "nom":"requin-chabot moine",
+               "id":191307,
+               "type":1,
+               "poids":50,
+               "motFormate":"requin-chabot moine"
+            }
+         },
+         {  
+            "poids":51,
+            "nom":"requin-crocodile",
+            "noeud":{  
+               "nom":"requin-crocodile",
+               "id":191314,
+               "type":1,
+               "poids":50,
+               "motFormate":"requin-crocodile"
+            }
+         },
+         {  
+            "poids":51,
+            "nom":"ichtyophage",
+            "noeud":{  
+               "nom":"ichtyophage",
+               "id":38572,
+               "type":1,
+               "poids":52,
+               "motFormate":"ichtyophage"
+            }
+         },
+         {  
+            "poids":51,
+            "nom":"requin-citron faucille",
+            "noeud":{  
+               "nom":"requin-citron faucille",
+               "id":307071,
+               "type":777,
+               "poids":50,
+               "motFormate":"requin-citron faucille"
+            }
+         },
+         {  
+            "poids":51,
+            "nom":"requin-citron",
+            "noeud":{  
+               "nom":"requin-citron",
+               "id":289023,
+               "type":777,
+               "poids":50,
+               "motFormate":"requin-citron"
+            }
+         },
+         {  
+            "poids":51,
+            "nom":"pêche",
+            "noeud":{  
+               "nom":"pêche",
+               "id":145624,
+               "type":1,
+               "poids":1536,
+               "motFormate":"pêche"
+            }
+         },
+         {  
+            "poids":51,
+            "nom":"squaliformes",
+            "noeud":{  
+               "nom":"squaliformes",
+               "id":109880,
+               "type":1,
+               "poids":50,
+               "motFormate":"squaliformes"
+            }
+         },
+         {  
+            "poids":52,
+            "nom":"requin marteau",
+            "noeud":{  
+               "nom":"requin marteau",
+               "id":155806,
+               "type":1,
+               "poids":60,
+               "motFormate":"requin marteau"
+            }
+         },
+         {  
+            "poids":52,
+            "nom":"chondrichthyens",
+            "noeud":{  
+               "nom":"chondrichthyens",
+               "id":106845,
+               "type":1,
+               "poids":52,
+               "motFormate":"chondrichthyens"
+            }
+         },
+         {  
+            "poids":52,
+            "nom":"petite roussette",
+            "noeud":{  
+               "nom":"petite roussette",
+               "id":168194,
+               "type":1,
+               "poids":50,
+               "motFormate":"petite roussette"
+            }
+         },
+         {  
+            "poids":52,
+            "nom":"saumonette",
+            "noeud":{  
+               "nom":"saumonette",
+               "id":168167,
+               "type":1,
+               "poids":50,
+               "motFormate":"saumonette"
+            }
+         },
+         {  
+            "poids":52,
+            "nom":"requin chasseur",
+            "noeud":{  
+               "nom":"requin chasseur",
+               "id":191267,
+               "type":1,
+               "poids":50,
+               "motFormate":"requin chasseur"
+            }
+         },
+         {  
+            "poids":52,
+            "nom":"requin dormeur chabot",
+            "noeud":{  
+               "nom":"requin dormeur chabot",
+               "id":191275,
+               "type":1,
+               "poids":50,
+               "motFormate":"requin dormeur chabot"
+            }
+         },
+         {  
+            "poids":52,
+            "nom":"requin du groenland",
+            "noeud":{  
+               "nom":"requin du groenland",
+               "id":191282,
+               "type":1,
+               "poids":50,
+               "motFormate":"requin du groenland"
+            }
+         },
+         {  
+            "poids":52,
+            "nom":"requin à maquereaux",
+            "noeud":{  
+               "nom":"requin à maquereaux",
+               "id":191298,
+               "type":1,
+               "poids":50,
+               "motFormate":"requin à maquereaux"
+            }
+         },
+         {  
+            "poids":52,
+            "nom":"requin-chabot camot",
+            "noeud":{  
+               "nom":"requin-chabot camot",
+               "id":191304,
+               "type":1,
+               "poids":50,
+               "motFormate":"requin-chabot camot"
+            }
+         },
+         {  
+            "poids":52,
+            "nom":"requin-chabot grivelé",
+            "noeud":{  
+               "nom":"requin-chabot grivelé",
+               "id":191306,
+               "type":1,
+               "poids":50,
+               "motFormate":"requin-chabot grivelé"
+            }
+         },
+         {  
+            "poids":52,
+            "nom":"requin-marteau tiburo",
+            "noeud":{  
+               "nom":"requin-marteau tiburo",
+               "id":191321,
+               "type":1,
+               "poids":50,
+               "motFormate":"requin-marteau tiburo"
+            }
+         },
+         {  
+            "poids":52,
+            "nom":"requin-vache",
+            "noeud":{  
+               "nom":"requin-vache",
+               "id":191326,
+               "type":1,
+               "poids":50,
+               "motFormate":"requin-vache"
+            }
+         },
+         {  
+            "poids":52,
+            "nom":"requin-zèbre",
+            "noeud":{  
+               "nom":"requin-zèbre",
+               "id":191327,
+               "type":1,
+               "poids":50,
+               "motFormate":"requin-zèbre"
+            }
+         },
+         {  
+            "poids":52,
+            "nom":"émissole",
+            "noeud":{  
+               "nom":"émissole",
+               "id":53403,
+               "type":1,
+               "poids":50,
+               "motFormate":"émissole"
+            }
+         },
+         {  
+            "poids":52,
+            "nom":"requin-renard commun",
+            "noeud":{  
+               "nom":"requin-renard commun",
+               "id":321755,
+               "type":1,
+               "poids":50,
+               "motFormate":"requin-renard commun"
+            }
+         },
+         {  
+            "poids":52,
+            "nom":"mako",
+            "noeud":{  
+               "nom":"mako",
+               "id":170985,
+               "type":1,
+               "poids":50,
+               "motFormate":"mako"
+            }
+         },
+         {  
+            "poids":52,
+            "nom":"carnivore",
+            "noeud":{  
+               "nom":"carnivore",
+               "id":48855,
+               "type":1,
+               "poids":1426,
+               "motFormate":"carnivore"
+            }
+         },
+         {  
+            "poids":52,
+            "nom":"Les Dents de la mer",
+            "noeud":{  
+               "nom":"Les Dents de la mer",
+               "id":249428,
+               "type":1,
+               "poids":52,
+               "motFormate":"Les Dents de la mer"
+            }
+         },
+         {  
+            "poids":53,
+            "nom":"aileron>74082",
+            "noeud":{  
+               "nom":"aileron>74082",
+               "id":213628,
+               "type":1,
+               "poids":6,
+               "motFormate":"aileron>nageoire"
+            }
+         },
+         {  
+            "poids":53,
+            "nom":"vertébré",
+            "noeud":{  
+               "nom":"vertébré",
+               "id":86640,
+               "type":1,
+               "poids":840,
+               "motFormate":"vertébré"
+            }
+         },
+         {  
+            "poids":53,
+            "nom":"Vertebrata",
+            "noeud":{  
+               "nom":"Vertebrata",
+               "id":176035,
+               "type":1,
+               "poids":50,
+               "motFormate":"Vertebrata"
+            }
+         },
+         {  
+            "poids":53,
+            "nom":"requin citron",
+            "noeud":{  
+               "nom":"requin citron",
+               "id":191268,
+               "type":1,
+               "poids":4,
+               "motFormate":"requin citron"
+            }
+         },
+         {  
+            "poids":53,
+            "nom":"requin renard",
+            "noeud":{  
+               "nom":"requin renard",
+               "id":191293,
+               "type":1,
+               "poids":50,
+               "motFormate":"requin renard"
+            }
+         },
+         {  
+            "poids":53,
+            "nom":"requin-chabot bambou",
+            "noeud":{  
+               "nom":"requin-chabot bambou",
+               "id":191303,
+               "type":1,
+               "poids":50,
+               "motFormate":"requin-chabot bambou"
+            }
+         },
+         {  
+            "poids":53,
+            "nom":"requin-marteau aile blanche",
+            "noeud":{  
+               "nom":"requin-marteau aile blanche",
+               "id":191316,
+               "type":1,
+               "poids":50,
+               "motFormate":"requin-marteau aile blanche"
+            }
+         },
+         {  
+            "poids":54,
+            "nom":"animal",
+            "noeud":{  
+               "nom":"animal",
+               "id":17559,
+               "type":1,
+               "poids":13299,
+               "motFormate":"animal"
+            }
+         },
+         {  
+            "poids":54,
+            "nom":"être vivant",
+            "noeud":{  
+               "nom":"être vivant",
+               "id":71624,
+               "type":1,
+               "poids":1842,
+               "motFormate":"être vivant"
+            }
+         },
+         {  
+            "poids":54,
+            "nom":"animal>117095",
+            "noeud":{  
+               "nom":"animal>117095",
+               "id":233133,
+               "type":1,
+               "poids":650,
+               "motFormate":"animal>zoologie"
+            }
+         },
+         {  
+            "poids":54,
+            "nom":"lieu>134218",
+            "noeud":{  
+               "nom":"lieu>134218",
+               "id":157283,
+               "type":1,
+               "poids":168,
+               "motFormate":"lieu>endroit"
+            }
+         },
+         {  
+            "poids":54,
+            "nom":"animal aquatique",
+            "noeud":{  
+               "nom":"animal aquatique",
+               "id":154719,
+               "type":1,
+               "poids":76,
+               "motFormate":"animal aquatique"
+            }
+         },
+         {  
+            "poids":54,
+            "nom":"animal marin",
+            "noeud":{  
+               "nom":"animal marin",
+               "id":152629,
+               "type":1,
+               "poids":238,
+               "motFormate":"animal marin"
+            }
+         },
+         {  
+            "poids":54,
+            "nom":"chat de mer",
+            "noeud":{  
+               "nom":"chat de mer",
+               "id":168166,
+               "type":1,
+               "poids":50,
+               "motFormate":"chat de mer"
+            }
+         },
+         {  
+            "poids":54,
+            "nom":"carcharias taurus",
+            "noeud":{  
+               "nom":"carcharias taurus",
+               "id":191255,
+               "type":1,
+               "poids":50,
+               "motFormate":"carcharias taurus"
+            }
+         },
+         {  
+            "poids":54,
+            "nom":"requin aveugle gris-bleu",
+            "noeud":{  
+               "nom":"requin aveugle gris-bleu",
+               "id":191262,
+               "type":1,
+               "poids":50,
+               "motFormate":"requin aveugle gris-bleu"
+            }
+         },
+         {  
+            "poids":54,
+            "nom":"requin bouledogue",
+            "noeud":{  
+               "nom":"requin bouledogue",
+               "id":191265,
+               "type":1,
+               "poids":50,
+               "motFormate":"requin bouledogue"
+            }
+         },
+         {  
+            "poids":54,
+            "nom":"requin dagsit",
+            "noeud":{  
+               "nom":"requin dagsit",
+               "id":191271,
+               "type":1,
+               "poids":50,
+               "motFormate":"requin dagsit"
+            }
+         },
+         {  
+            "poids":54,
+            "nom":"requin longimane",
+            "noeud":{  
+               "nom":"requin longimane",
+               "id":191285,
+               "type":1,
+               "poids":50,
+               "motFormate":"requin longimane"
+            }
+         },
+         {  
+            "poids":54,
+            "nom":"requin saumon",
+            "noeud":{  
+               "nom":"requin saumon",
+               "id":191294,
+               "type":1,
+               "poids":50,
+               "motFormate":"requin saumon"
+            }
+         },
+         {  
+            "poids":54,
+            "nom":"requin à pointes",
+            "noeud":{  
+               "nom":"requin à pointes",
+               "id":191300,
+               "type":1,
+               "poids":50,
+               "motFormate":"requin à pointes"
+            }
+         },
+         {  
+            "poids":54,
+            "nom":"requin-marteau cornu",
+            "noeud":{  
+               "nom":"requin-marteau cornu",
+               "id":191317,
+               "type":1,
+               "poids":50,
+               "motFormate":"requin-marteau cornu"
+            }
+         },
+         {  
+            "poids":54,
+            "nom":"squalelet féroce",
+            "noeud":{  
+               "nom":"squalelet féroce",
+               "id":191330,
+               "type":1,
+               "poids":50,
+               "motFormate":"squalelet féroce"
+            }
+         },
+         {  
+            "poids":54,
+            "nom":"vache>68467",
+            "noeud":{  
+               "nom":"vache>68467",
+               "id":262341,
+               "type":1,
+               "poids":2,
+               "motFormate":"vache>poisson"
+            }
+         },
+         {  
+            "poids":55,
+            "nom":"roussette>73126",
+            "noeud":{  
+               "nom":"roussette>73126",
+               "id":213754,
+               "type":1,
+               "poids":4,
+               "motFormate":"roussette>requin"
+            }
+         },
+         {  
+            "poids":55,
+            "nom":"peur",
+            "noeud":{  
+               "nom":"peur",
+               "id":626,
+               "type":1,
+               "poids":4948,
+               "motFormate":"peur"
+            }
+         },
+         {  
+            "poids":55,
+            "nom":"requin canal",
+            "noeud":{  
+               "nom":"requin canal",
+               "id":191266,
+               "type":1,
+               "poids":50,
+               "motFormate":"requin canal"
+            }
+         },
+         {  
+            "poids":55,
+            "nom":"requin dormeur buffle",
+            "noeud":{  
+               "nom":"requin dormeur buffle",
+               "id":191274,
+               "type":1,
+               "poids":50,
+               "motFormate":"requin dormeur buffle"
+            }
+         },
+         {  
+            "poids":55,
+            "nom":"requin dormeur zèbre",
+            "noeud":{  
+               "nom":"requin dormeur zèbre",
+               "id":191280,
+               "type":1,
+               "poids":50,
+               "motFormate":"requin dormeur zèbre"
+            }
+         },
+         {  
+            "poids":55,
+            "nom":"requin léopard",
+            "noeud":{  
+               "nom":"requin léopard",
+               "id":191286,
+               "type":1,
+               "poids":50,
+               "motFormate":"requin léopard"
+            }
+         },
+         {  
+            "poids":55,
+            "nom":"requin nain",
+            "noeud":{  
+               "nom":"requin nain",
+               "id":191289,
+               "type":1,
+               "poids":50,
+               "motFormate":"requin nain"
+            }
+         },
+         {  
+            "poids":55,
+            "nom":"requin-chabot ocellé",
+            "noeud":{  
+               "nom":"requin-chabot ocellé",
+               "id":191308,
+               "type":1,
+               "poids":50,
+               "motFormate":"requin-chabot ocellé"
+            }
+         },
+         {  
+            "poids":55,
+            "nom":"requin-chabot taches blanches",
+            "noeud":{  
+               "nom":"requin-chabot taches blanches",
+               "id":191309,
+               "type":1,
+               "poids":50,
+               "motFormate":"requin-chabot taches blanches"
+            }
+         },
+         {  
+            "poids":55,
+            "nom":"requin-marteau planeur",
+            "noeud":{  
+               "nom":"requin-marteau planeur",
+               "id":191320,
+               "type":1,
+               "poids":50,
+               "motFormate":"requin-marteau planeur"
+            }
+         },
+         {  
+            "poids":55,
+            "nom":"roussette maille",
+            "noeud":{  
+               "nom":"roussette maille",
+               "id":191328,
+               "type":1,
+               "poids":50,
+               "motFormate":"roussette maille"
+            }
+         },
+         {  
+            "poids":55,
+            "nom":"ange de mer",
+            "noeud":{  
+               "nom":"ange de mer",
+               "id":24194,
+               "type":1,
+               "poids":50,
+               "motFormate":"ange de mer"
+            }
+         },
+         {  
+            "poids":55,
+            "nom":"aiguillat noir",
+            "noeud":{  
+               "nom":"aiguillat noir",
+               "id":170943,
+               "type":1,
+               "poids":50,
+               "motFormate":"aiguillat noir"
+            }
+         },
+         {  
+            "poids":55,
+            "nom":"centrine",
+            "noeud":{  
+               "nom":"centrine",
+               "id":60724,
+               "type":1,
+               "poids":50,
+               "motFormate":"centrine"
+            }
+         },
+         {  
+            "poids":55,
+            "nom":"chien>191257",
+            "noeud":{  
+               "nom":"chien>191257",
+               "id":321423,
+               "type":1,
+               "poids":50,
+               "motFormate":"chien>émissolle"
+            }
+         },
+         {  
+            "poids":55,
+            "nom":"requin-bouledogue",
+            "noeud":{  
+               "nom":"requin-bouledogue",
+               "id":292397,
+               "type":777,
+               "poids":50,
+               "motFormate":"requin-bouledogue"
+            }
+         },
+         {  
+            "poids":55,
+            "nom":"chien espagnol",
+            "noeud":{  
+               "nom":"chien espagnol",
+               "id":262342,
+               "type":1,
+               "poids":4,
+               "motFormate":"chien espagnol"
+            }
+         },
+         {  
+            "poids":56,
+            "nom":"personne",
+            "noeud":{  
+               "nom":"personne",
+               "id":116477,
+               "type":1,
+               "poids":9830,
+               "motFormate":"personne"
+            }
+         },
+         {  
+            "poids":56,
+            "nom":"personne>24956",
+            "noeud":{  
+               "nom":"personne>24956",
+               "id":225916,
+               "type":1,
+               "poids":582,
+               "motFormate":"personne>être humain"
+            }
+         },
+         {  
+            "poids":56,
+            "nom":"chordé",
+            "noeud":{  
+               "nom":"chordé",
+               "id":248081,
+               "type":1,
+               "poids":222,
+               "motFormate":"chordé"
+            }
+         },
+         {  
+            "poids":56,
+            "nom":"maraîche",
+            "noeud":{  
+               "nom":"maraîche",
+               "id":168181,
+               "type":1,
+               "poids":50,
+               "motFormate":"maraîche"
+            }
+         },
+         {  
+            "poids":56,
+            "nom":"requin grande gueule",
+            "noeud":{  
+               "nom":"requin grande gueule",
+               "id":191283,
+               "type":1,
+               "poids":50,
+               "motFormate":"requin grande gueule"
+            }
+         },
+         {  
+            "poids":56,
+            "nom":"requin griset",
+            "noeud":{  
+               "nom":"requin griset",
+               "id":191284,
+               "type":1,
+               "poids":50,
+               "motFormate":"requin griset"
+            }
+         },
+         {  
+            "poids":56,
+            "nom":"requin perlon",
+            "noeud":{  
+               "nom":"requin perlon",
+               "id":191291,
+               "type":1,
+               "poids":50,
+               "motFormate":"requin perlon"
+            }
+         },
+         {  
+            "poids":56,
+            "nom":"requin-chabot",
+            "noeud":{  
+               "nom":"requin-chabot",
+               "id":191302,
+               "type":1,
+               "poids":50,
+               "motFormate":"requin-chabot"
+            }
+         },
+         {  
+            "poids":56,
+            "nom":"requin-chabot élégant",
+            "noeud":{  
+               "nom":"requin-chabot élégant",
+               "id":191311,
+               "type":1,
+               "poids":50,
+               "motFormate":"requin-chabot élégant"
+            }
+         },
+         {  
+            "poids":56,
+            "nom":"requin-chabot épaulette",
+            "noeud":{  
+               "nom":"requin-chabot épaulette",
+               "id":191312,
+               "type":1,
+               "poids":50,
+               "motFormate":"requin-chabot épaulette"
+            }
+         },
+         {  
+            "poids":56,
+            "nom":"gnathostome",
+            "noeud":{  
+               "nom":"gnathostome",
+               "id":101018,
+               "type":1,
+               "poids":74,
+               "motFormate":"gnathostome"
+            }
+         },
+         {  
+            "poids":57,
+            "nom":"aiguillat",
+            "noeud":{  
+               "nom":"aiguillat",
+               "id":26469,
+               "type":1,
+               "poids":52,
+               "motFormate":"aiguillat"
+            }
+         },
+         {  
+            "poids":57,
+            "nom":"requin dormeur à crête",
+            "noeud":{  
+               "nom":"requin dormeur à crête",
+               "id":191281,
+               "type":1,
+               "poids":50,
+               "motFormate":"requin dormeur à crête"
+            }
+         },
+         {  
+            "poids":57,
+            "nom":"requin à aileron blanc",
+            "noeud":{  
+               "nom":"requin à aileron blanc",
+               "id":191296,
+               "type":1,
+               "poids":50,
+               "motFormate":"requin à aileron blanc"
+            }
+         },
+         {  
+            "poids":57,
+            "nom":"requin-taupe commun",
+            "noeud":{  
+               "nom":"requin-taupe commun",
+               "id":191325,
+               "type":1,
+               "poids":50,
+               "motFormate":"requin-taupe commun"
+            }
+         },
+         {  
+            "poids":58,
+            "nom":"chien de mer",
+            "noeud":{  
+               "nom":"chien de mer",
+               "id":7580,
+               "type":1,
+               "poids":54,
+               "motFormate":"chien de mer"
+            }
+         },
+         {  
+            "poids":58,
+            "nom":"grand requin-marteau",
+            "noeud":{  
+               "nom":"grand requin-marteau",
+               "id":191258,
+               "type":1,
+               "poids":50,
+               "motFormate":"grand requin-marteau"
+            }
+         },
+         {  
+            "poids":58,
+            "nom":"grande roussette",
+            "noeud":{  
+               "nom":"grande roussette",
+               "id":191259,
+               "type":1,
+               "poids":50,
+               "motFormate":"grande roussette"
+            }
+         },
+         {  
+            "poids":58,
+            "nom":"monge gris",
+            "noeud":{  
+               "nom":"monge gris",
+               "id":191260,
+               "type":1,
+               "poids":50,
+               "motFormate":"monge gris"
+            }
+         },
+         {  
+            "poids":58,
+            "nom":"requin babosse",
+            "noeud":{  
+               "nom":"requin babosse",
+               "id":191263,
+               "type":1,
+               "poids":50,
+               "motFormate":"requin babosse"
+            }
+         },
+         {  
+            "poids":58,
+            "nom":"requin cuivre",
+            "noeud":{  
+               "nom":"requin cuivre",
+               "id":191270,
+               "type":1,
+               "poids":50,
+               "motFormate":"requin cuivre"
+            }
+         },
+         {  
+            "poids":58,
+            "nom":"requin dormeur cornu",
+            "noeud":{  
+               "nom":"requin dormeur cornu",
+               "id":191276,
+               "type":1,
+               "poids":50,
+               "motFormate":"requin dormeur cornu"
+            }
+         },
+         {  
+            "poids":58,
+            "nom":"requin pygmée",
+            "noeud":{  
+               "nom":"requin pygmée",
+               "id":191292,
+               "type":1,
+               "poids":50,
+               "motFormate":"requin pygmée"
+            }
+         },
+         {  
+            "poids":58,
+            "nom":"requin-chabot gris",
+            "noeud":{  
+               "nom":"requin-chabot gris",
+               "id":191305,
+               "type":1,
+               "poids":50,
+               "motFormate":"requin-chabot gris"
+            }
+         },
+         {  
+            "poids":58,
+            "nom":"requin-marteau halicorne",
+            "noeud":{  
+               "nom":"requin-marteau halicorne",
+               "id":191318,
+               "type":1,
+               "poids":50,
+               "motFormate":"requin-marteau halicorne"
+            }
+         },
+         {  
+            "poids":58,
+            "nom":"aileron blanc du large",
+            "noeud":{  
+               "nom":"aileron blanc du large",
+               "id":255163,
+               "type":1,
+               "poids":50,
+               "motFormate":"aileron blanc du large"
+            }
+         },
+         {  
+            "poids":58,
+            "nom":"émissole lisse",
+            "noeud":{  
+               "nom":"émissole lisse",
+               "id":324484,
+               "type":1,
+               "poids":50,
+               "motFormate":"émissole lisse"
+            }
+         },
+         {  
+            "poids":58,
+            "nom":"renard>68467",
+            "noeud":{  
+               "nom":"renard>68467",
+               "id":321753,
+               "type":1,
+               "poids":50,
+               "motFormate":"renard>poisson"
+            }
+         },
+         {  
+            "poids":58,
+            "nom":"lamie>73126",
+            "noeud":{  
+               "nom":"lamie>73126",
+               "id":391494,
+               "type":1,
+               "poids":50,
+               "motFormate":"lamie>requin"
+            }
+         },
+         {  
+            "poids":59,
+            "nom":"requin-taupe",
+            "noeud":{  
+               "nom":"requin-taupe",
+               "id":170988,
+               "type":1,
+               "poids":2,
+               "motFormate":"requin-taupe"
+            }
+         },
+         {  
+            "poids":59,
+            "nom":"veau de mer",
+            "noeud":{  
+               "nom":"veau de mer",
+               "id":168198,
+               "type":1,
+               "poids":50,
+               "motFormate":"veau de mer"
+            }
+         },
+         {  
+            "poids":59,
+            "nom":"requin zèbre",
+            "noeud":{  
+               "nom":"requin zèbre",
+               "id":191295,
+               "type":1,
+               "poids":50,
+               "motFormate":"requin zèbre"
+            }
+         },
+         {  
+            "poids":59,
+            "nom":"requin-chat arlequin",
+            "noeud":{  
+               "nom":"requin-chat arlequin",
+               "id":191313,
+               "type":1,
+               "poids":50,
+               "motFormate":"requin-chat arlequin"
+            }
+         },
+         {  
+            "poids":59,
+            "nom":"requin-marteau lisse",
+            "noeud":{  
+               "nom":"requin-marteau lisse",
+               "id":191319,
+               "type":1,
+               "poids":50,
+               "motFormate":"requin-marteau lisse"
+            }
+         },
+         {  
+            "poids":59,
+            "nom":"requin-marteau à petits yeux",
+            "noeud":{  
+               "nom":"requin-marteau à petits yeux",
+               "id":191322,
+               "type":1,
+               "poids":50,
+               "motFormate":"requin-marteau à petits yeux"
+            }
+         },
+         {  
+            "poids":59,
+            "nom":"requin-taupe bleu",
+            "noeud":{  
+               "nom":"requin-taupe bleu",
+               "id":191324,
+               "type":1,
+               "poids":50,
+               "motFormate":"requin-taupe bleu"
+            }
+         },
+         {  
+            "poids":59,
+            "nom":"aiguillat commun",
+            "noeud":{  
+               "nom":"aiguillat commun",
+               "id":168159,
+               "type":1,
+               "poids":2,
+               "motFormate":"aiguillat commun"
+            }
+         },
+         {  
+            "poids":59,
+            "nom":"renard de mer commun",
+            "noeud":{  
+               "nom":"renard de mer commun",
+               "id":321756,
+               "type":777,
+               "poids":50,
+               "motFormate":"renard de mer commun"
+            }
+         },
+         {  
+            "poids":59,
+            "nom":"touille>73126",
+            "noeud":{  
+               "nom":"touille>73126",
+               "id":269928,
+               "type":1,
+               "poids":50,
+               "motFormate":"touille>requin"
+            }
+         },
+         {  
+            "poids":59,
+            "nom":"chien-de-mer",
+            "noeud":{  
+               "nom":"chien-de-mer",
+               "id":173593,
+               "type":1,
+               "poids":2,
+               "motFormate":"chien-de-mer"
+            }
+         },
+         {  
+            "poids":60,
+            "nom":"chondrichthyen",
+            "noeud":{  
+               "nom":"chondrichthyen",
+               "id":265164,
+               "type":1,
+               "poids":18,
+               "motFormate":"chondrichthyen"
+            }
+         },
+         {  
+            "poids":60,
+            "nom":"requin tigre",
+            "noeud":{  
+               "nom":"requin tigre",
+               "id":171006,
+               "type":1,
+               "poids":32,
+               "motFormate":"requin tigre"
+            }
+         },
+         {  
+            "poids":60,
+            "nom":"requin dormeur",
+            "noeud":{  
+               "nom":"requin dormeur",
+               "id":191272,
+               "type":1,
+               "poids":4,
+               "motFormate":"requin dormeur"
+            }
+         },
+         {  
+            "poids":60,
+            "nom":"requin dormeur bouledogue",
+            "noeud":{  
+               "nom":"requin dormeur bouledogue",
+               "id":191273,
+               "type":1,
+               "poids":50,
+               "motFormate":"requin dormeur bouledogue"
+            }
+         },
+         {  
+            "poids":60,
+            "nom":"requin dormeur taureau",
+            "noeud":{  
+               "nom":"requin dormeur taureau",
+               "id":191279,
+               "type":1,
+               "poids":50,
+               "motFormate":"requin dormeur taureau"
+            }
+         },
+         {  
+            "poids":60,
+            "nom":"requin maquereau",
+            "noeud":{  
+               "nom":"requin maquereau",
+               "id":191288,
+               "type":1,
+               "poids":50,
+               "motFormate":"requin maquereau"
+            }
+         },
+         {  
+            "poids":60,
+            "nom":"requin-chabot à taches bleues",
+            "noeud":{  
+               "nom":"requin-chabot à taches bleues",
+               "id":191310,
+               "type":1,
+               "poids":50,
+               "motFormate":"requin-chabot à taches bleues"
+            }
+         },
+         {  
+            "poids":60,
+            "nom":"requin-marteau écope",
+            "noeud":{  
+               "nom":"requin-marteau écope",
+               "id":191323,
+               "type":1,
+               "poids":50,
+               "motFormate":"requin-marteau écope"
+            }
+         },
+         {  
+            "poids":60,
+            "nom":"squalelet dentu",
+            "noeud":{  
+               "nom":"squalelet dentu",
+               "id":191329,
+               "type":1,
+               "poids":50,
+               "motFormate":"squalelet dentu"
+            }
+         },
+         {  
+            "poids":62,
+            "nom":"élasmobranche",
+            "noeud":{  
+               "nom":"élasmobranche",
+               "id":265173,
+               "type":1,
+               "poids":4,
+               "motFormate":"élasmobranche"
+            }
+         },
+         {  
+            "poids":62,
+            "nom":"deutérostomien",
+            "noeud":{  
+               "nom":"deutérostomien",
+               "id":115304,
+               "type":1,
+               "poids":110,
+               "motFormate":"deutérostomien"
+            }
+         },
+         {  
+            "poids":63,
+            "nom":"aileron",
+            "noeud":{  
+               "nom":"aileron",
+               "id":86460,
+               "type":1,
+               "poids":128,
+               "motFormate":"aileron"
+            }
+         },
+         {  
+            "poids":63,
+            "nom":"bilatérien",
+            "noeud":{  
+               "nom":"bilatérien",
+               "id":264880,
+               "type":1,
+               "poids":64,
+               "motFormate":"bilatérien"
+            }
+         },
+         {  
+            "poids":64,
+            "nom":"poisson>17559",
+            "noeud":{  
+               "nom":"poisson>17559",
+               "id":218940,
+               "type":1,
+               "poids":562,
+               "motFormate":"poisson>animal"
+            }
+         },
+         {  
+            "poids":64,
+            "nom":"crânié",
+            "noeud":{  
+               "nom":"crânié",
+               "id":264881,
+               "type":1,
+               "poids":48,
+               "motFormate":"crânié"
+            }
+         },
+         {  
+            "poids":65,
+            "nom":"prédateur",
+            "noeud":{  
+               "nom":"prédateur",
+               "id":25019,
+               "type":1,
+               "poids":502,
+               "motFormate":"prédateur"
+            }
+         },
+         {  
+            "poids":65,
+            "nom":"sélachimorphe",
+            "noeud":{  
+               "nom":"sélachimorphe",
+               "id":317281,
+               "type":1,
+               "poids":2,
+               "motFormate":"sélachimorphe"
+            }
+         },
+         {  
+            "poids":65,
+            "nom":"cordé",
+            "noeud":{  
+               "nom":"cordé",
+               "id":142602,
+               "type":1,
+               "poids":100,
+               "motFormate":"cordé"
+            }
+         },
+         {  
+            "poids":66,
+            "nom":"olfactorien",
+            "noeud":{  
+               "nom":"olfactorien",
+               "id":317929,
+               "type":1,
+               "poids":32,
+               "motFormate":"olfactorien"
+            }
+         },
+         {  
+            "poids":66,
+            "nom":"eumétazoaire",
+            "noeud":{  
+               "nom":"eumétazoaire",
+               "id":264908,
+               "type":1,
+               "poids":58,
+               "motFormate":"eumétazoaire"
+            }
+         },
+         {  
+            "poids":66,
+            "nom":"crâniate",
+            "noeud":{  
+               "nom":"crâniate",
+               "id":265277,
+               "type":1,
+               "poids":52,
+               "motFormate":"crâniate"
+            }
+         },
+         {  
+            "poids":66,
+            "nom":"voleur",
+            "noeud":{  
+               "nom":"voleur",
+               "id":102641,
+               "type":1,
+               "poids":2172,
+               "motFormate":"voleur"
+            }
+         },
+         {  
+            "poids":67,
+            "nom":"choanobionte",
+            "noeud":{  
+               "nom":"choanobionte",
+               "id":325741,
+               "type":1,
+               "poids":70,
+               "motFormate":"choanobionte"
+            }
+         },
+         {  
+            "poids":68,
+            "nom":"eucaryote",
+            "noeud":{  
+               "nom":"eucaryote",
+               "id":54794,
+               "type":1,
+               "poids":188,
+               "motFormate":"eucaryote"
+            }
+         },
+         {  
+            "poids":69,
+            "nom":"filozoaire",
+            "noeud":{  
+               "nom":"filozoaire",
+               "id":325738,
+               "type":1,
+               "poids":62,
+               "motFormate":"filozoaire"
+            }
+         },
+         {  
+            "poids":70,
+            "nom":"marteau",
+            "noeud":{  
+               "nom":"marteau",
+               "id":95659,
+               "type":1,
+               "poids":1134,
+               "motFormate":"marteau"
+            }
+         },
+         {  
+            "poids":71,
+            "nom":"métazoaire",
+            "noeud":{  
+               "nom":"métazoaire",
+               "id":55823,
+               "type":1,
+               "poids":154,
+               "motFormate":"métazoaire"
+            }
+         },
+         {  
+            "poids":73,
+            "nom":"holozoaire",
+            "noeud":{  
+               "nom":"holozoaire",
+               "id":325736,
+               "type":1,
+               "poids":54,
+               "motFormate":"holozoaire"
+            }
+         },
+         {  
+            "poids":75,
+            "nom":"opisthoconte",
+            "noeud":{  
+               "nom":"opisthoconte",
+               "id":325731,
+               "type":1,
+               "poids":68,
+               "motFormate":"opisthoconte"
+            }
+         },
+         {  
+            "poids":76,
+            "nom":"épineurien",
+            "noeud":{  
+               "nom":"épineurien",
+               "id":265220,
+               "type":1,
+               "poids":20,
+               "motFormate":"épineurien"
+            }
+         },
+         {  
+            "poids":77,
+            "nom":"uniconte",
+            "noeud":{  
+               "nom":"uniconte",
+               "id":325728,
+               "type":1,
+               "poids":38,
+               "motFormate":"uniconte"
+            }
+         },
+         {  
+            "poids":90,
+            "nom":"requin blanc",
+            "noeud":{  
+               "nom":"requin blanc",
+               "id":33822,
+               "type":1,
+               "poids":112,
+               "motFormate":"requin blanc"
+            }
+         },
+         {  
+            "poids":103,
+            "nom":"dent",
+            "noeud":{  
+               "nom":"dent",
+               "id":60902,
+               "type":1,
+               "poids":3318,
+               "motFormate":"dent"
+            }
+         },
+         {  
+            "poids":103,
+            "nom":"dents",
+            "noeud":{  
+               "nom":"dents",
+               "id":147184,
+               "type":1,
+               "poids":1248,
+               "motFormate":"dents"
+            }
+         },
+         {  
+            "poids":110,
+            "nom":"blanc",
+            "noeud":{  
+               "nom":"blanc",
+               "id":15196,
+               "type":1,
+               "poids":4286,
+               "motFormate":"blanc"
+            }
+         },
+         {  
+            "poids":118,
+            "nom":"squale",
+            "noeud":{  
+               "nom":"squale",
+               "id":135674,
+               "type":1,
+               "poids":82,
+               "motFormate":"squale"
+            }
+         },
+         {  
+            "poids":128,
+            "nom":"océan",
+            "noeud":{  
+               "nom":"océan",
+               "id":9664,
+               "type":1,
+               "poids":3112,
+               "motFormate":"océan"
+            }
+         },
+         {  
+            "poids":178,
+            "nom":"poisson",
+            "noeud":{  
+               "nom":"poisson",
+               "id":68467,
+               "type":1,
+               "poids":6579,
+               "motFormate":"poisson"
+            }
+         },
+         {  
+            "poids":198,
+            "nom":"mer",
+            "noeud":{  
+               "nom":"mer",
+               "id":146105,
+               "type":1,
+               "poids":8958,
+               "motFormate":"mer"
+            }
+         },
+         {  
+            "poids":1000000,
+            "nom":"_COM",
+            "noeud":{  
+               "nom":"_COM",
+               "id":239128,
+               "type":36,
+               "poids":50,
+               "motFormate":"_COM"
+            }
+         }
+      ],
+      "6":[  
+         {  
+            "poids":-87,
+            "nom":"Vertebrata",
+            "noeud":{  
+               "nom":"Vertebrata",
+               "id":176035,
+               "type":1,
+               "poids":50,
+               "motFormate":"Vertebrata"
+            }
+         },
+         {  
+            "poids":-25,
+            "nom":"lieu>68467",
+            "noeud":{  
+               "nom":"lieu>68467",
+               "id":157284,
+               "type":1,
+               "poids":56,
+               "motFormate":"lieu>poisson"
+            }
+         },
+         {  
+            "poids":-10,
+            "nom":"chondrichthyens",
+            "noeud":{  
+               "nom":"chondrichthyens",
+               "id":106845,
+               "type":1,
+               "poids":52,
+               "motFormate":"chondrichthyens"
+            }
+         },
+         {  
+            "poids":-1,
+            "nom":"lieu",
+            "noeud":{  
+               "nom":"lieu",
+               "id":135190,
+               "type":1,
+               "poids":1454,
+               "motFormate":"lieu"
+            }
+         },
+         {  
+            "poids":3,
+            "nom":"être>146885",
+            "noeud":{  
+               "nom":"être>146885",
+               "id":157007,
+               "type":1,
+               "poids":50,
+               "motFormate":"être>Nom:Mas+SG"
+            }
+         },
+         {  
+            "poids":17,
+            "nom":"ichtyophage",
+            "noeud":{  
+               "nom":"ichtyophage",
+               "id":38572,
+               "type":1,
+               "poids":52,
+               "motFormate":"ichtyophage"
+            }
+         },
+         {  
+            "poids":27,
+            "nom":"animal dangereux",
+            "noeud":{  
+               "nom":"animal dangereux",
+               "id":4891735,
+               "type":1,
+               "poids":0,
+               "motFormate":"animal dangereux"
+            }
+         },
+         {  
+            "poids":31,
+            "nom":"entité biologique",
+            "noeud":{  
+               "nom":"entité biologique",
+               "id":436570,
+               "type":1,
+               "poids":50,
+               "motFormate":"entité biologique"
+            }
+         },
+         {  
+            "poids":32,
+            "nom":"célomate",
+            "noeud":{  
+               "nom":"célomate",
+               "id":391009,
+               "type":1,
+               "poids":50,
+               "motFormate":"célomate"
+            }
+         },
+         {  
+            "poids":32,
+            "nom":"coelomate",
+            "noeud":{  
+               "nom":"coelomate",
+               "id":87789,
+               "type":1,
+               "poids":50,
+               "motFormate":"coelomate"
+            }
+         },
+         {  
+            "poids":32,
+            "nom":"animal>117095>325656",
+            "noeud":{  
+               "nom":"animal>117095>325656",
+               "id":325657,
+               "type":1,
+               "poids":8,
+               "motFormate":"animal>zoologie>être animé non humain"
+            }
+         },
+         {  
+            "poids":32,
+            "nom":"prédateur",
+            "noeud":{  
+               "nom":"prédateur",
+               "id":25019,
+               "type":1,
+               "poids":502,
+               "motFormate":"prédateur"
+            }
+         },
+         {  
+            "poids":35,
+            "nom":"coelomé",
+            "noeud":{  
+               "nom":"coelomé",
+               "id":391010,
+               "type":1,
+               "poids":50,
+               "motFormate":"coelomé"
+            }
+         },
+         {  
+            "poids":36,
+            "nom":"ichthyophage",
+            "noeud":{  
+               "nom":"ichthyophage",
+               "id":2559317,
+               "type":1,
+               "poids":0,
+               "motFormate":"ichthyophage"
+            }
+         },
+         {  
+            "poids":36,
+            "nom":"poisson de mer",
+            "noeud":{  
+               "nom":"poisson de mer",
+               "id":153478,
+               "type":1,
+               "poids":88,
+               "motFormate":"poisson de mer"
+            }
+         },
+         {  
+            "poids":38,
+            "nom":"organisme animal",
+            "noeud":{  
+               "nom":"organisme animal",
+               "id":267642,
+               "type":1,
+               "poids":4,
+               "motFormate":"organisme animal"
+            }
+         },
+         {  
+            "poids":42,
+            "nom":"individu>24956",
+            "noeud":{  
+               "nom":"individu>24956",
+               "id":396247,
+               "type":1,
+               "poids":62,
+               "motFormate":"individu>être humain"
+            }
+         },
+         {  
+            "poids":42,
+            "nom":"être humain>74860",
+            "noeud":{  
+               "nom":"être humain>74860",
+               "id":244620,
+               "type":1,
+               "poids":102,
+               "motFormate":"être humain>homme"
+            }
+         },
+         {  
+            "poids":42,
+            "nom":"être humain",
+            "noeud":{  
+               "nom":"être humain",
+               "id":24956,
+               "type":1,
+               "poids":738,
+               "motFormate":"être humain"
+            }
+         },
+         {  
+            "poids":43,
+            "nom":"individu",
+            "noeud":{  
+               "nom":"individu",
+               "id":68439,
+               "type":1,
+               "poids":5782,
+               "motFormate":"individu"
+            }
+         },
+         {  
+            "poids":51,
+            "nom":"entité physique",
+            "noeud":{  
+               "nom":"entité physique",
+               "id":316850,
+               "type":1,
+               "poids":50,
+               "motFormate":"entité physique"
+            }
+         },
+         {  
+            "poids":52,
+            "nom":"organisme marin",
+            "noeud":{  
+               "nom":"organisme marin",
+               "id":262763,
+               "type":1,
+               "poids":24,
+               "motFormate":"organisme marin"
+            }
+         },
+         {  
+            "poids":52,
+            "nom":"poisson marin",
+            "noeud":{  
+               "nom":"poisson marin",
+               "id":155246,
+               "type":1,
+               "poids":78,
+               "motFormate":"poisson marin"
+            }
+         },
+         {  
+            "poids":52,
+            "nom":"poisson cartilagineux",
+            "noeud":{  
+               "nom":"poisson cartilagineux",
+               "id":232534,
+               "type":1,
+               "poids":46,
+               "motFormate":"poisson cartilagineux"
+            }
+         },
+         {  
+            "poids":52,
+            "nom":"homme",
+            "noeud":{  
+               "nom":"homme",
+               "id":74860,
+               "type":1,
+               "poids":28236,
+               "motFormate":"homme"
+            }
+         },
+         {  
+            "poids":53,
+            "nom":"organisme",
+            "noeud":{  
+               "nom":"organisme",
+               "id":58768,
+               "type":1,
+               "poids":244,
+               "motFormate":"organisme"
+            }
+         },
+         {  
+            "poids":53,
+            "nom":"être",
+            "noeud":{  
+               "nom":"être",
+               "id":13369,
+               "type":1,
+               "poids":806,
+               "motFormate":"être"
+            }
+         },
+         {  
+            "poids":56,
+            "nom":"être vivant",
+            "noeud":{  
+               "nom":"être vivant",
+               "id":71624,
+               "type":1,
+               "poids":1842,
+               "motFormate":"être vivant"
+            }
+         },
+         {  
+            "poids":61,
+            "nom":"être vivant non humain",
+            "noeud":{  
+               "nom":"être vivant non humain",
+               "id":1483990,
+               "type":1,
+               "poids":4,
+               "motFormate":"être vivant non humain"
+            }
+         },
+         {  
+            "poids":67,
+            "nom":"organisme vivant",
+            "noeud":{  
+               "nom":"organisme vivant",
+               "id":65081,
+               "type":1,
+               "poids":116,
+               "motFormate":"organisme vivant"
+            }
+         },
+         {  
+            "poids":69,
+            "nom":"entité vivante",
+            "noeud":{  
+               "nom":"entité vivante",
+               "id":260820,
+               "type":1,
+               "poids":64,
+               "motFormate":"entité vivante"
+            }
+         },
+         {  
+            "poids":71,
+            "nom":"être vivant>123933",
+            "noeud":{  
+               "nom":"être vivant>123933",
+               "id":234036,
+               "type":1,
+               "poids":248,
+               "motFormate":"être vivant>entité"
+            }
+         },
+         {  
+            "poids":72,
+            "nom":"organisme>71624",
+            "noeud":{  
+               "nom":"organisme>71624",
+               "id":225847,
+               "type":1,
+               "poids":64,
+               "motFormate":"organisme>être vivant"
+            }
+         },
+         {  
+            "poids":76,
+            "nom":"personne>24956",
+            "noeud":{  
+               "nom":"personne>24956",
+               "id":225916,
+               "type":1,
+               "poids":582,
+               "motFormate":"personne>être humain"
+            }
+         },
+         {  
+            "poids":79,
+            "nom":"être>68439",
+            "noeud":{  
+               "nom":"être>68439",
+               "id":237445,
+               "type":1,
+               "poids":28,
+               "motFormate":"être>individu"
+            }
+         },
+         {  
+            "poids":88,
+            "nom":"eucaryote",
+            "noeud":{  
+               "nom":"eucaryote",
+               "id":54794,
+               "type":1,
+               "poids":188,
+               "motFormate":"eucaryote"
+            }
+         },
+         {  
+            "poids":89,
+            "nom":"uniconte",
+            "noeud":{  
+               "nom":"uniconte",
+               "id":325728,
+               "type":1,
+               "poids":38,
+               "motFormate":"uniconte"
+            }
+         },
+         {  
+            "poids":90,
+            "nom":"lieu>134218",
+            "noeud":{  
+               "nom":"lieu>134218",
+               "id":157283,
+               "type":1,
+               "poids":168,
+               "motFormate":"lieu>endroit"
+            }
+         },
+         {  
+            "poids":93,
+            "nom":"opisthoconte",
+            "noeud":{  
+               "nom":"opisthoconte",
+               "id":325731,
+               "type":1,
+               "poids":68,
+               "motFormate":"opisthoconte"
+            }
+         },
+         {  
+            "poids":97,
+            "nom":"holozoaire",
+            "noeud":{  
+               "nom":"holozoaire",
+               "id":325736,
+               "type":1,
+               "poids":54,
+               "motFormate":"holozoaire"
+            }
+         },
+         {  
+            "poids":98,
+            "nom":"personne",
+            "noeud":{  
+               "nom":"personne",
+               "id":116477,
+               "type":1,
+               "poids":9830,
+               "motFormate":"personne"
+            }
+         },
+         {  
+            "poids":103,
+            "nom":"voleur",
+            "noeud":{  
+               "nom":"voleur",
+               "id":102641,
+               "type":1,
+               "poids":2172,
+               "motFormate":"voleur"
+            }
+         },
+         {  
+            "poids":108,
+            "nom":"filozoaire",
+            "noeud":{  
+               "nom":"filozoaire",
+               "id":325738,
+               "type":1,
+               "poids":62,
+               "motFormate":"filozoaire"
+            }
+         },
+         {  
+            "poids":112,
+            "nom":"choano-organisme",
+            "noeud":{  
+               "nom":"choano-organisme",
+               "id":329657,
+               "type":1,
+               "poids":62,
+               "motFormate":"choano-organisme"
+            }
+         },
+         {  
+            "poids":121,
+            "nom":"choanobionte",
+            "noeud":{  
+               "nom":"choanobionte",
+               "id":325741,
+               "type":1,
+               "poids":70,
+               "motFormate":"choanobionte"
+            }
+         },
+         {  
+            "poids":121,
+            "nom":"ingrédient de recette de cuisine",
+            "noeud":{  
+               "nom":"ingrédient de recette de cuisine",
+               "id":3762435,
+               "type":1,
+               "poids":2,
+               "motFormate":"ingrédient de recette de cuisine"
+            }
+         },
+         {  
+            "poids":124,
+            "nom":"animal>117095",
+            "noeud":{  
+               "nom":"animal>117095",
+               "id":233133,
+               "type":1,
+               "poids":650,
+               "motFormate":"animal>zoologie"
+            }
+         },
+         {  
+            "poids":127,
+            "nom":"métazoaire",
+            "noeud":{  
+               "nom":"métazoaire",
+               "id":55823,
+               "type":1,
+               "poids":154,
+               "motFormate":"métazoaire"
+            }
+         },
+         {  
+            "poids":131,
+            "nom":"eumétazoaire",
+            "noeud":{  
+               "nom":"eumétazoaire",
+               "id":264908,
+               "type":1,
+               "poids":58,
+               "motFormate":"eumétazoaire"
+            }
+         },
+         {  
+            "poids":134,
+            "nom":"animal aquatique",
+            "noeud":{  
+               "nom":"animal aquatique",
+               "id":154719,
+               "type":1,
+               "poids":76,
+               "motFormate":"animal aquatique"
+            }
+         },
+         {  
+            "poids":135,
+            "nom":"animal marin",
+            "noeud":{  
+               "nom":"animal marin",
+               "id":152629,
+               "type":1,
+               "poids":238,
+               "motFormate":"animal marin"
+            }
+         },
+         {  
+            "poids":137,
+            "nom":"bilatérien",
+            "noeud":{  
+               "nom":"bilatérien",
+               "id":264880,
+               "type":1,
+               "poids":64,
+               "motFormate":"bilatérien"
+            }
+         },
+         {  
+            "poids":138,
+            "nom":"deutérostomien",
+            "noeud":{  
+               "nom":"deutérostomien",
+               "id":115304,
+               "type":1,
+               "poids":110,
+               "motFormate":"deutérostomien"
+            }
+         },
+         {  
+            "poids":141,
+            "nom":"épineurien",
+            "noeud":{  
+               "nom":"épineurien",
+               "id":265220,
+               "type":1,
+               "poids":20,
+               "motFormate":"épineurien"
+            }
+         },
+         {  
+            "poids":147,
+            "nom":"chordé",
+            "noeud":{  
+               "nom":"chordé",
+               "id":248081,
+               "type":1,
+               "poids":222,
+               "motFormate":"chordé"
+            }
+         },
+         {  
+            "poids":150,
+            "nom":"cordé",
+            "noeud":{  
+               "nom":"cordé",
+               "id":142602,
+               "type":1,
+               "poids":100,
+               "motFormate":"cordé"
+            }
+         },
+         {  
+            "poids":152,
+            "nom":"cordé>117095",
+            "noeud":{  
+               "nom":"cordé>117095",
+               "id":330964,
+               "type":1,
+               "poids":36,
+               "motFormate":"cordé>zoologie"
+            }
+         },
+         {  
+            "poids":153,
+            "nom":"olfactorien",
+            "noeud":{  
+               "nom":"olfactorien",
+               "id":317929,
+               "type":1,
+               "poids":32,
+               "motFormate":"olfactorien"
+            }
+         },
+         {  
+            "poids":156,
+            "nom":"crâniate",
+            "noeud":{  
+               "nom":"crâniate",
+               "id":265277,
+               "type":1,
+               "poids":52,
+               "motFormate":"crâniate"
+            }
+         },
+         {  
+            "poids":157,
+            "nom":"crânié",
+            "noeud":{  
+               "nom":"crânié",
+               "id":264881,
+               "type":1,
+               "poids":48,
+               "motFormate":"crânié"
+            }
+         },
+         {  
+            "poids":159,
+            "nom":"vertébré",
+            "noeud":{  
+               "nom":"vertébré",
+               "id":86640,
+               "type":1,
+               "poids":840,
+               "motFormate":"vertébré"
+            }
+         },
+         {  
+            "poids":167,
+            "nom":"gnathostome",
+            "noeud":{  
+               "nom":"gnathostome",
+               "id":101018,
+               "type":1,
+               "poids":74,
+               "motFormate":"gnathostome"
+            }
+         },
+         {  
+            "poids":170,
+            "nom":"poisson",
+            "noeud":{  
+               "nom":"poisson",
+               "id":68467,
+               "type":1,
+               "poids":6579,
+               "motFormate":"poisson"
+            }
+         },
+         {  
+            "poids":170,
+            "nom":"humain",
+            "noeud":{  
+               "nom":"humain",
+               "id":49293,
+               "type":1,
+               "poids":2270,
+               "motFormate":"humain"
+            }
+         },
+         {  
+            "poids":171,
+            "nom":"poisson>17559",
+            "noeud":{  
+               "nom":"poisson>17559",
+               "id":218940,
+               "type":1,
+               "poids":562,
+               "motFormate":"poisson>animal"
+            }
+         },
+         {  
+            "poids":176,
+            "nom":"chondrichtyen",
+            "noeud":{  
+               "nom":"chondrichtyen",
+               "id":64722,
+               "type":1,
+               "poids":68,
+               "motFormate":"chondrichtyen"
+            }
+         },
+         {  
+            "poids":180,
+            "nom":"élasmobranche",
+            "noeud":{  
+               "nom":"élasmobranche",
+               "id":265173,
+               "type":1,
+               "poids":4,
+               "motFormate":"élasmobranche"
+            }
+         },
+         {  
+            "poids":182,
+            "nom":"sélacien",
+            "noeud":{  
+               "nom":"sélacien",
+               "id":150449,
+               "type":1,
+               "poids":50,
+               "motFormate":"sélacien"
+            }
+         },
+         {  
+            "poids":186,
+            "nom":"chondrichthyen",
+            "noeud":{  
+               "nom":"chondrichthyen",
+               "id":265164,
+               "type":1,
+               "poids":18,
+               "motFormate":"chondrichthyen"
+            }
+         },
+         {  
+            "poids":188,
+            "nom":"squale",
+            "noeud":{  
+               "nom":"squale",
+               "id":135674,
+               "type":1,
+               "poids":82,
+               "motFormate":"squale"
+            }
+         },
+         {  
+            "poids":192,
+            "nom":"sélachimorphe",
+            "noeud":{  
+               "nom":"sélachimorphe",
+               "id":317281,
+               "type":1,
+               "poids":2,
+               "motFormate":"sélachimorphe"
+            }
+         },
+         {  
+            "poids":921,
+            "nom":"animal",
+            "noeud":{  
+               "nom":"animal",
+               "id":17559,
+               "type":1,
+               "poids":13299,
+               "motFormate":"animal"
+            }
+         }
+      ]
+   },
+   "annotations":[  
+
+   ],
+   "motFormate":"requin",
+   "typeRelationsUtilisees":[  
+
+   ]
+}

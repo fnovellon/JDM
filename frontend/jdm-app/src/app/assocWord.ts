@@ -1,7 +1,10 @@
 import { Word } from './word';
 
 export class AssocWord {
-    id: number;
     nom: string;
-    mots: Word[];
+    id: number;
+    type: number;
+    poids: number;
+    definition: string;
+    relations_sortantes: Word[];
 }
