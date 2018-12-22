@@ -57,7 +57,12 @@ export class PreferenceComponent implements OnInit {
     private cookieService: CookieService ) { }
 
   ngOnInit() {
-    // this.getWord('singe');
+    /*
+    // Test request to API
+    this.getWord('singe');
+    this.getAutocompletion('ordi');
+    */
+
     if (this.cookieService.check('JDM_Preferences_Cookie')) {
       const data = JSON.parse(this.cookieService.get('JDM_Preferences_Cookie'));
       this.initTable(data);
@@ -143,9 +148,14 @@ export class PreferenceComponent implements OnInit {
     console.log('Save !');
   }
 
-  /*getWord(word: string): void {
+  getWord(word: string): void {
     this.wordService.getWord(word)
       .subscribe(resWord => console.log(resWord));
-  }*/
+  }
+
+  getAutocompletion(prefix: string): void {
+    this.wordService.getAutocompletion(prefix)
+      .subscribe(words => console.log(words));
+  }
 
 }

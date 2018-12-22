@@ -15,18 +15,31 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class WordService {
-  private wordUrl = 'http://51.75.253.77/mot/';  // URL to web api
+  private wordUrl = 'http://51.75.253.77/mot/';  // URL to web api for requets a word
+  private autocompletionUrl = 'http://51.75.253.77/autocompletion/'; // URL to web api for autocompletion
   constructor(private http: HttpClient) { }
 
   getWord(name: string): Observable<AssocWord> {
-    const url = `${this.wordUrl}${name}`;
+    const url = `${this.wordUrl}${name}?rels=r_isa;r_associated`;
     console.log(url);
     return this.http.get<AssocWord>(url, httpOptions).pipe(
       tap(data => {
-        console.log(`fetched hero name=${name}`);
+        console.log(`fetched word name=${name}`);
         // console.log(data);
       }),
       catchError(this.handleError<AssocWord>(`getHero name=${name}`))
+    );
+  }
+
+  getAutocompletion(prefix: string): Observable<any> {
+    const url = `${this.autocompletionUrl}${prefix}`;
+    console.log(url);
+    return this.http.get<any>(url, httpOptions).pipe(
+      tap(data => {
+        console.log(`fetched autocomplete prefix=${prefix}`);
+        // console.log(data);
+      }),
+      catchError(this.handleError<any>(`getAutocompletion prefix=${prefix}`))
     );
   }
 
