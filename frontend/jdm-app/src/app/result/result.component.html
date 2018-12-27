@@ -54,6 +54,11 @@
       </mat-card-header>
       <mat-divider [inset]="true" ></mat-divider>
       <mat-card-content *ngIf="resultAssoc.relations_sortantes[res.id] != null">
+        <div class="spinner" *ngIf="showSpinner">
+          <div class="bounce1"></div>
+          <div class="bounce2"></div>
+          <div class="bounce3"></div>
+        </div>
         <mat-grid-list cols="2" rowHeight="30px">
           <mat-grid-tile *ngFor="let ra of resultAssocData">
               <div class="nomResult" matTooltip="{{ra.nom}}" matTooltipPosition="above" matTooltipShowDelay="400">{{ra.nom}}:</div> <div class="poidsResult">{{ra.poids}}</div>
@@ -65,7 +70,7 @@
                 [pageSize]="size"
                 [pageIndex]="page"
                 [pageSizeOptions]="[18, 36, 54]"
-                (page)="getData($event)">
+                (page)="getData($event, res.id)">
       </mat-paginator>
     </mat-card>
   </div>

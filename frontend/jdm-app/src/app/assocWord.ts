@@ -6,5 +6,5 @@ export class AssocWord {
     type: number;
     poids: number;
     definition: string;
-    relations_sortantes: Word[];
+    relations_sortantes: Word[][];
 }

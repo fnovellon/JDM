@@ -4,7 +4,7 @@ import {trigger, state, style, animate, transition } from '@angular/animations';
 import {FormControl} from '@angular/forms';
 import {MatAutocompleteSelectedEvent, MatChipInputEvent, MatAutocomplete, MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import {Observable} from 'rxjs';
-import {debounceTime, distinctUntilChanged, switchMap, map, startWith} from 'rxjs/operators';
+import {debounceTime, distinctUntilChanged, switchMap, map, startWith, filter} from 'rxjs/operators';
 import {AssocWord} from '../assocWord';
 import {Word} from '../word';
 import {TooltipPosition} from '@angular/material';
@@ -30,12 +30,14 @@ export class ResultComponent implements OnInit {
 
   //Associations pour l'auto complete
   allAssociations: AssociationData[] = [];
-  allAssociations_r : string[] = [];
   associations: AssociationData[] = [];
 
   //resultat de l'assoc
   resultAssoc: AssocWord;
   resultAssocData: Word[] = [];
+
+  //spinner
+  showSpinner: boolean = true;
 
   //page 
   page = 0;
@@ -56,8 +58,6 @@ export class ResultComponent implements OnInit {
         this.elementPosition = this.menuElement.nativeElement.offsetTop;
       }
       const windowScroll = window.pageYOffset;
-      console.log(this.elementPosition);
-      console.log(windowScroll);
       if(windowScroll > this.elementPosition){
         this.sticky = true;
       } else {
@@ -82,6 +82,7 @@ export class ResultComponent implements OnInit {
 
     this.associationsJsonService.getJSONWord().subscribe(data => {
       this.resultAssoc = data;
+      this.showSpinner = false;
     });
   }
 
@@ -100,47 +101,20 @@ export class ResultComponent implements OnInit {
     this.preferences.forEach((item, index) => {
      if(item.name_fr === assoc.name_fr) this.preferences.splice(index,1);
    });
-    this.getData({pageIndex: this.page, pageSize: this.size}, "0");
+    this.getData({pageIndex: this.page, pageSize: this.size}, assoc.id);
   }
-
-/*
-  add(event: MatChipInputEvent): void {
-    // Add association only when MatAutocomplete is not open
-    // To make sure this does not conflict with OptionSelected Event
-    if (!this.matAutocomplete.isOpen) {
-      const input = event.input;
-      const value = event.value;
-
-      // Add our association
-      if ((value || '').trim()) {
-        this.associations.push(value.trim());
-      }
-
-      // Reset the input value
-      if (input) {
-        input.value = '';
-      }
-      this.associationCtrl.setValue(null);
-    }
-  }
-
-  remove(association: AssociationData): void {
-    const index = this.associations.indexOf(association);
-
-    if (index >= 0) {
-      this.associations.splice(index, 1);
-    }
-  }
-  */
 
   removeAssocSelected(assoc: AssociationData){
     this.selectedAssociation.forEach((item, index) => {
      if(item.name_fr === assoc.name_fr) this.selectedAssociation.splice(index,1);
+     if(assoc.state == 1){
+      this.preferences.push(assoc);
+     }
    });
   }
 
   //page des cards
-  getData(obj, idAssoc: string) {
+  getData(obj, idAssoc: number) {
     let index=0,
         startingIndex=obj.pageIndex * obj.pageSize,
         endingIndex=startingIndex + obj.pageSize;
@@ -168,7 +142,7 @@ export class ResultComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if(result!=null){
+      if(result!=""){
         this.splitted = result.toString().split(",");
         console.log("result : " + result);
         for(let r of this.splitted){
@@ -202,7 +176,9 @@ export class ModalAssociation implements OnInit {
   ngOnInit(){
     this.associationsJsonService.getJSON().subscribe(data => {
       data.forEach(assoc => {
-        this.associations.push(assoc.name_fr);
+        if(assoc.state == 0){
+          this.associations.push(assoc.name_fr);
+        }
       });
     });
   }
