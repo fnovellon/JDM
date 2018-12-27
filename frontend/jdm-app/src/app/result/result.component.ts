@@ -4,7 +4,7 @@ import {trigger, state, style, animate, transition } from '@angular/animations';
 import {FormControl} from '@angular/forms';
 import {MatAutocompleteSelectedEvent, MatChipInputEvent, MatAutocomplete, MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import {Observable} from 'rxjs';
-import {debounceTime, distinctUntilChanged, switchMap, map, startWith, filter} from 'rxjs/operators';
+import {debounceTime, distinctUntilChanged, switchMap, map, startWith, filter, debounce} from 'rxjs/operators';
 import {AssocWord} from '../assocWord';
 import {Word} from '../word';
 import {TooltipPosition} from '@angular/material';
@@ -33,7 +33,7 @@ export class ResultComponent implements OnInit {
   associations: AssociationData[] = [];
 
   //resultat de l'assoc
-  resultAssoc: AssocWord;
+  resultAssoc: AssocWord = null;
   resultAssocData: Word[] = [];
 
   //spinner
@@ -81,33 +81,44 @@ export class ResultComponent implements OnInit {
     });
 
     this.associationsJsonService.getJSONWord().subscribe(data => {
-      this.resultAssoc = data;
-      this.showSpinner = false;
+      console.log('avant');
+      setTimeout(() => {
+        this.resultAssoc = data;
+        this.showSpinner = false;
+        this.selectedAssociation.forEach((assoc) => {
+          this.getData({pageIndex: this.page, pageSize: this.size}, assoc.id);
+        });
+        console.log('Fin OnInit');
+      }, 6000);
     });
   }
 
     //Scroll 
-  ngAfterViewInit(){
-    this.elementPosition = this.menuElement.nativeElement.offsetTop;
-  }
+    ngAfterViewInit(){
+      this.elementPosition = this.menuElement.nativeElement.offsetTop;
+    }
 
   private _filter(value: AssociationData): AssociationData[]{
     const filterValue = value.name_fr;
     return this.allAssociations.filter(option => option.name_fr.toLowerCase().includes(filterValue));
   }
-  
-  addToAssoc(assoc: AssociationData){
+
+  addToAssoc(assoc: AssociationData) {
     this.selectedAssociation.push(assoc);
     this.preferences.forEach((item, index) => {
-     if(item.name_fr === assoc.name_fr) this.preferences.splice(index,1);
-   });
-    this.getData({pageIndex: this.page, pageSize: this.size}, assoc.id);
+      if (item.name_fr === assoc.name_fr) {this.preferences.splice(index, 1); }
+    });
+    /*if (this.resultAssoc.relations_sortantes[assoc.id] !== undefined) {
+      this.getData({pageIndex: this.page, pageSize: this.size}, assoc.id);
+    }*/
   }
 
-  removeAssocSelected(assoc: AssociationData){
+  removeAssocSelected(assoc: AssociationData) {
     this.selectedAssociation.forEach((item, index) => {
-     if(item.name_fr === assoc.name_fr) this.selectedAssociation.splice(index,1);
-     if(assoc.state == 1){
+     if (item.name_fr === assoc.name_fr) {
+       this.selectedAssociation.splice(index, 1);
+     }
+     if (assoc.state === 1) {
       this.preferences.push(assoc);
      }
    });
@@ -115,14 +126,16 @@ export class ResultComponent implements OnInit {
 
   //page des cards
   getData(obj, idAssoc: number) {
-    let index=0,
-        startingIndex=obj.pageIndex * obj.pageSize,
-        endingIndex=startingIndex + obj.pageSize;
+    if (this.resultAssoc.relations_sortantes[idAssoc] !== undefined) {
+      let index = 0;
+      const startingIndex = obj.pageIndex * obj.pageSize,
+            endingIndex = startingIndex + obj.pageSize;
 
-    this.resultAssocData = this.resultAssoc.relations_sortantes[idAssoc].filter(() => {
-      index++;
-      return (index > startingIndex && index <= endingIndex) ? true : false;
-    });
+      this.resultAssocData = this.resultAssoc.relations_sortantes[idAssoc].filter(() => {
+        index++;
+        return (index > startingIndex && index <= endingIndex) ? true : false;
+      });
+    }
   }
 
   //push la valeur de l'autocomplete dans les assoc selectionné

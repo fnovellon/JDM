@@ -6,6 +6,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 
 // Model
 import { AssocWord } from './assocWord';
+import { AssociationData } from './associations-json.service';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' })
@@ -19,8 +20,18 @@ export class WordService {
   private autocompletionUrl = 'http://51.75.253.77/autocompletion/'; // URL to web api for autocompletion
   constructor(private http: HttpClient) { }
 
-  getWord(name: string): Observable<AssocWord> {
-    const url = `${this.wordUrl}${name}?rels=r_isa;r_associated`;
+  getWord(name: string, associations: AssociationData[]): Observable<AssocWord> {
+    let url = `${this.wordUrl}${name}`;
+    if (associations.length !== 0) {
+      let rels = '';
+      associations.forEach(assoc => {
+        if (rels === '') {
+          rels += ';';
+        }
+      rels += assoc.name;
+      });
+      url += `?rels=${rels}`;
+    }
     console.log(url);
     return this.http.get<AssocWord>(url, httpOptions).pipe(
       tap(data => {

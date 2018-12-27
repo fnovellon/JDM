@@ -149,7 +149,7 @@ export class PreferenceComponent implements OnInit {
   }
 
   getWord(word: string): void {
-    this.wordService.getWord(word)
+    this.wordService.getWord(word, [])
       .subscribe(resWord => console.log(resWord));
   }
 
