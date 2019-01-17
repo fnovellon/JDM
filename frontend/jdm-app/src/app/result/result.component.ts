@@ -2,7 +2,12 @@ import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import {Component, AfterViewInit, ElementRef, ViewChild, HostListener, OnInit, Inject } from '@angular/core';
 import {trigger, state, style, animate, transition } from '@angular/animations';
 import {FormControl} from '@angular/forms';
-import {MatAutocompleteSelectedEvent, MatChipInputEvent, MatAutocomplete, MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import {MatAutocompleteSelectedEvent,
+  MatChipInputEvent,
+  MatAutocomplete,
+  MatDialog,
+  MatDialogRef,
+  MAT_DIALOG_DATA} from '@angular/material';
 import {Observable} from 'rxjs';
 import {debounceTime, distinctUntilChanged, switchMap, map, startWith, filter, debounce} from 'rxjs/operators';
 import {AssocWord} from '../assocWord';
@@ -19,27 +24,27 @@ export interface DialogData {
   templateUrl: './result.component.html',
   styleUrls: ['./result.component.css']
 })
-export class ResultComponent implements OnInit {
+export class ResultComponent implements OnInit, AfterViewInit {
 
-  preferences : AssociationData[];
-  selectedAssociation : AssociationData[] = [];
+  preferences: AssociationData[];
+  selectedAssociation: AssociationData[] = [];
   separatorKeysCodes: number[] = [ENTER, COMMA];
   associationCtrl = new FormControl();
   filteredAssociations: Observable<string[]>;
   splitted: string[] = [];
 
-  //Associations pour l'auto complete
+  // Associations pour l'auto complete
   allAssociations: AssociationData[] = [];
   associations: AssociationData[] = [];
 
-  //resultat de l'assoc
+  // resultat de l'assoc
   resultAssoc: AssocWord = null;
   resultAssocData: Word[] = [];
 
-  //spinner
-  showSpinner: boolean = true;
+  // spinner
+  showSpinner = true;
 
-  //page 
+  // page
   page = 0;
   size = 18;
 
@@ -47,26 +52,26 @@ export class ResultComponent implements OnInit {
   @ViewChild('auto') matAutocomplete: MatAutocomplete;
   @ViewChild('stickyMenu') menuElement: ElementRef;
 
-  sticky: boolean = false;
+  sticky = false;
   elementPosition: any;
 
   constructor(public dialog: MatDialog, private associationsJsonService: AssociationsJsonService) {}
 
   @HostListener('window:scroll', ['$event'])
-    handleScroll(){
-      if(this.sticky == false){
+    handleScroll() {
+      if (this.sticky === false) {
         this.elementPosition = this.menuElement.nativeElement.offsetTop;
       }
       const windowScroll = window.pageYOffset;
-      if(windowScroll > this.elementPosition){
+      if (windowScroll > this.elementPosition) {
         this.sticky = true;
       } else {
         this.sticky = false;
       }
     }
 
-  ngOnInit(){
-      this.filteredAssociations = this.associationCtrl.valueChanges.pipe(
+  ngOnInit() {
+    this.filteredAssociations = this.associationCtrl.valueChanges.pipe(
       debounceTime(800),
       distinctUntilChanged(),
       startWith(''),
@@ -76,8 +81,8 @@ export class ResultComponent implements OnInit {
       data.forEach(assoc => {
         this.allAssociations.push(assoc);
       });
-      this.preferences = this.allAssociations.filter(assoc => assoc.state == 1);
-      console.log(this.preferences)
+      this.preferences = this.allAssociations.filter(assoc => assoc.state === 1);
+      console.log(this.preferences);
     });
 
     this.associationsJsonService.getJSONWord().subscribe(data => {
@@ -93,12 +98,12 @@ export class ResultComponent implements OnInit {
     });
   }
 
-    //Scroll 
-    ngAfterViewInit(){
-      this.elementPosition = this.menuElement.nativeElement.offsetTop;
-    }
+  // Scroll
+  ngAfterViewInit() {
+    this.elementPosition = this.menuElement.nativeElement.offsetTop;
+  }
 
-  private _filter(value: AssociationData): AssociationData[]{
+  private _filter(value: AssociationData): AssociationData[] {
     const filterValue = value.name_fr;
     return this.allAssociations.filter(option => option.name_fr.toLowerCase().includes(filterValue));
   }
@@ -124,7 +129,7 @@ export class ResultComponent implements OnInit {
    });
   }
 
-  //page des cards
+  // page des cards
   getData(obj, idAssoc: number) {
     if (this.resultAssoc.relations_sortantes[idAssoc] !== undefined) {
       let index = 0;
@@ -138,7 +143,7 @@ export class ResultComponent implements OnInit {
     }
   }
 
-  //push la valeur de l'autocomplete dans les assoc selectionné
+  // push la valeur de l'autocomplete dans les assoc selectionné
   selected(event: MatAutocompleteSelectedEvent): void {
     const tmpAssoc = this.allAssociations.find(assoc => {
       return assoc.name_fr === event.option.viewValue;
@@ -155,10 +160,10 @@ export class ResultComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if(result!=""){
-        this.splitted = result.toString().split(",");
-        console.log("result : " + result);
-        for(let r of this.splitted){
+      if (result !== '') {
+        this.splitted = result.toString().split(',');
+        console.log('result : ' + result);
+        for (const r of this.splitted) {
           const tmpAssoc = this.allAssociations.find(assoc => {
             return assoc.name_fr === r;
           });

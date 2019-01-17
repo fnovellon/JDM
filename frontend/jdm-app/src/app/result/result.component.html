@@ -65,7 +65,9 @@
           </mat-grid-tile>
         </mat-grid-list>
       </mat-card-content>
-      <p *ngIf="!showSpinner && resultAssoc != null && resultAssoc.relations_sortantes[res.id] == undefined">Cette association ne comporte aucun mot</p>
+      <p *ngIf="!showSpinner && resultAssoc != null && resultAssoc.relations_sortantes[res.id] == undefined">
+        Cette association ne comporte aucun mot
+      </p>
       <mat-paginator *ngIf="!showSpinner && resultAssoc != null && resultAssoc.relations_sortantes[res.id] != undefined " [length]='resultAssoc.relations_sortantes[res.id].length'
                 [pageSize]="size"
                 [pageIndex]="page"

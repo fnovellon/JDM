@@ -5,7 +5,6 @@ import { SelectionModel } from '@angular/cdk/collections';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 
 // Services
-import { WordService } from '../word.service';
 import { AssociationsJsonService, AssociationData } from '../associations-json.service';
 import { CookieService } from 'ngx-cookie-service';
 
@@ -52,8 +51,7 @@ export class PreferenceComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private wordService: WordService,
-    private associationsJsonService: AssociationsJsonService,
+  constructor(private associationsJsonService: AssociationsJsonService,
     private cookieService: CookieService ) { }
 
   ngOnInit() {
@@ -148,14 +146,9 @@ export class PreferenceComponent implements OnInit {
     console.log('Save !');
   }
 
-  getWord(word: string): void {
-    this.wordService.getWord(word, [])
+  /*getWord(word: string): void {
+    this.apiService.getWord(word, [])
       .subscribe(resWord => console.log(resWord));
-  }
-
-  getAutocompletion(prefix: string): void {
-    this.wordService.getAutocompletion(prefix)
-      .subscribe(words => console.log(words));
-  }
+  }*/
 
 }

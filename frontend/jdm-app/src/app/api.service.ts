@@ -12,12 +12,14 @@ const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' })
 };
 
+const SERVER_URL = 'http://51.75.253.77/';
+
 @Injectable({
   providedIn: 'root'
 })
-export class WordService {
-  private wordUrl = 'http://51.75.253.77/mot/';  // URL to web api for requets a word
-  private autocompletionUrl = 'http://51.75.253.77/autocompletion/'; // URL to web api for autocompletion
+export class ApiService {
+  private wordUrl = SERVER_URL + 'mot/';  // URL to web api for requets a word
+  private autocompletionUrl = SERVER_URL + 'autocompletion/'; // URL to web api for autocompletion
   constructor(private http: HttpClient) { }
 
   getWord(name: string, associations: AssociationData[]): Observable<AssocWord> {
@@ -42,13 +44,14 @@ export class WordService {
     );
   }
 
-  getAutocompletion(prefix: string): Observable<any> {
+  getAutocompletion(prefix: string): Observable<string[]> {
     const url = `${this.autocompletionUrl}${prefix}`;
     console.log(url);
     return this.http.get<any>(url, httpOptions).pipe(
       tap(data => {
         console.log(`fetched autocomplete prefix=${prefix}`);
         // console.log(data);
+        return of(data);
       }),
       catchError(this.handleError<any>(`getAutocompletion prefix=${prefix}`))
     );
