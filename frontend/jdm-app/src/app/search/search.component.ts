@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {Observable, of} from 'rxjs';
-import {debounceTime, distinctUntilChanged, switchMap, map, startWith, filter, debounce} from 'rxjs/operators';
+import {debounceTime, flatMap, distinctUntilChanged, switchMap, map, startWith, filter, debounce} from 'rxjs/operators';
 
 // Services
 import { ApiService } from '../api.service';
@@ -24,41 +24,45 @@ export class SearchComponent implements OnInit {
 
   ngOnInit() {
     this.filteredWords = this.wordControl.valueChanges.pipe(
-      debounceTime(800),
+      debounceTime(500),
       distinctUntilChanged(),
       startWith(''),
-      map((prefix: string) => this._filter(prefix)));
+      flatMap((prefix: string) => this._filter(prefix))
+    );
+  }
+
+  showSpinner() {
+    return this.spinner === true;
   }
 
   getAutocompletion(prefix: string): Observable<string[]> {
     return this.apiService.getAutocompletion(prefix);
   }
 
-  private _filter(value: string): string[] {
+  private _filter(value: string): Observable<string[]> {
     console.log('filter');
     if (value.length < 2) {
       this.warningAutocomplete = true;
       console.log('inf 2 lettres');
-      return [];
+      return of([]);
     }
     const filterValue = value.toLowerCase();
 
     if (typeof this.valueRequest !== 'undefined' && filterValue.startsWith(this.valueRequest)) {
       console.log('previous in new');
-      return this.options.filter(option => option.toLowerCase().startsWith(filterValue));
+      return of(this.options.filter(option => option.toLowerCase().startsWith(filterValue)));
     } else {
-      console.log('spinner');
       this.spinner = true;
-      this.getAutocompletion(filterValue).subscribe(words => {
-        console.log('dans subscribe');
-        console.log(words);
-        this.options = words;
-        this.valueRequest = filterValue;
-        this.filteredWords = of(words);
-        this.spinner = false;
-       });
-       return [];
+      console.log('spinner');
+      return this.getAutocompletion(filterValue).pipe(
+        map((data: string[]) => {
+          console.log(data);
+          this.options = data;
+          this.valueRequest = filterValue;
+          this.spinner = false;
+          return data.slice(0, 250);
+        })
+      );
     }
   }
-
 }

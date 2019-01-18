@@ -12,19 +12,21 @@ const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' })
 };
 
-const SERVER_URL = 'http://51.75.253.77/';
+const SERVER_URL = 'http://51.75.253.77/api/';
+const WORD_URL = 'mot/';
+const AUTOCOMPLETE_URL = 'auto/';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
-  private wordUrl = SERVER_URL + 'mot/';  // URL to web api for requets a word
-  private autocompletionUrl = SERVER_URL + 'autocompletion/'; // URL to web api for autocompletion
+
   constructor(private http: HttpClient) { }
 
   getWord(name: string, associations: AssociationData[]): Observable<AssocWord> {
-    let url = `${this.wordUrl}${name}`;
+    let url = '';
     if (associations.length !== 0) {
+      url = `${SERVER_URL + WORD_URL}${name}/sortante`;
       let rels = '';
       associations.forEach(assoc => {
         if (rels === '') {
@@ -33,6 +35,8 @@ export class ApiService {
       rels += assoc.name;
       });
       url += `?rels=${rels}`;
+    } else {
+      url = `${SERVER_URL + WORD_URL}${name}`;
     }
     console.log(url);
     return this.http.get<AssocWord>(url, httpOptions).pipe(
@@ -45,16 +49,21 @@ export class ApiService {
   }
 
   getAutocompletion(prefix: string): Observable<string[]> {
-    const url = `${this.autocompletionUrl}${prefix}`;
-    console.log(url);
-    return this.http.get<any>(url, httpOptions).pipe(
-      tap(data => {
-        console.log(`fetched autocomplete prefix=${prefix}`);
-        // console.log(data);
-        return of(data);
-      }),
-      catchError(this.handleError<any>(`getAutocompletion prefix=${prefix}`))
-    );
+    if (prefix.startsWith('$')) {
+      console.log('pouet');
+    } else {
+      const url = `${SERVER_URL + AUTOCOMPLETE_URL}${prefix}`;
+      console.log(url);
+      /*return this.http.get<any>(url, httpOptions).pipe(
+        tap(data => {
+          console.log(`fetched autocomplete prefix=${prefix}`);
+          // console.log(data);
+          return of(data);
+        }),
+        catchError(this.handleError<any>(`getAutocompletion prefix=${prefix}`))
+      );*/
+      return this.http.get<any>(url, httpOptions);
+    }
   }
 
     /**

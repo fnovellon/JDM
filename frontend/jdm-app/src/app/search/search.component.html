@@ -10,18 +10,17 @@
     -->
   </div>
   <mat-autocomplete #auto="matAutocomplete">
-      <mat-option *ngIf="spinner">
-        <div class="spinner">
-          <div class="bounce1"></div>
-          <div class="bounce2"></div>
-          <div class="bounce3"></div>
-        </div>
-      </mat-option>
-        
-      <mat-option *ngFor="let option of filteredWords" [value]="option">
-        {{option}}
-      </mat-option>
-    </mat-autocomplete>
+    <mat-option *ngIf="showSpinner()">
+      <div class="spinner">
+        <div class="bounce1"></div>
+        <div class="bounce2"></div>
+        <div class="bounce3"></div>
+      </div>
+    </mat-option>
+    <mat-option *ngFor="let option of filteredWords | async" [value]="option">
+      {{option}}
+    </mat-option>
+ </mat-autocomplete>
 </div>
 <button id="searchButton" mat-raised-button routerLink='/results'>Rechercher dans JeuxDeMots</button>
 
