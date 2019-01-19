@@ -5,6 +5,12 @@
 	margin-left: 1%;
 }
 
+
+#closeModal{
+	float: right;
+	cursor: pointer;
+}
+
 #selec{
 	width: auto;
 	margin-bottom: 2%;

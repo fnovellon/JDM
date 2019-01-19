@@ -1,4 +1,5 @@
 <div id="modalView">
+	<div id="closeModal"><mat-icon (click)="onNoClick()">close</mat-icon></div>
 	<div id="selec">
 		Associations Séléctionné :
 	</div>
@@ -16,6 +17,6 @@
 		</div>
 	</div>
 	<div id="confirm" mat-dialog-actions>
-		<button mat-raised-button [mat-dialog-close]="data.itemSelect" cdkFocusInitial>Ajouter les associations</button>
+		<button [disabled]="itemSelect.length == 0" mat-raised-button [mat-dialog-close]="data.itemSelect" cdkFocusInitial>Ajouter les associations</button>
 	</div>
 </div>

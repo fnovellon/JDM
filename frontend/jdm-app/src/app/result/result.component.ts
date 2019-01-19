@@ -160,7 +160,8 @@ export class ResultComponent implements OnInit, AfterViewInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result !== '') {
+      console.log("result" + result);
+      if (result !== undefined) {
         this.splitted = result.toString().split(',');
         console.log('result : ' + result);
         for (const r of this.splitted) {
@@ -181,12 +182,13 @@ export class ResultComponent implements OnInit, AfterViewInit {
 })
 export class ModalAssociation implements OnInit {
 
-
-  constructor(public dialogRef: MatDialogRef<ModalAssociation>, @Inject(MAT_DIALOG_DATA) public data: DialogData, private associationsJsonService: AssociationsJsonService) {}
-
   associations: string[] = [];
   itemSelect: string[] = [];
 
+  constructor(public dialogRef: MatDialogRef<ModalAssociation>, @Inject(MAT_DIALOG_DATA) public data: DialogData, private associationsJsonService: AssociationsJsonService) {
+        console.log(this.itemSelect);
+  }
+  
   onNoClick(): void {
     this.dialogRef.close();
   }
