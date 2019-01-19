@@ -21,7 +21,7 @@ const routes: Routes = [
     component: PreferenceComponent
   },
   {
-    path: 'results',
+    path: 'results/:word',
     component: ResultComponent
   },
 ];

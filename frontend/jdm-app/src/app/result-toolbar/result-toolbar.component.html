@@ -1,6 +1,6 @@
 <mat-toolbar class="mat-elevation-z6">
   <a class="leftSideMargin" *ngIf="showPreSearchBar()" routerLink='/search' ><img width="80" alt="JeuxDeMots Logo" src="../assets/loupeJDM_Project.png"></a>
-  <span *ngIf="showPreSearchBar()" id="searchedWord">Chien</span>
+  <span *ngIf="showPreSearchBar()" id="searchedWord">{{word}}</span>
   
   <span *ngIf="showPreSearchBar()" class="example-spacer"></span>
 

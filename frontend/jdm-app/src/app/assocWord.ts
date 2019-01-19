@@ -6,5 +6,6 @@ export class AssocWord {
     type: number;
     poids: number;
     definition: string;
+    motFormate: string;
     relations_sortantes: Word[][];
 }

@@ -1,5 +1,6 @@
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import {Component, AfterViewInit, ElementRef, ViewChild, HostListener, OnInit, Inject } from '@angular/core';
+import {Router, ActivatedRoute} from '@angular/router';
 import {trigger, state, style, animate, transition } from '@angular/animations';
 import {FormControl} from '@angular/forms';
 import {MatAutocompleteSelectedEvent,
@@ -26,6 +27,7 @@ export interface DialogData {
 })
 export class ResultComponent implements OnInit, AfterViewInit {
 
+  wordParam: string;
   preferences: AssociationData[];
   selectedAssociation: AssociationData[] = [];
   separatorKeysCodes: number[] = [ENTER, COMMA];
@@ -55,7 +57,10 @@ export class ResultComponent implements OnInit, AfterViewInit {
   sticky = false;
   elementPosition: any;
 
-  constructor(public dialog: MatDialog, private associationsJsonService: AssociationsJsonService) {}
+  constructor(public dialog: MatDialog,
+    private associationsJsonService: AssociationsJsonService,
+    private activatedRoute: ActivatedRoute,
+    private router: Router) { }
 
   @HostListener('window:scroll', ['$event'])
     handleScroll() {
@@ -71,6 +76,10 @@ export class ResultComponent implements OnInit, AfterViewInit {
     }
 
   ngOnInit() {
+
+    this.wordParam = this.activatedRoute.snapshot.paramMap.get('word');
+    console.log('word in url : ' + this.wordParam);
+
     this.filteredAssociations = this.associationCtrl.valueChanges.pipe(
       debounceTime(800),
       distinctUntilChanged(),
@@ -89,12 +98,18 @@ export class ResultComponent implements OnInit, AfterViewInit {
       console.log('avant');
       setTimeout(() => {
         this.resultAssoc = data;
+
+        // Tests on data
+        console.log(this.resultAssoc);
+        console.log(this.resultAssoc.relations_sortantes[0][0].noeud);
+        console.log(typeof this.resultAssoc.relations_sortantes[12] !== 'undefined');
+
         this.showSpinner = false;
         this.selectedAssociation.forEach((assoc) => {
           this.getData({pageIndex: this.page, pageSize: this.size}, assoc.id);
         });
         console.log('Fin OnInit');
-      }, 6000);
+      }, 3000);
     });
   }
 
@@ -119,14 +134,13 @@ export class ResultComponent implements OnInit, AfterViewInit {
   }
 
   removeAssocSelected(assoc: AssociationData) {
-    this.selectedAssociation.forEach((item, index) => {
-     if (item.name_fr === assoc.name_fr) {
-       this.selectedAssociation.splice(index, 1);
-     }
-     if (assoc.state === 1) {
+    const index = this.selectedAssociation.findIndex((element) => {
+     return element.name === assoc.name;
+    });
+    this.selectedAssociation.splice(index, 1);
+    if (assoc.state === 1) {
       this.preferences.push(assoc);
-     }
-   });
+    }
   }
 
   // page des cards
@@ -160,7 +174,7 @@ export class ResultComponent implements OnInit, AfterViewInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log("result" + result);
+      console.log('result' + result);
       if (result !== undefined) {
         this.splitted = result.toString().split(',');
         console.log('result : ' + result);
@@ -174,8 +188,10 @@ export class ResultComponent implements OnInit, AfterViewInit {
     });
   }
 
-  searchNewWord(event) {
-    console.log('searchNewWord');
+  searchNewWord($event) {
+    const selectedWord = $event.word;
+    console.log('searchNewWord : ' + selectedWord);
+    // TODO: try to search how reload a component or do reload by yourself
   }
 }
 

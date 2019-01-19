@@ -1,5 +1,6 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterContentInit } from '@angular/core';
 import {FormControl} from '@angular/forms';
+import {Router} from '@angular/router';
 import {Observable, of} from 'rxjs';
 import {debounceTime, flatMap, distinctUntilChanged, switchMap, map, startWith, filter, debounce} from 'rxjs/operators';
 import { MatAutocompleteSelectedEvent } from '@angular/material';
@@ -12,7 +13,7 @@ import { ApiService } from '../api.service';
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css']
 })
-export class SearchComponent implements OnInit {
+export class SearchComponent implements OnInit, AfterContentInit {
 
   wordControl = new FormControl();
   options: string[] = [];
@@ -24,7 +25,7 @@ export class SearchComponent implements OnInit {
 
   @ViewChild('wordInput') wordInput: ElementRef;
 
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: ApiService, private router: Router) { }
 
   ngOnInit() {
     this.filteredWords = this.wordControl.valueChanges.pipe(
@@ -33,6 +34,9 @@ export class SearchComponent implements OnInit {
       startWith(''),
       flatMap((prefix: string) => this._filter(prefix))
     );
+  }
+
+  ngAfterContentInit(): void {
     this.wordInput.nativeElement.focus();
   }
 
@@ -74,11 +78,13 @@ export class SearchComponent implements OnInit {
 
   selected(event: MatAutocompleteSelectedEvent): void {
     const option = event.option.viewValue;
-    console.log(option);
+    console.log('selectedEvent : ' + option);
+    this.router.navigate(['results', option]);
   }
 
   submit() {
     console.log('submit');
     console.log(this.currentValue);
+    this.router.navigate(['results', this.currentValue]);
   }
 }

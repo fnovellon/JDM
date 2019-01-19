@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, ChangeDetectorRef, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, ChangeDetectorRef, Output, EventEmitter, Input } from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {Observable, of} from 'rxjs';
 import {debounceTime, flatMap, distinctUntilChanged, switchMap, map, startWith, filter, debounce} from 'rxjs/operators';
@@ -26,7 +26,10 @@ export class ResultToolbarComponent implements OnInit {
   warningAutocomplete: boolean;
 
   @Output()
-  searchNewWord: EventEmitter<null> = new EventEmitter();
+  searchNewWord: EventEmitter<Object> = new EventEmitter();
+
+  @Input()
+  word: string;
 
   @ViewChild('wordInput') wordInput: ElementRef<HTMLInputElement>;
 
@@ -106,13 +109,13 @@ export class ResultToolbarComponent implements OnInit {
     const option = event.option.viewValue;
     console.log(option);
     this.firstSearchAutocompleteWord = true;
-    this.searchNewWord.emit();
+    this.searchNewWord.emit({'word': option });
   }
 
   submit(): void {
     console.log('submit');
     console.log(this.currentValue);
     this.firstSearchAutocompleteWord = true;
-    this.searchNewWord.emit();
+    this.searchNewWord.emit({'word': this.currentValue });
   }
 }
