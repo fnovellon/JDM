@@ -12,22 +12,19 @@
   <!-- Search bar -->
   <div *ngIf="showSearchBar()" class="search-bar">
 
-
     <button id="searchBarSearch" mat-icon-button (click)="submit()">
       <mat-icon>search</mat-icon>
     </button>
-    
 
     
 
-    <!-- Input Text -->
+    <!-- Input Text
     <mat-form-field id="formFieldInput">
-      <!-- <label for="search">Search</label> -->
-      <input matInput [(ngModel)]="this.searchValue" id="search-input" type="text" />
+      <input matInput id="search-input" type="text" />
     </mat-form-field>
-
+    -->
+    <input #wordInput type="search" placeholder="Saisissez un mot à rechercher" aria-label="Mot" matInput [matAutocomplete]="auto" [formControl]="wordControl">
     
-
     <!--<input type="search" matInput placeholder="Saisissez un mot à rechercher" aria-label="Mot" [(ngModel)]="value" matInput [matAutocomplete]="auto">
     <mat-autocomplete #auto="matAutocomplete">
       <mat-option *ngFor="let option of options" [value]="option">
@@ -38,6 +35,19 @@
     <button id="searchBarClose" mat-icon-button (click)="endSearchBar()">
       <mat-icon>close</mat-icon>
     </button>
+
+    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+      <mat-option *ngIf="showSpinner()">
+        <div class="spinner">
+          <div class="bounce1"></div>
+          <div class="bounce2"></div>
+          <div class="bounce3"></div>
+        </div>
+      </mat-option>
+      <mat-option *ngFor="let option of filteredWords | async" [value]="option">
+        {{option}}
+      </mat-option>
+    </mat-autocomplete>
   </div>
   
   <button class="rightSideMargin" *ngIf="showPreSearchBar()" style="float: right" mat-icon-button [matMenuTriggerFor]="appMenu">

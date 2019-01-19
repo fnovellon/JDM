@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {Observable, of} from 'rxjs';
 import {debounceTime, flatMap, distinctUntilChanged, switchMap, map, startWith, filter, debounce} from 'rxjs/operators';
+import { MatAutocompleteSelectedEvent } from '@angular/material';
 
 // Services
 import { ApiService } from '../api.service';
@@ -19,16 +20,20 @@ export class SearchComponent implements OnInit {
   filteredWords: Observable<string[]>;
   spinner = false;
   warningAutocomplete: boolean;
+  currentValue = '';
+
+  @ViewChild('wordInput') wordInput: ElementRef;
 
   constructor(private apiService: ApiService) { }
 
   ngOnInit() {
     this.filteredWords = this.wordControl.valueChanges.pipe(
-      debounceTime(500),
+      debounceTime(800),
       distinctUntilChanged(),
       startWith(''),
       flatMap((prefix: string) => this._filter(prefix))
     );
+    this.wordInput.nativeElement.focus();
   }
 
   showSpinner() {
@@ -40,8 +45,9 @@ export class SearchComponent implements OnInit {
   }
 
   private _filter(value: string): Observable<string[]> {
+    this.currentValue = value;
     console.log('filter');
-    if (value.length < 2) {
+    if (value.length < 3) {
       this.warningAutocomplete = true;
       console.log('inf 2 lettres');
       return of([]);
@@ -60,9 +66,19 @@ export class SearchComponent implements OnInit {
           this.options = data;
           this.valueRequest = filterValue;
           this.spinner = false;
-          return data.slice(0, 250);
+          return data;
         })
       );
     }
+  }
+
+  selected(event: MatAutocompleteSelectedEvent): void {
+    const option = event.option.viewValue;
+    console.log(option);
+  }
+
+  submit() {
+    console.log('submit');
+    console.log(this.currentValue);
   }
 }

@@ -173,6 +173,10 @@ export class ResultComponent implements OnInit, AfterViewInit {
       }
     });
   }
+
+  searchNewWord(event) {
+    console.log('searchNewWord');
+  }
 }
 
 @Component({

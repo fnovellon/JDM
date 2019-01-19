@@ -1,10 +1,39 @@
-
-img{
-  margin-top: 5%;
+#description{
+  width: 45%;
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+  margin-top: 1%;
+  margin-bottom: 1%;
+  text-align: left;
 }
 
-.input-form {
-  margin-top: 3%;
+blockquote {
+  background: #eee;
+  max-height: 100px;
+  overflow: auto;
+  margin: 0 auto;
+  padding: .5%;
+  border-left: 5px solid #ffd740;
+  text-align: center;
+}
+
+blockquote:before {
+  display: none;
+}
+
+blockquote p {
+  margin: 0 0;
+  color: #555;
+  font-size: 13pt;
+  line-height: 1.3;
+  font-family: 'PT Serif', Cambria, 'Hoefler Text', Utopia, 'Liberation Serif', 'Nimbus Roman No9 L Regular', Times, 'Times New Roman', serif;
+}
+
+
+img{
+  margin-top: 45px;
+  width: 300px;
 }
 
 #searchInput{
@@ -26,21 +55,56 @@ img{
 input {
 	display: block;
 	float: right;
-    color: #333;
-    border: none;
-    border-radius: 100px;
-    background-color: #e2e2e2;
-    outline: none;
-    width: 94%;
-    height: 55px;
-    padding: 5px 16px;
-    margin-left: 5px;
-    font-size: 1.25em;
-    -webkit-appearance: none;
+  color: #333;
+  border: none;
+  border-radius: 100px;
+  background-color: #e2e2e2;
+  outline: none;
+  width: 94%;
+  height: 55px;
+  padding: 5px 16px;
+  margin-left: 5px;
+  font-size: 1.25em;
+  -webkit-appearance: none;
 }
 
 #searchButton {
-  margin-top: 5%;
+  margin-top: 20px;
+}
+
+@media (max-width: 1280px){
+	#searchInput {
+    width: 65%;
+  }
+
+  #description {
+    width: 65%;
+  }
+}
+
+@media (max-width: 800px){
+	#searchInput {
+    width: 80%;
+  }
+
+  #searchIcon {
+    display: none;
+  }
+
+  #description {
+    width: 80%;
+  }
+
+  img {
+    width: 250px;
+  }
+}
+
+
+@media (max-width: 340px){
+  img {
+    width: 200px;
+  }
 }
 
 /* Animation logo */
@@ -96,3 +160,5 @@ input {
     transform: scale(1.0);
   }
 }
+
+
