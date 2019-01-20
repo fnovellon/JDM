@@ -53,15 +53,15 @@
         <mat-card-title>{{res.name_fr}}</mat-card-title>
       </mat-card-header>
       <mat-divider [inset]="true" ></mat-divider>
-      <div class="spinner" *ngIf="this.showSpinner">
+      <div class="spinner" *ngIf="showSpinner && (resultAssoc == null || resultAssoc.relations_sortantes[res.id] === undefined)">
         <div class="bounce1"></div>
         <div class="bounce2"></div>
         <div class="bounce3"></div>
       </div>
       <mat-card-content *ngIf="!showSpinner && resultAssoc !== null && resultAssoc.relations_sortantes[res.id] != undefined">
         <mat-grid-list cols="2" rowHeight="30px" *ngIf="!this.showSpinner">
-          <mat-grid-tile *ngFor="let ra of resultAssocData">
-              <div class="nomResult" matTooltip="{{ra.nom}}" matTooltipPosition="above" matTooltipShowDelay="400">{{ra.nom}}:</div> <div class="poidsResult">{{ra.poids}}</div>
+          <mat-grid-tile *ngFor="let ra of resultAssocData[res.id]">
+              <div class="nomResult" matTooltip="{{ra.noeud.motFormate}}" matTooltipPosition="above" matTooltipShowDelay="400">{{ra.noeud.motFormate}}:</div> <div class="poidsResult">{{ra.poids}}</div>
           </mat-grid-tile>
         </mat-grid-list>
       </mat-card-content>
@@ -69,8 +69,8 @@
         Cette association ne comporte aucun mot
       </p>
       <mat-paginator *ngIf="!showSpinner && resultAssoc != null && resultAssoc.relations_sortantes[res.id] != undefined " [length]='resultAssoc.relations_sortantes[res.id].length'
-                [pageSize]="size"
-                [pageIndex]="page"
+                [pageSize]="pageObject[res.id].size"
+                [pageIndex]="pageObject[res.id].page"
                 [pageSizeOptions]="[18, 36, 54]"
                 (page)="getData($event, res.id)">
       </mat-paginator>

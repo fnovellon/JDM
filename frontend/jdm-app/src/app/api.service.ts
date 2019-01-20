@@ -29,10 +29,10 @@ export class ApiService {
       url = `${SERVER_URL + WORD_URL}${name}/sortante`;
       let rels = '';
       associations.forEach(assoc => {
-        if (rels === '') {
+        if (rels !== '') {
           rels += ';';
         }
-      rels += assoc.name;
+        rels += assoc.name;
       });
       url += `?rels=${rels}`;
     } else {

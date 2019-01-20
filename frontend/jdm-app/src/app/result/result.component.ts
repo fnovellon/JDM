@@ -9,12 +9,16 @@ import {MatAutocompleteSelectedEvent,
   MatDialog,
   MatDialogRef,
   MAT_DIALOG_DATA} from '@angular/material';
-import {Observable} from 'rxjs';
+import {Observable, of} from 'rxjs';
 import {debounceTime, distinctUntilChanged, switchMap, map, startWith, filter, debounce} from 'rxjs/operators';
 import {AssocWord} from '../assocWord';
 import {Word} from '../word';
 import {TooltipPosition} from '@angular/material';
+
+
+// Services
 import { AssociationsJsonService, AssociationData} from '../associations-json.service';
+import { ApiService } from '../api.service';
 
 export interface DialogData {
   itemSelect: string[];
@@ -28,7 +32,7 @@ export interface DialogData {
 export class ResultComponent implements OnInit, AfterViewInit {
 
   wordParam: string;
-  preferences: AssociationData[];
+  preferences: AssociationData[] = [];
   selectedAssociation: AssociationData[] = [];
   separatorKeysCodes: number[] = [ENTER, COMMA];
   associationCtrl = new FormControl();
@@ -41,14 +45,13 @@ export class ResultComponent implements OnInit, AfterViewInit {
 
   // resultat de l'assoc
   resultAssoc: AssocWord = null;
-  resultAssocData: Word[] = [];
+  resultAssocData: Object = {};
 
   // spinner
   showSpinner = true;
 
   // page
-  page = 0;
-  size = 18;
+  pageObject = {};
 
   @ViewChild('associationInput') associationInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto') matAutocomplete: MatAutocomplete;
@@ -60,7 +63,7 @@ export class ResultComponent implements OnInit, AfterViewInit {
   constructor(public dialog: MatDialog,
     private associationsJsonService: AssociationsJsonService,
     private activatedRoute: ActivatedRoute,
-    private router: Router) { }
+    private apiService: ApiService) { }
 
   @HostListener('window:scroll', ['$event'])
     handleScroll() {
@@ -77,39 +80,41 @@ export class ResultComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
 
+    // Get param of url
     this.wordParam = this.activatedRoute.snapshot.paramMap.get('word');
     console.log('word in url : ' + this.wordParam);
 
+    // Observable for autocomplete
     this.filteredAssociations = this.associationCtrl.valueChanges.pipe(
       debounceTime(800),
       distinctUntilChanged(),
       startWith(''),
-      map((association: AssociationData) => this._filter(association)));
+      map((association: AssociationData) => this._filter(association))
+    );
 
+    // Get associations from JSON
     this.associationsJsonService.getJSON().subscribe(data => {
       data.forEach(assoc => {
         this.allAssociations.push(assoc);
       });
-      this.preferences = this.allAssociations.filter(assoc => assoc.state === 1);
-      console.log(this.preferences);
-    });
+      this.selectedAssociation = this.allAssociations.filter(assoc => assoc.state === 1);
 
-    this.associationsJsonService.getJSONWord().subscribe(data => {
-      console.log('avant');
-      setTimeout(() => {
-        this.resultAssoc = data;
+      this.requestForAssoc(this.selectedAssociation).subscribe((word) => {
+        console.log('avant');
+        this.resultAssoc = word;
 
         // Tests on data
-        console.log(this.resultAssoc);
+        /*console.log(this.resultAssoc);
         console.log(this.resultAssoc.relations_sortantes[0][0].noeud);
-        console.log(typeof this.resultAssoc.relations_sortantes[12] !== 'undefined');
+        console.log(typeof this.resultAssoc.relations_sortantes[12] !== 'undefined');*/
 
-        this.showSpinner = false;
         this.selectedAssociation.forEach((assoc) => {
-          this.getData({pageIndex: this.page, pageSize: this.size}, assoc.id);
+          this.pageObject[assoc.id] = {'page': 0, 'size': 18};
+          this.getData({pageIndex: 0, pageSize: 18}, assoc.id);
         });
         console.log('Fin OnInit');
-      }, 3000);
+        this.showSpinner = false;
+      });
     });
   }
 
@@ -123,23 +128,37 @@ export class ResultComponent implements OnInit, AfterViewInit {
     return this.allAssociations.filter(option => option.name_fr.toLowerCase().includes(filterValue));
   }
 
+  requestForAssoc(associations: AssociationData[]): Observable<AssocWord> {
+    const relToRequest: AssociationData[] = associations.filter((assoc) => {
+      return typeof this.resultAssocData[assoc.id] === 'undefined';
+    });
+    console.log('requestForAssoc');
+    console.log(relToRequest);
+    if (relToRequest.length > 0) {
+      return this.apiService.getWord(this.wordParam, relToRequest);
+    }
+  }
+
   addToAssoc(assoc: AssociationData) {
     this.selectedAssociation.push(assoc);
-    this.preferences.forEach((item, index) => {
-      if (item.name_fr === assoc.name_fr) {this.preferences.splice(index, 1); }
+    const index = this.preferences.findIndex((item) => {
+      return item.name === assoc.name;
     });
-    /*if (this.resultAssoc.relations_sortantes[assoc.id] !== undefined) {
-      this.getData({pageIndex: this.page, pageSize: this.size}, assoc.id);
-    }*/
+    if (index !== -1) {
+      this.preferences.splice(index, 1);
+      this.requestForAssoc([assoc]);
+    }
   }
 
   removeAssocSelected(assoc: AssociationData) {
     const index = this.selectedAssociation.findIndex((element) => {
      return element.name === assoc.name;
     });
-    this.selectedAssociation.splice(index, 1);
-    if (assoc.state === 1) {
-      this.preferences.push(assoc);
+    if (index !== -1 ) {
+      this.selectedAssociation.splice(index, 1);
+      if (assoc.state === 1) {
+        this.preferences.push(assoc);
+      }
     }
   }
 
@@ -149,11 +168,11 @@ export class ResultComponent implements OnInit, AfterViewInit {
       let index = 0;
       const startingIndex = obj.pageIndex * obj.pageSize,
             endingIndex = startingIndex + obj.pageSize;
-
-      this.resultAssocData = this.resultAssoc.relations_sortantes[idAssoc].filter(() => {
+      const wordsResult: Word[] = this.resultAssoc.relations_sortantes[idAssoc].filter(() => {
         index++;
         return (index > startingIndex && index <= endingIndex) ? true : false;
       });
+      this.resultAssocData[idAssoc] = wordsResult;
     }
   }
 
