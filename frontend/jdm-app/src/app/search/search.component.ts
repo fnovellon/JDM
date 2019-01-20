@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, AfterContentInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterContentInit, AfterViewInit } from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {Router} from '@angular/router';
 import {Observable, of} from 'rxjs';
@@ -13,7 +13,7 @@ import { ApiService } from '../api.service';
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css']
 })
-export class SearchComponent implements OnInit, AfterContentInit {
+export class SearchComponent implements OnInit, AfterContentInit, AfterViewInit {
 
   wordControl = new FormControl();
   options: string[] = [];
@@ -23,11 +23,12 @@ export class SearchComponent implements OnInit, AfterContentInit {
   warningAutocomplete: boolean;
   currentValue = '';
 
-  @ViewChild('wordInput') wordInput: ElementRef;
+  @ViewChild('wordInput') wordInput: ElementRef<HTMLInputElement>;
 
   constructor(private apiService: ApiService, private router: Router) { }
 
   ngOnInit() {
+    console.log('onInit');
     this.filteredWords = this.wordControl.valueChanges.pipe(
       debounceTime(800),
       distinctUntilChanged(),
@@ -37,6 +38,11 @@ export class SearchComponent implements OnInit, AfterContentInit {
   }
 
   ngAfterContentInit(): void {
+    console.log('afterContentInit');
+  }
+
+  ngAfterViewInit() {
+    console.log('afterViewInit');
     this.wordInput.nativeElement.focus();
   }
 

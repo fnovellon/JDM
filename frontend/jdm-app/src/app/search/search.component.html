@@ -14,9 +14,6 @@
   <div id="searchInput">
     <mat-icon id="searchIcon">search</mat-icon>
     <input #wordInput type="search" placeholder="Saisissez un mot à rechercher" aria-label="Mot" matInput [matAutocomplete]="auto" [formControl]="wordControl">
-    <!-- Peut se metter dans le <input> 
-      #tooltip="matTooltip" matTooltipPosition="below" matTooltip="Deux lettres sont nécessaires pour l'affichage des propositions. Cependant vous n'êtes pas obligé d'utliser les propositions." 
-    -->
   </div>
   <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
     <mat-option *ngIf="showSpinner()">

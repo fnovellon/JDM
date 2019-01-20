@@ -8,6 +8,7 @@ import {MatAutocompleteSelectedEvent,
   MatAutocomplete,
   MatDialog,
   MatDialogRef,
+  MatAutocompleteTrigger,
   MAT_DIALOG_DATA} from '@angular/material';
 import {Observable, of} from 'rxjs';
 import {debounceTime, distinctUntilChanged, switchMap, map, startWith, filter, debounce} from 'rxjs/operators';
@@ -36,12 +37,13 @@ export class ResultComponent implements OnInit, AfterViewInit {
   selectedAssociation: AssociationData[] = [];
   separatorKeysCodes: number[] = [ENTER, COMMA];
   associationCtrl = new FormControl();
-  filteredAssociations: Observable<string[]>;
+  filteredAssociations: Observable<AssociationData[]>;
   splitted: string[] = [];
 
   // Associations pour l'auto complete
   allAssociations: AssociationData[] = [];
   associations: AssociationData[] = [];
+  currentValue = '';
 
   // resultat de l'assoc
   resultAssoc: AssocWord = null;
@@ -56,6 +58,8 @@ export class ResultComponent implements OnInit, AfterViewInit {
   @ViewChild('associationInput') associationInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto') matAutocomplete: MatAutocomplete;
   @ViewChild('stickyMenu') menuElement: ElementRef;
+  @ViewChild('associationInput', { read: MatAutocompleteTrigger })
+  autoComplete: MatAutocompleteTrigger;
 
   sticky = false;
   elementPosition: any;
@@ -84,37 +88,26 @@ export class ResultComponent implements OnInit, AfterViewInit {
     this.wordParam = this.activatedRoute.snapshot.paramMap.get('word');
     console.log('word in url : ' + this.wordParam);
 
-    // Observable for autocomplete
-    this.filteredAssociations = this.associationCtrl.valueChanges.pipe(
-      debounceTime(800),
-      distinctUntilChanged(),
-      startWith(''),
-      map((association: AssociationData) => this._filter(association))
-    );
 
     // Get associations from JSON
     this.associationsJsonService.getJSON().subscribe(data => {
       data.forEach(assoc => {
-        this.allAssociations.push(assoc);
+        if (assoc.state === 0) {
+          this.allAssociations.push(assoc);
+        } else if (assoc.state === 1) {
+          this.selectedAssociation.push(assoc);
+        }
       });
-      this.selectedAssociation = this.allAssociations.filter(assoc => assoc.state === 1);
 
-      this.requestForAssoc(this.selectedAssociation).subscribe((word) => {
-        console.log('avant');
-        this.resultAssoc = word;
+      // Observable for autocomplete
+      //  distinctUntilChanged(),
+      this.filteredAssociations = this.associationCtrl.valueChanges.pipe(
+        debounceTime(600),
+        startWith(''),
+        map((value: string) => this._filter(value))
+      );
 
-        // Tests on data
-        /*console.log(this.resultAssoc);
-        console.log(this.resultAssoc.relations_sortantes[0][0].noeud);
-        console.log(typeof this.resultAssoc.relations_sortantes[12] !== 'undefined');*/
-
-        this.selectedAssociation.forEach((assoc) => {
-          this.pageObject[assoc.id] = {'page': 0, 'size': 18};
-          this.getData({pageIndex: 0, pageSize: 18}, assoc.id);
-        });
-        console.log('Fin OnInit');
-        this.showSpinner = false;
-      });
+      this.requestForAssoc(this.selectedAssociation);
     });
   }
 
@@ -123,39 +116,77 @@ export class ResultComponent implements OnInit, AfterViewInit {
     this.elementPosition = this.menuElement.nativeElement.offsetTop;
   }
 
-  private _filter(value: AssociationData): AssociationData[] {
-    const filterValue = value.name_fr;
-    return this.allAssociations.filter(option => option.name_fr.toLowerCase().includes(filterValue));
+  private _filter(value: string|AssociationData): AssociationData[] {
+    console.log('filter : ');
+    console.log(value);
+    let filterValue = '';
+    if (typeof value === 'string') {
+      console.log('isString');
+      filterValue = value;
+      console.log(filterValue);
+    } else {
+      console.log('isObject');
+      filterValue = value.name;
+      console.log(filterValue);
+    }
+    this.currentValue = filterValue;
+    return this.allAssociations.filter(option => {
+      const strOption = option.name + '#' + option.name_fr;
+      return strOption.toLowerCase().includes(filterValue.toLocaleLowerCase());
+    });
   }
 
-  requestForAssoc(associations: AssociationData[]): Observable<AssocWord> {
+  requestForAssoc(associations: AssociationData[]): void {
     const relToRequest: AssociationData[] = associations.filter((assoc) => {
       return typeof this.resultAssocData[assoc.id] === 'undefined';
     });
     console.log('requestForAssoc');
     console.log(relToRequest);
     if (relToRequest.length > 0) {
-      return this.apiService.getWord(this.wordParam, relToRequest);
+      this.apiService.getWord(this.wordParam, relToRequest).subscribe((word) => {
+        console.log('requestForAssoc');
+        console.log(word);
+
+        if (this.resultAssoc == null) {
+          this.resultAssoc = word;
+        } else {
+          this.resultAssoc.relations_sortantes = {...(this.resultAssoc.relations_sortantes), ...(word.relations_sortantes)};
+        }
+
+        // Tests on data
+        /*console.log(this.resultAssoc);
+        console.log(this.resultAssoc.relations_sortantes[0][0].noeud);
+        console.log(typeof this.resultAssoc.relations_sortantes[12] !== 'undefined');*/
+
+        relToRequest.forEach((assoc) => {
+          this.pageObject[assoc.id] = {'page': 0, 'size': 18};
+          this.getData({pageIndex: 0, pageSize: 18}, assoc.id);
+        });
+        console.log('Fin OnInit');
+        this.showSpinner = false;
+      });
     }
   }
 
   addToAssoc(assoc: AssociationData) {
-    this.selectedAssociation.push(assoc);
-    const index = this.preferences.findIndex((item) => {
-      return item.name === assoc.name;
-    });
-    if (index !== -1) {
-      this.preferences.splice(index, 1);
+    if (this.selectedAssociation.indexOf(assoc) === -1) {
+      this.selectedAssociation.push(assoc);
+    }
+    const indexPref = this.preferences.indexOf(assoc);
+    const indexAll = this.allAssociations.indexOf(assoc);
+    if (indexPref !== -1 && indexAll !== -1 ) {
+      this.preferences.splice(indexPref, 1);
+      this.allAssociations.splice(indexAll, 1);
+      this.showSpinner = true;
       this.requestForAssoc([assoc]);
     }
   }
 
   removeAssocSelected(assoc: AssociationData) {
-    const index = this.selectedAssociation.findIndex((element) => {
-     return element.name === assoc.name;
-    });
+    const index = this.selectedAssociation.indexOf(assoc);
     if (index !== -1 ) {
       this.selectedAssociation.splice(index, 1);
+      this.allAssociations.push(assoc);
       if (assoc.state === 1) {
         this.preferences.push(assoc);
       }
@@ -178,12 +209,29 @@ export class ResultComponent implements OnInit, AfterViewInit {
 
   // push la valeur de l'autocomplete dans les assoc selectionné
   selected(event: MatAutocompleteSelectedEvent): void {
-    const tmpAssoc = this.allAssociations.find(assoc => {
-      return assoc.name_fr === event.option.viewValue;
-    });
-    this.selectedAssociation.push(tmpAssoc);
-    this.associationInput.nativeElement.value = '';
-    this.associationCtrl.setValue(null);
+    console.log(event);
+    console.log('currentValue : ' + this.currentValue);
+    const selectedAssoc: AssociationData = event.option.value;
+    if (this.selectedAssociation.indexOf(selectedAssoc) === -1) {
+      console.log('existe pas');
+      this.selectedAssociation.push(selectedAssoc);
+    }
+    console.log('selectedAssoc : ' + selectedAssoc.name);
+    const indexAll = this.allAssociations.indexOf(selectedAssoc);
+    if (indexAll !== -1 ) {
+      if (selectedAssoc.state === 1) {
+        const indexPref = this.preferences.indexOf(selectedAssoc);
+        if (indexPref !== -1) {
+          this.preferences.splice(indexPref, 1);
+        }
+      }
+      this.allAssociations.splice(indexAll, 1);
+      this.showSpinner = true;
+      this.requestForAssoc([selectedAssoc]);
+    }
+    this.associationInput.nativeElement.value = this.currentValue;
+    this.associationCtrl.setValue(this.currentValue);
+    this.associationInput.nativeElement.blur();
   }
 
   openDialog(): void {

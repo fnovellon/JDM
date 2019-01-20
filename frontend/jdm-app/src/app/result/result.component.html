@@ -1,5 +1,14 @@
 <app-result-toolbar [word]="wordParam" (searchNewWord)="searchNewWord($event)"></app-result-toolbar>
-<blockquote id="description"><p>Ceci est un test de description elle est un peu longue dzadjezfdjez dezfezfref dfezfezfezfezfelle est un peu longue dzadjezfdjez dezfezfref dfezfezfezfezfelle est un peu longue dzadjezfdjez dezfezfref dfezfezfezfezfelle est un peu longue dzadjezfdjez dezfezfref dfezfezfezfezf</p></blockquote>
+<blockquote id="description">
+  <p *ngIf="!showSpinner && resultAssoc != null ">
+    {{resultAssoc.definition}}
+  </p>
+  <div class="spinner" *ngIf="showSpinner && resultAssoc == null">
+      <div class="bounce1"></div>
+      <div class="bounce2"></div>
+      <div class="bounce3"></div>
+  </div>
+</blockquote>
 <div id="searchAssoc">
   <div id="chipFav">
     <mat-chip *ngFor="let pref of preferences" (click)='addToAssoc(pref)' [selectable]="selectable">
@@ -19,8 +28,8 @@
       [matChipInputFor]="chipList">
     </mat-chip-list>
     <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
-      <mat-option *ngFor="let all of filteredAssociations | async" [value]="association">
-        {{all}}
+      <mat-option *ngFor="let assoc of filteredAssociations | async" [value]="assoc">
+        {{assoc.name}} - {{assoc.name_fr}}
       </mat-option>
     </mat-autocomplete>
   </mat-form-field>
@@ -53,7 +62,7 @@
         <mat-card-title>{{res.name_fr}}</mat-card-title>
       </mat-card-header>
       <mat-divider [inset]="true" ></mat-divider>
-      <div class="spinner" *ngIf="showSpinner && (resultAssoc == null || resultAssoc.relations_sortantes[res.id] === undefined)">
+      <div class="spinner" *ngIf="showSpinner && resultAssoc == null">
         <div class="bounce1"></div>
         <div class="bounce2"></div>
         <div class="bounce3"></div>
@@ -61,7 +70,7 @@
       <mat-card-content *ngIf="!showSpinner && resultAssoc !== null && resultAssoc.relations_sortantes[res.id] != undefined">
         <mat-grid-list cols="2" rowHeight="30px" *ngIf="!this.showSpinner">
           <mat-grid-tile *ngFor="let ra of resultAssocData[res.id]">
-              <div class="nomResult" matTooltip="{{ra.noeud.motFormate}}" matTooltipPosition="above" matTooltipShowDelay="400">{{ra.noeud.motFormate}}:</div> <div class="poidsResult">{{ra.poids}}</div>
+              <div class="nomResult" matTooltip="{{ra.noeud.motFormate}}" matTooltipPosition="above" matTooltipShowDelay="400">{{ra.noeud.motFormate}}</div> <div class="poidsResult">{{ra.poids}}</div>
           </mat-grid-tile>
         </mat-grid-list>
       </mat-card-content>
