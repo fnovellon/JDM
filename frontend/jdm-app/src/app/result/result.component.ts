@@ -91,10 +91,11 @@ export class ResultComponent implements OnInit, AfterViewInit {
     // Get associations from JSON
     this.associationsJsonService.getJSON().subscribe(data => {
       data.forEach(assoc => {
-        if (assoc.state === 0) {
+        if (assoc.state !== -1) {
           this.allAssociations.push(assoc);
-        } else if (assoc.state === 1) {
-          this.selectedAssociation.push(assoc);
+          if (assoc.state === 1) {
+            this.preferences.push(assoc);
+          }
         }
       });
 
@@ -105,9 +106,9 @@ export class ResultComponent implements OnInit, AfterViewInit {
         startWith(''),
         map((value: string) => this._filter(value))
       );
-
-      this.requestForAssoc(this.selectedAssociation);
     });
+
+    this.requestForAssoc([]);
   }
 
   // Scroll
@@ -136,40 +137,41 @@ export class ResultComponent implements OnInit, AfterViewInit {
   }
 
   requestForAssoc(associations: AssociationData[]): void {
-    const relToRequest: AssociationData[] = associations.filter((assoc) => {
-      return typeof this.resultAssocData[assoc.id] === 'undefined';
-    });
-    console.log('requestForAssoc');
-    console.log(relToRequest);
-    if (relToRequest.length > 0) {
-      this.showSpinner = true;
-      this.apiService.getWord(this.wordParam, relToRequest).subscribe((word) => {
-        console.log('requestForAssoc');
-        console.log(word);
-
-        let firstTime = true;
-        if (this.resultAssoc == null) {
-          this.resultAssoc = word;
-        } else {
-          firstTime = false;
-        }
-
-        // Tests on data
-        /*console.log(this.resultAssoc);
-        console.log(this.resultAssoc.relations_sortantes[0][0].noeud);
-        console.log(typeof this.resultAssoc.relations_sortantes[12] !== 'undefined');*/
-
-        relToRequest.forEach((assoc) => {
-          if (!firstTime && word.relations_sortantes[assoc.id] !== undefined) {
-            this.resultAssoc.relations_sortantes[assoc.id] = word.relations_sortantes[assoc.id];
-          }
-          this.pageObject[assoc.id] = {'page': 0, 'size': 18};
-          this.getData({pageIndex: 0, pageSize: 18}, assoc.id);
-        });
-        console.log('Fin OnInit');
+    this.showSpinner = true;
+    if (this.resultAssoc == null && associations.length === 0) {
+      this.apiService.getWord(this.wordParam, []).subscribe((word) => {
+        this.resultAssoc = word;
         this.showSpinner = false;
       });
+    } else if (this.resultAssoc != null && associations.length > 0) {
+      const relToRequest: AssociationData[] = associations.filter((assoc) => {
+        return typeof this.resultAssocData[assoc.id] === 'undefined';
+      });
+      console.log('requestForAssoc');
+      console.log(relToRequest);
+      if (relToRequest.length > 0) {
+        this.apiService.getWord(this.wordParam, relToRequest).subscribe((word) => {
+          console.log('requestForAssoc');
+          console.log(word);
+
+          relToRequest.forEach((assoc) => {
+            if (word.relations_sortantes[assoc.id] !== undefined) {
+              this.resultAssoc.relations_sortantes[assoc.id] = word.relations_sortantes[assoc.id];
+            }
+            this.pageObject[assoc.id] = {'page': 0, 'size': 18};
+            this.getData({pageIndex: 0, pageSize: 18}, assoc.id);
+          });
+          console.log('Fin OnInit');
+          this.showSpinner = false;
+        });
+      }
     }
+  }
+
+  private updateAutocompleteView(value: string) {
+    this.associationInput.nativeElement.value = value;
+    this.associationCtrl.setValue(value);
+    this.associationInput.nativeElement.blur();
   }
 
   addToAssoc(assoc: AssociationData) {
@@ -181,6 +183,7 @@ export class ResultComponent implements OnInit, AfterViewInit {
     if (indexPref !== -1 && indexAll !== -1 ) {
       this.preferences.splice(indexPref, 1);
       this.allAssociations.splice(indexAll, 1);
+      this.updateAutocompleteView(this.currentValue);
       this.showSpinner = true;
       this.requestForAssoc([assoc]);
     }
@@ -191,8 +194,11 @@ export class ResultComponent implements OnInit, AfterViewInit {
     if (index !== -1 ) {
       this.selectedAssociation.splice(index, 1);
       this.allAssociations.push(assoc);
+      this.allAssociations.sort(this.compareAssociations);
+      this.updateAutocompleteView(this.currentValue);
       if (assoc.state === 1) {
         this.preferences.push(assoc);
+        this.preferences.sort(this.compareAssociations);
       }
     }
   }
@@ -233,9 +239,7 @@ export class ResultComponent implements OnInit, AfterViewInit {
       this.showSpinner = true;
       this.requestForAssoc([selectedAssoc]);
     }
-    this.associationInput.nativeElement.value = this.currentValue;
-    this.associationCtrl.setValue(this.currentValue);
-    this.associationInput.nativeElement.blur();
+    this.updateAutocompleteView(this.currentValue);
   }
 
   openDialog(): void {
@@ -273,10 +277,13 @@ export class ResultComponent implements OnInit, AfterViewInit {
         this.requestForAssoc(assocReturned);
         console.log('After add new assoc');
         console.log(this.selectedAssociation);
-        this.associationInput.nativeElement.value = '';
-        this.associationCtrl.setValue('');
+        this.updateAutocompleteView('');
       }
     });
+  }
+
+  private compareAssociations(a: AssociationData, b: AssociationData) {
+    return a.id - b.id;
   }
 
   searchNewWord($event) {
@@ -330,6 +337,11 @@ export class ModalAssociationComponent implements OnInit {
       this.data.returnAssociations.splice(index, 1);
     }
     this.associations.push(doc);
+    this.associations.sort(this.compareAssociations);
+  }
+
+  private compareAssociations(a: AssociationData, b: AssociationData) {
+    return a.id - b.id;
   }
 
 }

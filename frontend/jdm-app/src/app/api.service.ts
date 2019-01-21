@@ -44,7 +44,7 @@ export class ApiService {
         console.log(`fetched word name=${name}`);
         // console.log(data);
       }),
-      catchError(this.handleError<AssocWord>(`getHero name=${name}`))
+      catchError(this.handleError<AssocWord>(`get word name=${name}`))
     );
   }
 
