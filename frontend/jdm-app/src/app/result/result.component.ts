@@ -16,6 +16,8 @@ import {debounceTime, distinctUntilChanged, switchMap, map, startWith, filter, d
 import {AssocWord} from '../assocWord';
 import {Word} from '../word';
 import {TooltipPosition} from '@angular/material';
+import { DragScrollComponent } from 'ngx-drag-scroll';
+
 
 
 // Services
@@ -29,7 +31,12 @@ import { ApiService } from '../api.service';
   templateUrl: './result.component.html',
   styleUrls: ['./result.component.css']
 })
+
 export class ResultComponent implements OnInit, AfterViewInit {
+
+  //caroussel
+  leftNavDisabled = false;
+  rightNavDisabled = false;
 
   wordParam: string;
   preferences: AssociationData[] = [];
@@ -109,6 +116,33 @@ export class ResultComponent implements OnInit, AfterViewInit {
     });
 
     this.requestForAssoc([]);
+  }
+
+  //caroussel scroll
+  @ViewChild('nav', {read: DragScrollComponent}) ds: DragScrollComponent;
+
+  moveLeft() {
+    this.ds.moveLeft();
+  }
+ 
+  moveRight() {
+    this.ds.moveRight();
+  }
+
+  leftBoundStat(reachesLeftBound: boolean) {
+    this.leftNavDisabled = reachesLeftBound;
+  }
+
+  rightBoundStat(reachesRightBound: boolean) {
+    this.rightNavDisabled = reachesRightBound;
+  }
+
+  onSnapAnimationFinished() {
+    console.log('snap animation finished');
+  }
+
+  onDragScrollInitialized() {
+    console.log('first demo drag scroll has been initialized.');
   }
 
   // Scroll
