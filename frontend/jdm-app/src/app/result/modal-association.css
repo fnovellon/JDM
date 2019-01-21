@@ -43,6 +43,15 @@
 	margin-right: 2%;
 }
 
+.selectedAssoc {
+	min-height: 38px;
+}
+
+.iconFav {
+	color:#ef9a9a; 
+	margin-right:5px;
+}
+
 @media (max-width: 800px){
 
 	::ng-deep .cdk-overlay-pane{

@@ -3,45 +3,44 @@
   <p *ngIf="!showSpinner && resultAssoc != null ">
     {{resultAssoc.definition}}
   </p>
-  <div class="spinner" *ngIf="showSpinner && resultAssoc == null">
-      <div class="bounce1"></div>
-      <div class="bounce2"></div>
-      <div class="bounce3"></div>
-  </div>
+  <p *ngIf="showSpinner && resultAssoc == null">
+    Chargement...
+  </p>
 </blockquote>
 <div id="searchAssoc">
   <div id="chipFav">
     <mat-chip *ngFor="let pref of preferences" (click)='addToAssoc(pref)' [selectable]="selectable">
-      <mat-icon style="color:#ef9a9a">favorite</mat-icon>
-      <div class="fav"> {{pref.name_fr}}</div>
+      <mat-icon class="iconFav">favorite</mat-icon>
+      <div> {{pref.name_fr}}</div>
     </mat-chip>
   </div>
   <div id="chipSearch">
     <mat-form-field class="example-chip-list">
       <mat-chip-list #chipList>
-      <input
-      type="text"
-      placeholder="Nouvelle association"
-      #associationInput
-      [formControl]="associationCtrl"
-      [matAutocomplete]="auto"
-      [matChipInputFor]="chipList">
-    </mat-chip-list>
-    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
-      <mat-option *ngFor="let assoc of filteredAssociations | async" [value]="assoc">
-        {{assoc.name}} - {{assoc.name_fr}}
-      </mat-option>
-    </mat-autocomplete>
-  </mat-form-field>
-  <button id="listBtn" mat-button (click)="openDialog()"><mat-icon>list</mat-icon></button>
-</div>
-<div id="selection">
-<div id="selec" *ngIf="selectedAssociation != ''">
-    Associations Séléctionné :
+        <input
+        type="text"
+        placeholder="Nouvelle association"
+        #associationInput
+        [formControl]="associationCtrl"
+        [matAutocomplete]="auto"
+        [matChipInputFor]="chipList">
+      </mat-chip-list>
+      <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+        <mat-option *ngFor="let assoc of filteredAssociations | async" [value]="assoc">
+          {{assoc.name}} - {{assoc.name_fr}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+    <button id="listBtn" mat-button (click)="openDialog()"><mat-icon>list</mat-icon></button>
   </div>
+  <div id="selection">
+    <div id="selec" *ngIf="selectedAssociation.length > 0">
+        Votre sélection :
+    </div>
   </div>
   <div id="chipSelec">
-    <mat-chip *ngFor="let selec of selectedAssociation">
+    <mat-chip class="selectedAssoc" *ngFor="let selec of selectedAssociation">
+      <mat-icon class="iconFav" *ngIf="selec.state === 1">favorite</mat-icon>
       {{selec.name_fr}}
       <mat-icon matChipRemove (click)="removeAssocSelected(selec)">cancel</mat-icon>
     </mat-chip>
@@ -50,8 +49,8 @@
 <mat-divider *ngIf="selectedAssociation != ''"></mat-divider>
 <div id="containerScrollToolbar">
   <div id="scroll" #stickyMenu [class.noSticky]= "!sticky" [class.sticky] = "sticky">
-  <app-scroll-toolbar *ngIf="selectedAssociation != ''"></app-scroll-toolbar>
-</div>
+    <app-scroll-toolbar *ngIf="selectedAssociation != ''"></app-scroll-toolbar>
+  </div>
 </div>
 
 <div class="cardResult" *ngFor="let res of selectedAssociation" >
@@ -62,7 +61,7 @@
         <mat-card-title>{{res.name_fr}}</mat-card-title>
       </mat-card-header>
       <mat-divider [inset]="true" ></mat-divider>
-      <div class="spinner" *ngIf="showSpinner && resultAssoc == null">
+      <div class="spinner" *ngIf="showSpinner && (resultAssoc == null || resultAssoc.relations_sortantes[res.id] == undefined)">
         <div class="bounce1"></div>
         <div class="bounce2"></div>
         <div class="bounce3"></div>

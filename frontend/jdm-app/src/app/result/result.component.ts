@@ -9,9 +9,10 @@ import {MatAutocompleteSelectedEvent,
   MatDialog,
   MatDialogRef,
   MatAutocompleteTrigger,
-  MAT_DIALOG_DATA} from '@angular/material';
+  MAT_DIALOG_DATA,
+  MatPaginator} from '@angular/material';
 import {Observable, of} from 'rxjs';
-import {debounceTime, distinctUntilChanged, switchMap, map, startWith, filter, debounce} from 'rxjs/operators';
+import {debounceTime, distinctUntilChanged, switchMap, map, startWith, filter, debounce, first} from 'rxjs/operators';
 import {AssocWord} from '../assocWord';
 import {Word} from '../word';
 import {TooltipPosition} from '@angular/material';
@@ -21,9 +22,7 @@ import {TooltipPosition} from '@angular/material';
 import { AssociationsJsonService, AssociationData} from '../associations-json.service';
 import { ApiService } from '../api.service';
 
-export interface DialogData {
-  itemSelect: string[];
-}
+
 
 @Component({
   selector: 'app-result',
@@ -143,14 +142,16 @@ export class ResultComponent implements OnInit, AfterViewInit {
     console.log('requestForAssoc');
     console.log(relToRequest);
     if (relToRequest.length > 0) {
+      this.showSpinner = true;
       this.apiService.getWord(this.wordParam, relToRequest).subscribe((word) => {
         console.log('requestForAssoc');
         console.log(word);
 
+        let firstTime = true;
         if (this.resultAssoc == null) {
           this.resultAssoc = word;
         } else {
-          this.resultAssoc.relations_sortantes = {...(this.resultAssoc.relations_sortantes), ...(word.relations_sortantes)};
+          firstTime = false;
         }
 
         // Tests on data
@@ -159,6 +160,9 @@ export class ResultComponent implements OnInit, AfterViewInit {
         console.log(typeof this.resultAssoc.relations_sortantes[12] !== 'undefined');*/
 
         relToRequest.forEach((assoc) => {
+          if (!firstTime && word.relations_sortantes[assoc.id] !== undefined) {
+            this.resultAssoc.relations_sortantes[assoc.id] = word.relations_sortantes[assoc.id];
+          }
           this.pageObject[assoc.id] = {'page': 0, 'size': 18};
           this.getData({pageIndex: 0, pageSize: 18}, assoc.id);
         });
@@ -235,22 +239,42 @@ export class ResultComponent implements OnInit, AfterViewInit {
   }
 
   openDialog(): void {
-    const dialogRef = this.dialog.open(ModalAssociation, {
+    const dialogRef = this.dialog.open(ModalAssociationComponent, {
       width: '80%',
-      data: {itemSelect: this.associations}
+      data: {choicesAssociations: JSON.parse(JSON.stringify(this.allAssociations))}
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('result' + result);
+      console.log('dialogClosed : ');
       if (result !== undefined) {
-        this.splitted = result.toString().split(',');
-        console.log('result : ' + result);
-        for (const r of this.splitted) {
-          const tmpAssoc = this.allAssociations.find(assoc => {
-            return assoc.name_fr === r;
+        const assocReturned: AssociationData[] = result;
+        assocReturned.forEach((assoc: AssociationData) => {
+          console.log('assoc in foreach');
+          console.log(this.allAssociations);
+          console.log(assoc);
+          const index = this.allAssociations.findIndex((item) => {
+            return item.id === assoc.id;
           });
-          this.selectedAssociation.push(tmpAssoc);
-        }
+          console.log('index : ' + index);
+          if (index !== -1) {
+            if (assoc.state === 1) {
+              const indexPref = this.preferences.findIndex((item) => {
+                return item.id === assoc.id;
+              });
+              console.log('indexPref : ' + indexPref);
+              if (indexPref !== -1) {
+                this.preferences.splice(indexPref, 1);
+              }
+            }
+            this.allAssociations.splice(index, 1);
+            this.selectedAssociation.push(assoc);
+          }
+        });
+        this.requestForAssoc(assocReturned);
+        console.log('After add new assoc');
+        console.log(this.selectedAssociation);
+        this.associationInput.nativeElement.value = '';
+        this.associationCtrl.setValue('');
       }
     });
   }
@@ -262,48 +286,49 @@ export class ResultComponent implements OnInit, AfterViewInit {
   }
 }
 
+export interface DialogData {
+  choicesAssociations: AssociationData[];
+  returnAssociations: AssociationData[];
+}
+
 @Component({
-  selector: 'modalAssociation',
-  templateUrl: 'modalAssociation.html',
-  styleUrls: ['./modalAssociation.css']
+  selector: 'app-modal-association',
+  templateUrl: 'modal-association.html',
+  styleUrls: ['./modal-association.css']
 })
-export class ModalAssociation implements OnInit {
+export class ModalAssociationComponent implements OnInit {
 
-  associations: string[] = [];
-  itemSelect: string[] = [];
+  associations: AssociationData[] = [];
 
-  constructor(public dialogRef: MatDialogRef<ModalAssociation>, @Inject(MAT_DIALOG_DATA) public data: DialogData, private associationsJsonService: AssociationsJsonService) {
-        console.log(this.itemSelect);
+  constructor(public dialogRef: MatDialogRef<ModalAssociationComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData) {
   }
-  
+
   onNoClick(): void {
+    console.log('close');
     this.dialogRef.close();
   }
 
-  ngOnInit(){
-    this.associationsJsonService.getJSON().subscribe(data => {
-      data.forEach(assoc => {
-        if(assoc.state == 0){
-          this.associations.push(assoc.name_fr);
-        }
-      });
-    });
+  ngOnInit() {
+    this.associations = this.data.choicesAssociations;
+    this.data.returnAssociations = [];
   }
 
-  selectedItem(itemAssoc: string){
-    this.itemSelect.push(itemAssoc);
+  selectedItem(itemAssoc: AssociationData) {
+    this.data.returnAssociations.push(itemAssoc);
 
-    this.associations.forEach((item, index) => {
-     if(item === itemAssoc) this.associations.splice(index,1);
-   });
-    console.log(this.itemSelect);
-    this.data.itemSelect = this.itemSelect;
+    const index = this.associations.indexOf(itemAssoc);
+    if (index !== -1) {
+      this.associations.splice(index, 1);
+    }
+    this.data.returnAssociations = this.data.returnAssociations;
   }
 
-  removeSelection(doc: string){
-    this.itemSelect.forEach((item, index) => {
-     if(item === doc) this.itemSelect.splice(index,1);
-   });
+  removeSelection(doc: AssociationData) {
+    const index = this.data.returnAssociations.indexOf(doc);
+    if (index !== -1) {
+      this.data.returnAssociations.splice(index, 1);
+    }
     this.associations.push(doc);
   }
 

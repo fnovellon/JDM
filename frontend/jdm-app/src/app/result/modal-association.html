@@ -1,0 +1,24 @@
+<div id="modalView">
+	<div id="closeModal"><mat-icon (click)="onNoClick()">close</mat-icon></div>
+	<div id="selec" *ngIf="data.returnAssociations.length > 0">
+		Associations séléctionnées :
+	</div>
+	<div id="chipFav">
+		<mat-chip class="colorChip selectedAssoc" *ngFor="let assocS of data.returnAssociations" [selectable]="selectable">
+			<mat-icon class="iconFav" *ngIf="assocS.state === 1">favorite</mat-icon>
+			{{assocS.name}} - {{assocS.name_fr}}
+			<mat-icon (click)="removeSelection(assocS)" matChipRemove>cancel</mat-icon>
+		</mat-chip>
+	</div>
+	<div id="allAssoc">
+		<div *ngFor="let assoc of associations" id="modal">
+			<mat-chip class="selectedAssoc" (click)="selectedItem(assoc)">
+				<mat-icon class="iconFav" *ngIf="assoc.state === 1">favorite</mat-icon>
+				{{assoc.name}} - {{assoc.name_fr}}
+			</mat-chip>
+		</div>
+	</div>
+	<div id="confirm" mat-dialog-actions>
+		<button [disabled]="data.returnAssociations.length === 0" mat-raised-button [mat-dialog-close]="data.returnAssociations" cdkFocusInitial>Ajouter les associations</button>
+	</div>
+</div>

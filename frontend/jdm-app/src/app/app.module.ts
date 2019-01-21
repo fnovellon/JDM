@@ -25,7 +25,7 @@ import { MatButtonModule,
 
 import { AppComponent } from './app.component';
 import { PreferenceComponent } from './preference/preference.component';
-import { ResultComponent, ModalAssociation } from './result/result.component';
+import { ResultComponent, ModalAssociationComponent } from './result/result.component';
 import { SearchComponent } from './search/search.component';
 import { ResultToolbarComponent } from './result-toolbar/result-toolbar.component';
 import { BasicToolbarComponent } from './basic-toolbar/basic-toolbar.component';
@@ -42,7 +42,7 @@ import { AppRoutingModule } from './app-routing.module';
     ResultToolbarComponent,
     BasicToolbarComponent,
     ScrollToolbarComponent,
-    ModalAssociation,
+    ModalAssociationComponent,
     PreferenceToolbarComponent
   ],
   imports: [
@@ -73,7 +73,7 @@ import { AppRoutingModule } from './app-routing.module';
   providers: [CookieService ],
   bootstrap: [AppComponent],
   entryComponents: [
-        ModalAssociation
+    ModalAssociationComponent
   ]
 })
 export class AppModule { }
