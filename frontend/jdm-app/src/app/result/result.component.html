@@ -8,7 +8,8 @@
   </p>
 </blockquote>
 <div id="searchAssoc">
-  <div class="demo-border" *ngIf="preferences.length>0">
+  <div class="demo-border">
+    <button mat-fab class="carousselleft" *ngIf="!leftNavDisabled" (click)="moveLeft()"><mat-icon>keyboard_arrow_left</mat-icon></button>
     <drag-scroll class="demo-one"
       drag-scroll-y-disabled="true"
       scrollbar-hidden="true"
@@ -16,6 +17,7 @@
       (reachesLeftBound)="leftBoundStat($event)"
       (reachesRightBound)="rightBoundStat($event)"
       (snapAnimationFinished)="onSnapAnimationFinished()"
+      (indexChanged)="onIndexChanged($event)"
       #nav>
       <div drag-scroll-item class="chipFav" *ngFor="let pref of preferences">
         <mat-chip (click)='addToAssoc(pref)' [selectable]="selectable">
@@ -24,7 +26,7 @@
         </mat-chip>
       </div>
     </drag-scroll>
-    <button mat-fab class="carousselleft" *ngIf="!leftNavDisabled" (click)="moveLeft()"><mat-icon>keyboard_arrow_left</mat-icon></button>
+    
     <button mat-fab class="carousselright" *ngIf="!rightNavDisabled" (click)="moveRight()"><mat-icon>keyboard_arrow_right</mat-icon></button>
   </div>
 

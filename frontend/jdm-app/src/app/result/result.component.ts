@@ -34,10 +34,6 @@ import { ApiService } from '../api.service';
 
 export class ResultComponent implements OnInit, AfterViewInit {
 
-  //caroussel
-  leftNavDisabled = false;
-  rightNavDisabled = false;
-
   wordParam: string;
   preferences: AssociationData[] = [];
   selectedAssociation: AssociationData[] = [];
@@ -66,6 +62,12 @@ export class ResultComponent implements OnInit, AfterViewInit {
   @ViewChild('stickyMenu') menuElement: ElementRef;
   @ViewChild('associationInput', { read: MatAutocompleteTrigger })
   autoComplete: MatAutocompleteTrigger;
+
+  // caroussel scroll
+  @ViewChild('nav', {read: DragScrollComponent}) ds: DragScrollComponent;
+  leftNavDisabled = false;
+  rightNavDisabled = false;
+  indexCarrous = 0;
 
   sticky = false;
   elementPosition: any;
@@ -118,35 +120,46 @@ export class ResultComponent implements OnInit, AfterViewInit {
     this.requestForAssoc([]);
   }
 
-  //caroussel scroll
-  @ViewChild('nav', {read: DragScrollComponent}) ds: DragScrollComponent;
-
   moveLeft() {
     this.ds.moveLeft();
   }
- 
+
   moveRight() {
     this.ds.moveRight();
   }
 
   leftBoundStat(reachesLeftBound: boolean) {
+    // console.log('reached left : ' + reachesLeftBound);
     this.leftNavDisabled = reachesLeftBound;
   }
 
   rightBoundStat(reachesRightBound: boolean) {
+    // console.log('reached right : ' + reachesRightBound);
     this.rightNavDisabled = reachesRightBound;
   }
 
   onSnapAnimationFinished() {
-    console.log('snap animation finished');
+    // console.log('snap animation finished');
   }
 
   onDragScrollInitialized() {
     console.log('first demo drag scroll has been initialized.');
+    if (this.ds !== undefined ) {
+      console.log('defined');
+      this.ds.moveTo(0);
+    } else {
+      console.log('undefined');
+    }
+  }
+
+  onIndexChanged(index) {
+    this.indexCarrous = index;
+    // console.log('current index carrous : ' + index);
   }
 
   // Scroll
   ngAfterViewInit() {
+    console.log('afterViewInit');
     this.elementPosition = this.menuElement.nativeElement.offsetTop;
   }
 

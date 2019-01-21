@@ -164,6 +164,7 @@ button.mat-menu-item {
 	cursor: pointer;
 	float: left;
 	background-color: #fff;
+	z-index: 99;
 }
 
 .carousselleft:hover, .carousselright:hover{
@@ -179,6 +180,7 @@ button.mat-menu-item {
 	cursor: pointer;
 	float: right;
 	background-color: #fff;
+	z-index: 99;
 }
 
 mat-card-content{
