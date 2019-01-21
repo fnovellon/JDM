@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
+import { DragScrollModule } from 'ngx-drag-scroll';
+
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule,
@@ -68,7 +70,8 @@ import { AppRoutingModule } from './app-routing.module';
     MatPaginatorModule,
     MatSortModule,
     MatDividerModule,
-    MatTooltipModule
+    MatTooltipModule,
+    DragScrollModule
   ],
   providers: [CookieService ],
   bootstrap: [AppComponent],
