@@ -20,6 +20,7 @@ import { DragScrollComponent } from 'ngx-drag-scroll';
 
 
 
+
 // Services
 import { AssociationsJsonService, AssociationData} from '../associations-json.service';
 import { ApiService } from '../api.service';
@@ -52,7 +53,7 @@ export class ResultComponent implements OnInit, AfterViewInit {
   resultAssocData: Object = {};
 
   // spinner
-  showSpinner = true;
+  showSpinner = false;
 
   // page
   pageObject = {};
@@ -144,17 +145,12 @@ export class ResultComponent implements OnInit, AfterViewInit {
 
   onDragScrollInitialized() {
     console.log('first demo drag scroll has been initialized.');
-    if (this.ds !== undefined ) {
-      console.log('defined');
-      this.ds.moveTo(0);
+    if (this.ds === undefined) {
+      console.log('ds undefined');
     } else {
-      console.log('undefined');
+      console.log('ds defined');
+      this.ds.moveTo(0);
     }
-  }
-
-  onIndexChanged(index) {
-    this.indexCarrous = index;
-    // console.log('current index carrous : ' + index);
   }
 
   // Scroll
@@ -184,11 +180,11 @@ export class ResultComponent implements OnInit, AfterViewInit {
   }
 
   requestForAssoc(associations: AssociationData[]): void {
-    this.showSpinner = true;
+    // this.showSpinner = true;
     if (this.resultAssoc == null && associations.length === 0) {
       this.apiService.getWord(this.wordParam, []).subscribe((word) => {
         this.resultAssoc = word;
-        this.showSpinner = false;
+        // this.showSpinner = false;
       });
     } else if (this.resultAssoc != null && associations.length > 0) {
       const relToRequest: AssociationData[] = associations.filter((assoc) => {
@@ -209,7 +205,7 @@ export class ResultComponent implements OnInit, AfterViewInit {
             this.getData({pageIndex: 0, pageSize: 18}, assoc.id);
           });
           console.log('Fin OnInit');
-          this.showSpinner = false;
+          // this.showSpinner = false;
         });
       }
     }
@@ -231,7 +227,7 @@ export class ResultComponent implements OnInit, AfterViewInit {
       this.preferences.splice(indexPref, 1);
       this.allAssociations.splice(indexAll, 1);
       this.updateAutocompleteView(this.currentValue);
-      this.showSpinner = true;
+      // this.showSpinner = true;
       this.requestForAssoc([assoc]);
     }
   }
@@ -283,7 +279,7 @@ export class ResultComponent implements OnInit, AfterViewInit {
         }
       }
       this.allAssociations.splice(indexAll, 1);
-      this.showSpinner = true;
+      // this.showSpinner = true;
       this.requestForAssoc([selectedAssoc]);
     }
     this.updateAutocompleteView(this.currentValue);
@@ -338,8 +334,32 @@ export class ResultComponent implements OnInit, AfterViewInit {
     console.log('searchNewWord : ' + selectedWord);
     // TODO: try to search how reload a component or do reload by yourself
   }
+
+  /**
+  *
+  * Sort and filter from scroll-toolbar component
+  *
+  */
+  private filter: string = '';
+  private sort: string = '';
+  private ascSort: boolean = false;
+  private sortWords() {
+    for (var key in this.resultAssocData) {
+
+    }
+  }
+
 }
 
+
+
+
+
+/**
+ *
+ * MODAL
+ *
+ */
 export interface DialogData {
   choicesAssociations: AssociationData[];
   returnAssociations: AssociationData[];

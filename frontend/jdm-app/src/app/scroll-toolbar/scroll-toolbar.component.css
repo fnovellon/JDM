@@ -21,3 +21,16 @@ input {
     -webkit-appearance: none;
     text-align: left;
 }
+
+/*@media (max-width: 800px) {
+	input {
+    width: 50%;
+  }
+}*/
+
+@media (max-width: 1280px) {
+
+	input {
+    width: 50%;
+  }
+}

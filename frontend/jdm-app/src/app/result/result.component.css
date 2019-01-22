@@ -55,12 +55,13 @@ mat-form-field{
 	margin-top: 2%;
 }
 
-.chipFav{
-	margin-top: 1%;
-	margin-left: 1%;
+.chipFav {
+	margin-top: 16px;
 }
 
-
+.chipFav:not(:first-child){
+	padding-left: 10px;
+}
 
 .chipFav .mat-icon{
 	float: right;
@@ -101,7 +102,7 @@ mat-chip{
 }
 
 #searchAssoc{
-	margin-left: 2%;
+	/*margin-left: 2%;*/
 	width: 96%;
     display: block;
 }
@@ -127,22 +128,16 @@ button.mat-menu-item {
 }
 
 .example-card {
-	margin-left: 1%;
-	margin-right: 1%;
-}
-
-.cardResult{
 	margin-top: 2%;
-	margin-left: 1%;
-	margin-right: 1%;
-	width: 31%;
-	display: inline-block;
-	float: left;
+	width: 27%;
 }
 
-.cards{
-	display: block;
+#containerCard {
+	display: flex;
+	flex-wrap: wrap;
 	width: 100%;
+	justify-content: space-evenly;
+	align-items: flex-start;
 }
 
 #closeCard{
@@ -153,6 +148,7 @@ button.mat-menu-item {
 .demo-border{
 	display: flex;
 	width: 100%;
+	margin-left: 2%;
 }
 
 .carousselleft{
@@ -201,8 +197,18 @@ mat-card-content{
     width: 100%;
 }
 
+drag-scroll {
+	text-align: left;
+	order: 2;
+    height: 68px;
+    width: 100%;
+    margin-bottom: auto;
+    margin-top: auto;
+}
+
 ::ng-deep .mat-card-content {
-    margin-bottom: 0px !important;
+	margin-bottom: 0px !important;
+	/*min-height: 319px;*/
 }
 
 ::ng-deep .mat-grid-tile .mat-figure{
@@ -232,6 +238,11 @@ mat-card-content{
 
 ::ng-deep .noSticky app-scroll-toolbar mat-toolbar {
 	background-color: #fafafa;
+}
+
+#footerDiv {
+	visibility: hidden;
+	height: 50px;
 }
 
 /* Spinner */
@@ -278,24 +289,17 @@ mat-card-content{
 }
 
 @media (max-width: 1280px) {
-	.cardResult{
-		margin-top: 2%;
-		margin-left: 1%;
-		margin-right: 1%;
-		width: 48%;
-		display: inline-block;
-		float: left;
+
+	.example-card{
+		width: 41%; 
+	}
+
+	.example-chip-list {
+		width: 50%;
 	}
 }
 
-drag-scroll {
-	text-align: left;
-	order: 2;
-    height: 68px;
-    width: 100%;
-    margin-bottom: auto;
-    margin-top: auto;
-}
+
 
 @media (max-width: 800px) {
 	.mat-card-header .mat-card-title{
@@ -306,21 +310,12 @@ drag-scroll {
 		font-size: 14px;
 	}
 
-	mat-form-field{
-		width: 80%; 
+	.example-card{
+		width: 86%; 
 	}
 
-	::ng-deep .mat-toolbar .mat-input-element {
-		width: 60%;
-	}
-
-	.cardResult{
-		margin-top: 2%;
-		margin-left: 1%;
-		margin-right: 1%;
-		width: 98%;
-		display: inline-block;
-		float: left;
+	.example-chip-list {
+		width: 75%;
 	}
 }
 

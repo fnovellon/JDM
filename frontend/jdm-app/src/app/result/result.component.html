@@ -12,12 +12,11 @@
     <button mat-fab class="carousselleft" *ngIf="!leftNavDisabled" (click)="moveLeft()"><mat-icon>keyboard_arrow_left</mat-icon></button>
     <drag-scroll class="demo-one"
       drag-scroll-y-disabled="true"
-      scrollbar-hidden="true"
+      scrollbar-hidden="false"
       (dsInitialized)="onDragScrollInitialized()"
       (reachesLeftBound)="leftBoundStat($event)"
       (reachesRightBound)="rightBoundStat($event)"
       (snapAnimationFinished)="onSnapAnimationFinished()"
-      (indexChanged)="onIndexChanged($event)"
       #nav>
       <div drag-scroll-item class="chipFav" *ngFor="let pref of preferences">
         <mat-chip (click)='addToAssoc(pref)' [selectable]="selectable">
@@ -69,35 +68,36 @@
   </div>
 </div>
 
-<div class="cardResult" *ngFor="let res of selectedAssociation" >
-  <div class="cards">
-    <mat-card class="example-card">
-      <div id="closeCard"><mat-icon (click)="removeAssocSelected(res)">close</mat-icon></div>
-      <mat-card-header>
-        <mat-card-title>{{res.name_fr}}</mat-card-title>
-      </mat-card-header>
-      <mat-divider [inset]="true" ></mat-divider>
-      <div class="spinner" *ngIf="showSpinner && (resultAssoc == null || resultAssoc.relations_sortantes[res.id] == undefined)">
-        <div class="bounce1"></div>
-        <div class="bounce2"></div>
-        <div class="bounce3"></div>
-      </div>
-      <mat-card-content *ngIf="!showSpinner && resultAssoc !== null && resultAssoc.relations_sortantes[res.id] != undefined">
-        <mat-grid-list cols="2" rowHeight="30px" *ngIf="!this.showSpinner">
-          <mat-grid-tile *ngFor="let ra of resultAssocData[res.id]">
-              <div class="nomResult" matTooltip="{{ra.noeud.motFormate}}" matTooltipPosition="above" matTooltipShowDelay="400">{{ra.noeud.motFormate}}</div> <div class="poidsResult">{{ra.poids}}</div>
-          </mat-grid-tile>
-        </mat-grid-list>
-      </mat-card-content>
-      <p *ngIf="!showSpinner && resultAssoc != null && resultAssoc.relations_sortantes[res.id] == undefined">
-        Cette association ne comporte aucun mot
-      </p>
-      <mat-paginator *ngIf="!showSpinner && resultAssoc != null && resultAssoc.relations_sortantes[res.id] != undefined " [length]='resultAssoc.relations_sortantes[res.id].length'
-                [pageSize]="pageObject[res.id].size"
-                [pageIndex]="pageObject[res.id].page"
-                [pageSizeOptions]="[18, 36, 54]"
-                (page)="getData($event, res.id)">
-      </mat-paginator>
-    </mat-card>
-  </div>
+
+<div id="containerCard">
+  <mat-card class="example-card" *ngFor="let res of selectedAssociation">
+    <div id="closeCard"><mat-icon (click)="removeAssocSelected(res)">close</mat-icon></div>
+    <mat-card-header>
+      <mat-card-title>{{res.name_fr}}</mat-card-title>
+    </mat-card-header>
+    <mat-divider [inset]="true" ></mat-divider>
+    <div class="spinner" *ngIf="showSpinner && (resultAssoc == null || resultAssoc.relations_sortantes[res.id] == undefined)">
+      <div class="bounce1"></div>
+      <div class="bounce2"></div>
+      <div class="bounce3"></div>
+    </div>
+    <mat-card-content *ngIf="!showSpinner && resultAssoc !== null && resultAssoc.relations_sortantes[res.id] != undefined">
+      <mat-grid-list cols="2" rowHeight="30px" *ngIf="!this.showSpinner">
+        <mat-grid-tile *ngFor="let ra of resultAssocData[res.id]">
+            <div class="nomResult" matTooltip="{{ra.noeud.motFormate}}" matTooltipPosition="above" matTooltipShowDelay="400">{{ra.noeud.motFormate}}</div> <div class="poidsResult">{{ra.poids}}</div>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </mat-card-content>
+    <p *ngIf="!showSpinner && resultAssoc != null && resultAssoc.relations_sortantes[res.id] == undefined">
+      Cette association ne comporte aucun mot
+    </p>
+    <mat-paginator *ngIf="!showSpinner && resultAssoc != null && resultAssoc.relations_sortantes[res.id] != undefined " [length]='resultAssoc.relations_sortantes[res.id].length'
+              [pageSize]="pageObject[res.id].size"
+              [pageIndex]="pageObject[res.id].page"
+              [pageSizeOptions]="[18, 36, 54]"
+              (page)="getData($event, res.id)">
+    </mat-paginator>
+  </mat-card>
 </div>
+
+<div id="footerDiv"></div>
