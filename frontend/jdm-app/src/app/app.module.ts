@@ -23,7 +23,8 @@ import { MatButtonModule,
   MatPaginatorModule,
   MatSortModule,
   MatDividerModule,
-  MatTooltipModule } from '@angular/material';
+  MatTooltipModule,
+  MatSelectModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { PreferenceComponent } from './preference/preference.component';
@@ -71,7 +72,8 @@ import { AppRoutingModule } from './app-routing.module';
     MatSortModule,
     MatDividerModule,
     MatTooltipModule,
-    DragScrollModule
+    DragScrollModule,
+    MatSelectModule
   ],
   providers: [CookieService ],
   bootstrap: [AppComponent],

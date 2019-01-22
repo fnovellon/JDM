@@ -1,12 +1,25 @@
 <mat-toolbar>
-  <input type="search" matInput placeholder="Saisissez un mot à rechercher" aria-label="Mot" [(ngModel)]="value" matInput>
+  <input type="search" #filter matInput placeholder="Saisissez un mot à rechercher" aria-label="Mot" matInput (input)="filterItems(filter.value)">
 
   <span class="example-spacer"></span>
-  <mat-menu #appMenu="matMenu">
-      <button mat-menu-item (click)="goToPref()">Ordre Alphabétique</button>
-      <button mat-menu-item>Ordre Alphabétique</button>
-    </mat-menu>
     
-    <button mat-button style="float: right" [matMenuTriggerFor]="appMenu">Popularité</button>
-  	<button mat-icon-button (click)="sortOrder()"><mat-icon>{{logoSort}}</mat-icon></button>
+  <button mat-button style="float: right" [matMenuTriggerFor]="appMenu">{{sortDisplay}}</button>
+  <button mat-icon-button (click)="sortOrder()"><mat-icon>{{logoSort}}</mat-icon></button>
+
+  <mat-menu #appMenu="matMenu" yPosition="below" xPosition="before" [overlapTrigger]="false">
+    <button mat-menu-item (click)="weightChoice()">
+        <mat-icon *ngIf="sortType === 'weight'; else notShowWeight">done</mat-icon>
+        <ng-template #notShowWeight>
+          <mat-icon></mat-icon>
+        </ng-template>
+        <span>Tri par poids</span>
+    </button>
+    <button mat-menu-item (click)="alphaChoice()">
+        <mat-icon *ngIf="sortType === 'alpha'; else notShowAlpha">done</mat-icon>
+        <ng-template #notShowAlpha>
+          <mat-icon></mat-icon>
+        </ng-template>
+      <span>Tri alphabétique</span>
+    </button>
+  </mat-menu>
 </mat-toolbar>

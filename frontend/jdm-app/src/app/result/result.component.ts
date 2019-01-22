@@ -50,7 +50,8 @@ export class ResultComponent implements OnInit, AfterViewInit {
 
   // resultat de l'assoc
   resultAssoc: AssocWord = null;
-  resultAssocData: Object = {};
+  filteredResultAssocData: Object = {};
+  paginationResultAssocData: Object = {};
 
   // spinner
   showSpinner = false;
@@ -72,6 +73,14 @@ export class ResultComponent implements OnInit, AfterViewInit {
 
   sticky = false;
   elementPosition: any;
+
+  // Filter and sort word
+  filterWord = '';
+  sortType = 'weight';
+  sortAsc = false;
+
+  // Check word exist
+  wordExist = true;
 
   constructor(public dialog: MatDialog,
     private associationsJsonService: AssociationsJsonService,
@@ -156,7 +165,9 @@ export class ResultComponent implements OnInit, AfterViewInit {
   // Scroll
   ngAfterViewInit() {
     console.log('afterViewInit');
-    this.elementPosition = this.menuElement.nativeElement.offsetTop;
+    if (this.wordExist) {
+      this.elementPosition = this.menuElement.nativeElement.offsetTop;
+    }
   }
 
   private _filter(value: string|AssociationData): AssociationData[] {
@@ -183,29 +194,42 @@ export class ResultComponent implements OnInit, AfterViewInit {
     // this.showSpinner = true;
     if (this.resultAssoc == null && associations.length === 0) {
       this.apiService.getWord(this.wordParam, []).subscribe((word) => {
+        console.log('word first time');
+        console.log(word);
+        if (word == null) {
+          this.wordExist = false;
+        }
         this.resultAssoc = word;
         // this.showSpinner = false;
       });
     } else if (this.resultAssoc != null && associations.length > 0) {
       const relToRequest: AssociationData[] = associations.filter((assoc) => {
-        return typeof this.resultAssocData[assoc.id] === 'undefined';
+        return typeof this.resultAssoc.relations_sortantes[assoc.id] === 'undefined';
       });
       console.log('requestForAssoc');
       console.log(relToRequest);
       if (relToRequest.length > 0) {
         this.apiService.getWord(this.wordParam, relToRequest).subscribe((word) => {
-          console.log('requestForAssoc');
+          console.log('requestForAssocAfterRequest');
           console.log(word);
 
           relToRequest.forEach((assoc) => {
             if (word.relations_sortantes[assoc.id] !== undefined) {
               this.resultAssoc.relations_sortantes[assoc.id] = word.relations_sortantes[assoc.id];
             }
-            this.pageObject[assoc.id] = {'page': 0, 'size': 18};
-            this.getData({pageIndex: 0, pageSize: 18}, assoc.id);
+            this.pageObject[assoc.id] = {'pageIndex': 0, 'pageSize': 18};
+            // this.getData({pageIndex: 0, pageSize: 18}, assoc.id);
+          });
+
+          associations.forEach((assoc) => {
+            this.filterWords(assoc.id);
           });
           console.log('Fin OnInit');
           // this.showSpinner = false;
+        });
+      } else {
+        associations.forEach((assoc) => {
+          this.filterWords(assoc.id);
         });
       }
     }
@@ -248,15 +272,25 @@ export class ResultComponent implements OnInit, AfterViewInit {
 
   // page des cards
   getData(obj, idAssoc: number) {
-    if (this.resultAssoc.relations_sortantes[idAssoc] !== undefined) {
+    console.log('getData');
+    console.log(obj);
+    console.log(this.filteredResultAssocData[idAssoc] );
+    if (this.filteredResultAssocData[idAssoc] !== undefined) {
+      this.pageObject[idAssoc].pageIndex = obj.pageIndex;
+      this.pageObject[idAssoc].pageSize = obj.pageSize;
+      console.log('filteredResultAssocData != undefined');
       let index = 0;
       const startingIndex = obj.pageIndex * obj.pageSize,
             endingIndex = startingIndex + obj.pageSize;
-      const wordsResult: Word[] = this.resultAssoc.relations_sortantes[idAssoc].filter(() => {
+      console.log('startIndex : ' + startingIndex + '- endingIndex : ' + endingIndex);
+      const wordsResult: Word[] = this.filteredResultAssocData[idAssoc].filter(() => {
         index++;
         return (index > startingIndex && index <= endingIndex) ? true : false;
       });
-      this.resultAssocData[idAssoc] = wordsResult;
+      console.log(wordsResult);
+      this.paginationResultAssocData[idAssoc] = wordsResult;
+      console.log('paginationResultAssocData : ' + idAssoc);
+      console.log(this.paginationResultAssocData[idAssoc]);
     }
   }
 
@@ -340,20 +374,81 @@ export class ResultComponent implements OnInit, AfterViewInit {
   * Sort and filter from scroll-toolbar component
   *
   */
-  private filter: string = '';
-  private sort: string = '';
-  private ascSort: boolean = false;
-  private sortWords() {
-    for (var key in this.resultAssocData) {
+  filterToolbarChanged(event: any) {
+    console.log('filterToolbarChanged');
+    console.log(event);
+    this.filterWord = event.filter;
+    this.selectedAssociation.forEach((assoc) => {
+      this.filterWords(assoc.id);
+    });
+  }
 
+  sortToolbarChanged(event: any) {
+    console.log('sortToolbarChanged');
+    console.log(event);
+    this.sortAsc = event.sortAsc;
+    this.sortType = event.sortType;
+    this.selectedAssociation.forEach((assoc) => {
+      console.log(this.pageObject[assoc.id]);
+      this.sortWords(assoc.id);
+    });
+  }
+
+  private compareWordAlphaAsc(a: Word, b: Word) {
+    return a.noeud.motFormate.localeCompare(b.noeud.motFormate);
+  }
+
+  private compareWordAlphaDesc(a: Word, b: Word) {
+    return -(a.noeud.motFormate.localeCompare(b.noeud.motFormate));
+  }
+
+  private compareWordWeightAsc(a: Word, b: Word): number {
+    return a.poids - b.poids;
+  }
+
+  private compareWordWeightDesc(a: Word, b: Word): number {
+    return b.poids - a.poids;
+  }
+
+  private sortWords(assocId: number) {
+    console.log('sortWords');
+    console.log(this.sortType + '-' + this.sortAsc);
+    if (this.filteredResultAssocData[assocId] !== undefined) {
+      if (this.sortType === 'weight') {
+        if (this.sortAsc) {
+          this.filteredResultAssocData[assocId].sort(this.compareWordWeightAsc);
+        } else {
+          this.filteredResultAssocData[assocId].sort(this.compareWordWeightDesc);
+        }
+      } else {
+        if (this.sortAsc) {
+          this.filteredResultAssocData[assocId].sort(this.compareWordAlphaAsc);
+        } else {
+          this.filteredResultAssocData[assocId].sort(this.compareWordAlphaDesc);
+        }
+      }
+      console.log(this.filteredResultAssocData[assocId]);
+      console.log('pageObjectSort');
+      console.log(this.pageObject[assocId]);
+      this.getData(this.pageObject[assocId], assocId);
+    }
+  }
+
+  private filterWords(assocId: number) {
+    if (this.resultAssoc.relations_sortantes[assocId] !== undefined) {
+      console.log('filterWords : ' + this.filterWord);
+      this.filteredResultAssocData[assocId] = this.resultAssoc.relations_sortantes[assocId].filter((word: Word) => {
+        return word.noeud.motFormate.includes(this.filterWord);
+      });
+      console.log(this.filteredResultAssocData[assocId]);
+      this.pageObject[assocId] = {'pageIndex': 0, 'pageSize': this.pageObject[assocId].pageSize};
+      console.log('pageObject');
+      console.log(this.pageObject[assocId]);
+      this.sortWords(assocId);
     }
   }
 
 }
-
-
-
-
 
 /**
  *

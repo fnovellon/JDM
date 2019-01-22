@@ -1,103 +1,115 @@
 <app-result-toolbar [word]="wordParam" (searchNewWord)="searchNewWord($event)"></app-result-toolbar>
-<blockquote id="description">
-  <p *ngIf="!showSpinner && resultAssoc != null ">
-    {{resultAssoc.definition}}
-  </p>
-  <p *ngIf="showSpinner && resultAssoc == null">
-    Chargement...
-  </p>
-</blockquote>
-<div id="searchAssoc">
-  <div class="demo-border">
-    <button mat-fab class="carousselleft" *ngIf="!leftNavDisabled" (click)="moveLeft()"><mat-icon>keyboard_arrow_left</mat-icon></button>
-    <drag-scroll class="demo-one"
-      drag-scroll-y-disabled="true"
-      scrollbar-hidden="false"
-      (dsInitialized)="onDragScrollInitialized()"
-      (reachesLeftBound)="leftBoundStat($event)"
-      (reachesRightBound)="rightBoundStat($event)"
-      (snapAnimationFinished)="onSnapAnimationFinished()"
-      #nav>
-      <div drag-scroll-item class="chipFav" *ngFor="let pref of preferences">
-        <mat-chip (click)='addToAssoc(pref)' [selectable]="selectable">
-          <mat-icon class="iconFav">favorite</mat-icon>
-          <div>{{pref.name_fr}}</div>
-        </mat-chip>
-      </div>
-    </drag-scroll>
-    
-    <button mat-fab class="carousselright" *ngIf="!rightNavDisabled" (click)="moveRight()"><mat-icon>keyboard_arrow_right</mat-icon></button>
-  </div>
-
-  <div id="chipSearch">
-    <mat-form-field class="example-chip-list">
-      <mat-chip-list #chipList>
-        <input
-        type="text"
-        placeholder="Nouvelle association"
-        #associationInput
-        [formControl]="associationCtrl"
-        [matAutocomplete]="auto"
-        [matChipInputFor]="chipList">
-      </mat-chip-list>
-      <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
-        <mat-option *ngFor="let assoc of filteredAssociations | async" [value]="assoc">
-          {{assoc.name}} - {{assoc.name_fr}}
-        </mat-option>
-      </mat-autocomplete>
-    </mat-form-field>
-    <button id="listBtn" mat-button (click)="openDialog()"><mat-icon>list</mat-icon></button>
-  </div>
-  <div id="selection">
-    <div id="selec" *ngIf="selectedAssociation.length > 0">
-        Votre sélection :
-    </div>
-  </div>
-  <div id="chipSelec">
-    <mat-chip class="selectedAssoc" *ngFor="let selec of selectedAssociation">
-      <mat-icon class="iconFav" *ngIf="selec.state === 1">favorite</mat-icon>
-      {{selec.name_fr}}
-      <mat-icon matChipRemove (click)="removeAssocSelected(selec)">cancel</mat-icon>
-    </mat-chip>
-  </div>
-</div>
-<mat-divider *ngIf="selectedAssociation != ''"></mat-divider>
-<div id="containerScrollToolbar">
-  <div id="scroll" #stickyMenu [class.noSticky]= "!sticky" [class.sticky] = "sticky">
-    <app-scroll-toolbar *ngIf="selectedAssociation != ''"></app-scroll-toolbar>
-  </div>
-</div>
-
-
-<div id="containerCard">
-  <mat-card class="example-card" *ngFor="let res of selectedAssociation">
-    <div id="closeCard"><mat-icon (click)="removeAssocSelected(res)">close</mat-icon></div>
-    <mat-card-header>
-      <mat-card-title>{{res.name_fr}}</mat-card-title>
-    </mat-card-header>
-    <mat-divider [inset]="true" ></mat-divider>
-    <div class="spinner" *ngIf="showSpinner && (resultAssoc == null || resultAssoc.relations_sortantes[res.id] == undefined)">
-      <div class="bounce1"></div>
-      <div class="bounce2"></div>
-      <div class="bounce3"></div>
-    </div>
-    <mat-card-content *ngIf="!showSpinner && resultAssoc !== null && resultAssoc.relations_sortantes[res.id] != undefined">
-      <mat-grid-list cols="2" rowHeight="30px" *ngIf="!this.showSpinner">
-        <mat-grid-tile *ngFor="let ra of resultAssocData[res.id]">
-            <div class="nomResult" matTooltip="{{ra.noeud.motFormate}}" matTooltipPosition="above" matTooltipShowDelay="400">{{ra.noeud.motFormate}}</div> <div class="poidsResult">{{ra.poids}}</div>
-        </mat-grid-tile>
-      </mat-grid-list>
-    </mat-card-content>
-    <p *ngIf="!showSpinner && resultAssoc != null && resultAssoc.relations_sortantes[res.id] == undefined">
-      Cette association ne comporte aucun mot
+<div *ngIf="wordExist">
+  <blockquote id="description">
+    <p *ngIf="!showSpinner && resultAssoc != null ">
+      {{resultAssoc.definition}}
     </p>
-    <mat-paginator *ngIf="!showSpinner && resultAssoc != null && resultAssoc.relations_sortantes[res.id] != undefined " [length]='resultAssoc.relations_sortantes[res.id].length'
-              [pageSize]="pageObject[res.id].size"
-              [pageIndex]="pageObject[res.id].page"
-              [pageSizeOptions]="[18, 36, 54]"
-              (page)="getData($event, res.id)">
-    </mat-paginator>
-  </mat-card>
-</div>
+    <p *ngIf="showSpinner && resultAssoc == null">
+      Chargement...
+    </p>
+  </blockquote>
+  <div id="searchAssoc">
+    <div class="demo-border">
+      <button mat-fab class="carousselleft" *ngIf="!leftNavDisabled" (click)="moveLeft()"><mat-icon>keyboard_arrow_left</mat-icon></button>
+      <drag-scroll class="demo-one"
+        drag-scroll-y-disabled="true"
+        scrollbar-hidden="true"
+        (dsInitialized)="onDragScrollInitialized()"
+        (reachesLeftBound)="leftBoundStat($event)"
+        (reachesRightBound)="rightBoundStat($event)"
+        (snapAnimationFinished)="onSnapAnimationFinished()"
+        #nav>
+        <div drag-scroll-item class="chipFav" *ngFor="let pref of preferences">
+          <mat-chip (click)='addToAssoc(pref)' [selectable]="selectable">
+            <mat-icon class="iconFav">favorite</mat-icon>
+            <div>{{pref.name_fr}}</div>
+          </mat-chip>
+        </div>
+      </drag-scroll>
+      
+      <button mat-fab class="carousselright" *ngIf="!rightNavDisabled" (click)="moveRight()"><mat-icon>keyboard_arrow_right</mat-icon></button>
+    </div>
 
-<div id="footerDiv"></div>
+    <div id="chipSearch">
+      <mat-form-field class="example-chip-list">
+        <mat-chip-list #chipList>
+          <input
+          type="text"
+          placeholder="Nouvelle association"
+          #associationInput
+          [formControl]="associationCtrl"
+          [matAutocomplete]="auto"
+          [matChipInputFor]="chipList">
+        </mat-chip-list>
+        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+          <mat-option *ngFor="let assoc of filteredAssociations | async" [value]="assoc">
+            {{assoc.name}} - {{assoc.name_fr}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+      <button id="listBtn" mat-button (click)="openDialog()"><mat-icon>list</mat-icon></button>
+    </div>
+    <div id="selection">
+      <div id="selec" *ngIf="selectedAssociation.length > 0">
+          Votre sélection :
+      </div>
+    </div>
+    <div id="chipSelec">
+      <mat-chip class="selectedAssoc" *ngFor="let selec of selectedAssociation">
+        <mat-icon class="iconFav" *ngIf="selec.state === 1">favorite</mat-icon>
+        {{selec.name_fr}}
+        <mat-icon matChipRemove (click)="removeAssocSelected(selec)">cancel</mat-icon>
+      </mat-chip>
+    </div>
+  </div>
+  <mat-divider *ngIf="selectedAssociation != ''"></mat-divider>
+  <div id="containerScrollToolbar">
+    <div id="scroll" #stickyMenu [class.noSticky]= "!sticky" [class.sticky] = "sticky">
+      <app-scroll-toolbar (sortToolbarChanged)="sortToolbarChanged($event)" (filterToolbarChanged)="filterToolbarChanged($event)" *ngIf="selectedAssociation != ''"></app-scroll-toolbar>
+    </div>
+  </div>
+
+
+  <div id="containerCard">
+    <mat-card class="example-card" *ngFor="let res of selectedAssociation">
+      <div id="closeCard"><mat-icon (click)="removeAssocSelected(res)">close</mat-icon></div>
+      <mat-card-header>
+        <mat-card-title>{{res.name_fr}}</mat-card-title>
+      </mat-card-header>
+      <mat-divider [inset]="true" ></mat-divider>
+      <div class="spinner" *ngIf="showSpinner && (resultAssoc == null || resultAssoc.relations_sortantes[res.id] == undefined)">
+        <div class="bounce1"></div>
+        <div class="bounce2"></div>
+        <div class="bounce3"></div>
+      </div>
+      <mat-card-content *ngIf="!showSpinner && resultAssoc !== null && resultAssoc.relations_sortantes[res.id] != undefined">
+        <mat-grid-list cols="2" rowHeight="30px" *ngIf="!this.showSpinner">
+            
+          <mat-grid-tile *ngFor="let ra of paginationResultAssocData[res.id]">
+              
+                <div class="nomResult" matTooltip="{{ra.noeud.motFormate}}" matTooltipPosition="above" matTooltipShowDelay="400">
+                    <a href="results/{{ra.noeud.motFormate}}" target="_blank">
+                      {{ra.noeud.motFormate}}
+                    </a>
+                </div> 
+                <div class="poidsResult">{{ra.poids}}</div>
+              </mat-grid-tile>
+        </mat-grid-list>
+      </mat-card-content>
+      <p *ngIf="!showSpinner && resultAssoc != null && resultAssoc.relations_sortantes[res.id] == undefined">
+        Cette association ne comporte aucun mot
+      </p>
+      <mat-paginator *ngIf="!showSpinner && resultAssoc != null && filteredResultAssocData[res.id] !== undefined " [length]='filteredResultAssocData[res.id].length'
+                [pageSize]="pageObject[res.id].pageSize"
+                [pageIndex]="pageObject[res.id].pageIndex"
+                [pageSizeOptions]="[18, 36, 54]"
+                (page)="getData($event, res.id)">
+      </mat-paginator>
+    </mat-card>
+  </div>
+
+  <div id="footerDiv"></div>
+</div>
+<div id="wordNotFound" *ngIf="!wordExist">
+    <img width="50%" alt="word not found" src="../assets/wordNotFound.png">
+</div>
