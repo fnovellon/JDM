@@ -12,7 +12,8 @@ const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' })
 };
 
-const SERVER_URL = 'http://51.75.253.77/api/';
+const SERVER_URL_DEV = 'http://51.75.253.77:8080/api/';
+const SERVEUR_URL_PROD = 'localhost:8080/api/';
 const WORD_URL = 'mot/';
 const AUTOCOMPLETE_URL = 'auto/';
 
@@ -26,7 +27,7 @@ export class ApiService {
   getWord(name: string, associations: AssociationData[]): Observable<AssocWord> {
     let url = '';
     if (associations.length !== 0) {
-      url = `${SERVER_URL + WORD_URL}${name}/sortante`;
+      url = `${SERVER_URL_DEV + WORD_URL}${name}/sortante`;
       let rels = '';
       associations.forEach(assoc => {
         if (rels !== '') {
@@ -36,7 +37,7 @@ export class ApiService {
       });
       url += `?rels=${rels}`;
     } else {
-      url = `${SERVER_URL + WORD_URL}${name}`;
+      url = `${SERVER_URL_DEV + WORD_URL}${name}`;
     }
     console.log(url);
     return this.http.get<AssocWord>(url, httpOptions).pipe(
@@ -52,7 +53,7 @@ export class ApiService {
     if (prefix.startsWith('$')) {
       console.log('pouet');
     } else {
-      const url = `${SERVER_URL + AUTOCOMPLETE_URL}${prefix}`;
+      const url = `${SERVER_URL_DEV + AUTOCOMPLETE_URL}${prefix}`;
       console.log(url);
       /*return this.http.get<any>(url, httpOptions).pipe(
         tap(data => {
