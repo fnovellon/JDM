@@ -29,7 +29,8 @@ export class ApiService {
     const baseUrl: string = (this.platformLocation as any).location.origin;
     const serverAndPortUrl: string = baseUrl.split('://')[1];
     console.log('serverAndPortUrl: : ' + serverAndPortUrl);
-    return serverAndPortUrl.startsWith('localhost') ? false : true;
+    //return serverAndPortUrl.startsWith('localhost') ? false : true;
+    return false;
   }
 
   getWord(name: string, associations: AssociationData[]): Observable<AssocWord> {

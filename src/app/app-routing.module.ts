@@ -5,6 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { SearchComponent } from './search/search.component';
 import { ResultComponent } from './result/result.component';
 import { PreferenceComponent } from './preference/preference.component';
+import { ErrorComponent } from './error/error.component';
 
 const routes: Routes = [
   {
@@ -24,6 +25,15 @@ const routes: Routes = [
     path: 'results/:word',
     component: ResultComponent
   },
+  {
+    path: '404',
+    component: ErrorComponent
+  },
+  {
+    path: '**',
+    redirectTo: '/404',
+    pathMatch: 'full'
+  }
 ];
 
 @NgModule({
