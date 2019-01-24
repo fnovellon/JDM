@@ -28,6 +28,10 @@ export class AssociationsJsonService {
     return JSON.parse(this.storage.get(STORAGE_KEY));
   }
 
+  public getJSONBase(): Observable<any> {
+    return this.http.get('./assets/associations.json');
+  }
+
   public getJSONWord(): Observable<any> {
     return this.http.get('./assets/exempleMot.json');
   }

@@ -6,8 +6,7 @@
 
     <mat-menu #appMenu="matMenu">
       <button mat-menu-item routerLink='/preferences'>Mes préférences</button>
-      <button mat-menu-item>Aide</button>
-      <button mat-menu-item>À propos</button>
+      <button mat-menu-item routerLink='/about'>À propos</button>
     </mat-menu>
     
     <button style="float: right" mat-icon-button [matMenuTriggerFor]="appMenu">

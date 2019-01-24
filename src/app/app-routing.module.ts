@@ -6,6 +6,7 @@ import { SearchComponent } from './search/search.component';
 import { ResultComponent } from './result/result.component';
 import { PreferenceComponent } from './preference/preference.component';
 import { ErrorComponent } from './error/error.component';
+import { AboutComponent } from './about/about.component';
 
 const routes: Routes = [
   {
@@ -20,6 +21,10 @@ const routes: Routes = [
   {
     path: 'preferences',
     component: PreferenceComponent
+  },
+  {
+    path: 'about',
+    component: AboutComponent
   },
   {
     path: 'results/:word',

@@ -36,6 +36,7 @@ import { ScrollToolbarComponent } from './scroll-toolbar/scroll-toolbar.componen
 import { PreferenceToolbarComponent } from './preference-toolbar/preference-toolbar.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ErrorComponent } from './error/error.component';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { ErrorComponent } from './error/error.component';
     ScrollToolbarComponent,
     ModalAssociationComponent,
     PreferenceToolbarComponent,
-    ErrorComponent
+    ErrorComponent,
+    AboutComponent
   ],
   imports: [
     AppRoutingModule,

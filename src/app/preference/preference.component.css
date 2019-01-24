@@ -12,6 +12,10 @@ table {
   text-align: left;
 }
 
+#tabAuto {
+  overflow: auto;
+}
+
 .state.fav.active {
   color:#f16f6f;
 }

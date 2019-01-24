@@ -30,12 +30,14 @@ export class PreferenceComponent implements OnInit {
 
   ngOnInit() {
 
+    console.log(this.storage.get(STORAGE_KEY));
+
     if (this.storage.get(STORAGE_KEY) != null) {
       const data = JSON.parse(this.storage.get(STORAGE_KEY));
       this.initTable(data);
       console.log('Storage en place');
     } else {
-      this.associationsJsonService.getJSON().subscribe(data => {
+      this.associationsJsonService.getJSONBase().subscribe(data => {
         this.initTable(data);
         console.log("str : " + JSON.stringify(data[0].name_fr));
         this.storage.set(STORAGE_KEY, JSON.stringify(data));
