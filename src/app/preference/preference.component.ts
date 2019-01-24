@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild} from '@angular/core';
+import { Component, OnInit, ViewChild, Inject, Injectable } from '@angular/core';
 import { SelectionModel } from '@angular/cdk/collections';
 
 // Material
@@ -6,34 +6,10 @@ import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 
 // Services
 import { AssociationsJsonService, AssociationData } from '../associations-json.service';
-import { CookieService } from 'ngx-cookie-service';
+import { LOCAL_STORAGE, StorageService } from 'angular-webstorage-service';
 
+const STORAGE_KEY = 'JDM_Preferences';
 
-
-// Models
-
-
-/*
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
-];
-*/
 
 @Component({
   selector: 'app-preference',
@@ -47,27 +23,22 @@ export class PreferenceComponent implements OnInit {
   selection = new SelectionModel<AssociationData>(true, []);
   associations: AssociationData[] = [];
 
-
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private associationsJsonService: AssociationsJsonService,
-    private cookieService: CookieService ) { }
+  constructor(private associationsJsonService: AssociationsJsonService, @Inject(LOCAL_STORAGE) private storage: StorageService) { }
 
   ngOnInit() {
-    /*
-    // Test request to API
-    this.getWord('singe');
-    this.getAutocompletion('ordi');
-    */
 
-    if (this.cookieService.check('JDM_Preferences_Cookie')) {
-      const data = JSON.parse(this.cookieService.get('JDM_Preferences_Cookie'));
+    if (this.storage.get(STORAGE_KEY) != null) {
+      const data = JSON.parse(this.storage.get(STORAGE_KEY));
       this.initTable(data);
-      console.log('Cookie');
+      console.log('Storage en place');
     } else {
       this.associationsJsonService.getJSON().subscribe(data => {
         this.initTable(data);
+        console.log("str : " + JSON.stringify(data[0].name_fr));
+        this.storage.set(STORAGE_KEY, JSON.stringify(data));
         console.log('Local');
     });
     }
@@ -141,8 +112,8 @@ export class PreferenceComponent implements OnInit {
 
   // Doesn't work on localhost
   savePreferences(event) {
-    this.cookieService.set('JDM_Preferences_Cookie', JSON.stringify(this.associations));
-    console.log(this.cookieService.check('JDM_Preferences_Cookie'));
+    this.storage.set(STORAGE_KEY, JSON.stringify(this.associations));
+    console.log('???' + this.storage.get(STORAGE_KEY));
     console.log('Save !');
   }
 

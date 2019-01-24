@@ -1,5 +1,5 @@
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
-import {Component, AfterViewInit, ElementRef, ViewChild, HostListener, OnInit, Inject } from '@angular/core';
+import {Component, AfterViewInit, ElementRef, ViewChild, HostListener, OnInit, Inject, Injectable } from '@angular/core';
 import {Router, ActivatedRoute} from '@angular/router';
 import {trigger, state, style, animate, transition } from '@angular/animations';
 import {FormControl} from '@angular/forms';
@@ -18,14 +18,13 @@ import {Word} from '../word';
 import {TooltipPosition} from '@angular/material';
 import { DragScrollComponent } from 'ngx-drag-scroll';
 
-
-
+import { LOCAL_STORAGE, StorageService } from 'angular-webstorage-service';
 
 // Services
 import { AssociationsJsonService, AssociationData} from '../associations-json.service';
 import { ApiService } from '../api.service';
 
-
+const STORAGE_KEY = 'JDM_Preferences';
 
 @Component({
   selector: 'app-result',
@@ -85,7 +84,8 @@ export class ResultComponent implements OnInit, AfterViewInit {
   constructor(public dialog: MatDialog,
     private associationsJsonService: AssociationsJsonService,
     private activatedRoute: ActivatedRoute,
-    private apiService: ApiService) { }
+    private apiService: ApiService, 
+    @Inject(LOCAL_STORAGE) private storage: StorageService) { }
 
   @HostListener('window:scroll', ['$event'])
     handleScroll() {
@@ -108,24 +108,21 @@ export class ResultComponent implements OnInit, AfterViewInit {
 
 
     // Get associations from JSON
-    this.associationsJsonService.getJSON().subscribe(data => {
-      data.forEach(assoc => {
-        if (assoc.state !== -1) {
+    const dataPref = this.associationsJsonService.getJSON()
+    dataPref.forEach(assoc => {
+      if (assoc.state !== -1) {
           this.allAssociations.push(assoc);
           if (assoc.state === 1) {
             this.preferences.push(assoc);
           }
         }
-      });
-
-      // Observable for autocomplete
-      //  distinctUntilChanged(),
-      this.filteredAssociations = this.associationCtrl.valueChanges.pipe(
-        debounceTime(600),
-        startWith(''),
-        map((value: string) => this._filter(value))
-      );
     });
+
+    this.filteredAssociations = this.associationCtrl.valueChanges.pipe(
+      debounceTime(600),
+      startWith(''),
+      map((value: string) => this._filter(value))
+    );
 
     this.requestForAssoc([]);
   }

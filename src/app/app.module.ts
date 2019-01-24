@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { DragScrollModule } from 'ngx-drag-scroll';
-
+import { StorageServiceModule } from 'angular-webstorage-service';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule,
@@ -75,9 +75,10 @@ import { ErrorComponent } from './error/error.component';
     MatDividerModule,
     MatTooltipModule,
     DragScrollModule,
-    MatSelectModule
+    MatSelectModule,
+    StorageServiceModule,
   ],
-  providers: [CookieService ],
+  providers: [CookieService],
   bootstrap: [AppComponent],
   entryComponents: [
     ModalAssociationComponent
