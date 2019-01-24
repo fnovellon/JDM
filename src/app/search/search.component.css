@@ -46,6 +46,13 @@ img{
     transform: translateZ(-100px);
 }
 
+::ng-deep .mat-tab-header {
+  border-bottom: none;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+}
+
 
 #searchInput{
 	display: inline-block;

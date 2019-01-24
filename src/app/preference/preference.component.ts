@@ -69,7 +69,13 @@ export class PreferenceComponent implements OnInit {
       this.associationsJsonService.getJSON().subscribe(data => {
         this.initTable(data);
         console.log('Local');
-    });
+      });
+    }
+
+    if (window.innerWidth < 600) {
+      this.displayedColumns = ['select', 'name_fr', 'state'];
+    } else if (window.innerWidth < 800 ) {
+      this.displayedColumns = ['select', 'id', 'name', 'name_fr', 'state'];
     }
   }
 

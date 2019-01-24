@@ -13,8 +13,7 @@ const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' })
 };
 
-const SERVER_URL_DEV = 'http://51.75.253.77:8080/api/';
-const SERVEUR_URL_PROD = 'localhost:8080/api/';
+const SERVER_URL = 'http://51.75.253.77:8080/api/';
 const WORD_URL = 'mot/';
 const AUTOCOMPLETE_URL = 'auto/';
 
@@ -25,18 +24,10 @@ export class ApiService {
 
   constructor(private http: HttpClient, public platformLocation: PlatformLocation) { }
 
-  isProd(): boolean {
-    const baseUrl: string = (this.platformLocation as any).location.origin;
-    const serverAndPortUrl: string = baseUrl.split('://')[1];
-    console.log('serverAndPortUrl: : ' + serverAndPortUrl);
-    //return serverAndPortUrl.startsWith('localhost') ? false : true;
-    return false;
-  }
-
   getWord(name: string, associations: AssociationData[]): Observable<AssocWord> {
-    let url = this.isProd() ? SERVEUR_URL_PROD : SERVER_URL_DEV;
+    let url = '';
     if (associations.length !== 0) {
-      url += `${WORD_URL + name}/sortante`;
+      url += `${SERVER_URL + WORD_URL + name}/sortante`;
       let rels = '';
       associations.forEach(assoc => {
         if (rels !== '') {
@@ -46,7 +37,7 @@ export class ApiService {
       });
       url += `?rels=${rels}`;
     } else {
-      url += `${WORD_URL + name}`;
+      url += `${SERVER_URL + WORD_URL + name}`;
     }
     console.log(url);
     return this.http.get<AssocWord>(url, httpOptions).pipe(
@@ -59,22 +50,9 @@ export class ApiService {
   }
 
   getAutocompletion(prefix: string): Observable<string[]> {
-    if (prefix.startsWith('$')) {
-      console.log('pouet');
-    } else {
-      let url = this.isProd() ? SERVEUR_URL_PROD : SERVER_URL_DEV;
-      url += `${AUTOCOMPLETE_URL + prefix}`;
-      console.log(url);
-      /*return this.http.get<any>(url, httpOptions).pipe(
-        tap(data => {
-          console.log(`fetched autocomplete prefix=${prefix}`);
-          // console.log(data);
-          return of(data);
-        }),
-        catchError(this.handleError<any>(`getAutocompletion prefix=${prefix}`))
-      );*/
-      return this.http.get<any>(url, httpOptions);
-    }
+    const url = `${SERVER_URL + AUTOCOMPLETE_URL + prefix}`;
+    console.log(url);
+    return this.http.get<any>(url, httpOptions);
   }
 
     /**

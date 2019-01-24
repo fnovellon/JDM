@@ -28,10 +28,6 @@ export class SearchComponent implements OnInit, AfterContentInit, AfterViewInit 
 
   constructor(private apiService: ApiService, private router: Router) { }
 
-  ngAfterViewChecked() {
-    
-  }
-
   ngOnInit() {
     console.log('onInit');
     this.filteredWords = this.wordControl.valueChanges.pipe(
@@ -40,7 +36,6 @@ export class SearchComponent implements OnInit, AfterContentInit, AfterViewInit 
       startWith(''),
       flatMap((prefix: string) => this._filter(prefix))
     );
-    console.log('isProd ? ' + this.apiService.isProd());
   }
 
   ngAfterContentInit(): void {
@@ -50,25 +45,23 @@ export class SearchComponent implements OnInit, AfterContentInit, AfterViewInit 
   ngAfterViewInit() {
     console.log('afterViewInit');
     $(document).ready(function() {
-    var moveForce = 40; // max popup movement in pixels
-    var rotateForce = 20; // max popup rotation in deg
-    console.log('hello la famille');
+    const moveForce = 40; // max popup movement in pixels
+    const rotateForce = 20; // max popup rotation in deg
 
       $(document).mousemove(function(e) {
-        console.log('hello la smala');
-        var docX = $(document).width();
-        var docY = $(document).height();
-        
-        var moveX = (e.pageX - docX/2) / (docX/2) * -moveForce;
-        var moveY = (e.pageY - docY/2) / (docY/2) * -moveForce;
-        
-        var rotateY = (e.pageX / docX * rotateForce*2) - rotateForce;
-        var rotateX = -((e.pageY / docY * rotateForce*2) - rotateForce);
-        
+        const docX = $(document).width();
+        const docY = $(document).height();
+
+        const moveX = (e.pageX - docX / 2) / (docX / 2) * -moveForce;
+        const moveY = (e.pageY - docY / 2) / (docY / 2) * -moveForce;
+
+        const rotateY = (e.pageX / docX * rotateForce * 2) - rotateForce;
+        const rotateX = -((e.pageY / docY * rotateForce * 2) - rotateForce);
+
         $('.popup')
-        .css('left', moveX+'px')
-        .css('top', moveY+'px')
-        .css('transform', 'rotateX('+rotateX+'deg) rotateY('+rotateY+'deg)');
+        .css('left', moveX + 'px')
+        .css('top', moveY + 'px')
+        .css('transform', 'rotateX(' + rotateX + 'deg) rotateY(' + rotateY + 'deg)');
       });
     });
     this.wordInput.nativeElement.focus();
@@ -116,11 +109,19 @@ export class SearchComponent implements OnInit, AfterContentInit, AfterViewInit 
     this.router.navigate(['results', option]);
   }
 
-  submit() {
-    console.log('submit');
+  submitNormalSearch() {
+    console.log('submitNormalSearch');
     console.log(this.currentValue);
     if (this.currentValue.trim() !== '') {
       this.router.navigate(['results', this.currentValue]);
     }
+  }
+
+  submitReverseSearch() {
+    console.log('submitReverseSearch');
+    /*console.log(this.currentValue);
+    if (this.currentValue.trim() !== '') {
+      this.router.navigate(['results', this.currentValue]);
+    }*/
   }
 }

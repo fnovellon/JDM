@@ -24,7 +24,8 @@ import { MatButtonModule,
   MatSortModule,
   MatDividerModule,
   MatTooltipModule,
-  MatSelectModule } from '@angular/material';
+  MatSelectModule,
+  MatTabsModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { PreferenceComponent } from './preference/preference.component';
@@ -75,7 +76,8 @@ import { ErrorComponent } from './error/error.component';
     MatDividerModule,
     MatTooltipModule,
     DragScrollModule,
-    MatSelectModule
+    MatSelectModule,
+    MatTabsModule
   ],
   providers: [CookieService ],
   bootstrap: [AppComponent],

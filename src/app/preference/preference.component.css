@@ -57,3 +57,9 @@ table {
   color: white;
 }
 
+@media (max-width: 400px) {
+  .cdk-column-state {
+    width: 40px;
+  }
+}
+
