@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
+import {PlatformLocation } from '@angular/common';
 
 // Model
 import { AssocWord } from './assocWord';
@@ -22,12 +23,19 @@ const AUTOCOMPLETE_URL = 'auto/';
 })
 export class ApiService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, public platformLocation: PlatformLocation) { }
+
+  isProd(): boolean {
+    const baseUrl: string = (this.platformLocation as any).location.origin;
+    const serverAndPortUrl: string = baseUrl.split('://')[1];
+    console.log('serverAndPortUrl: : ' + serverAndPortUrl);
+    return serverAndPortUrl.startsWith('localhost') ? false : true;
+  }
 
   getWord(name: string, associations: AssociationData[]): Observable<AssocWord> {
-    let url = '';
+    let url = this.isProd() ? SERVEUR_URL_PROD : SERVER_URL_DEV;
     if (associations.length !== 0) {
-      url = `${SERVER_URL_DEV + WORD_URL}${name}/sortante`;
+      url += `${WORD_URL + name}/sortante`;
       let rels = '';
       associations.forEach(assoc => {
         if (rels !== '') {
@@ -37,7 +45,7 @@ export class ApiService {
       });
       url += `?rels=${rels}`;
     } else {
-      url = `${SERVER_URL_DEV + WORD_URL}${name}`;
+      url += `${WORD_URL + name}`;
     }
     console.log(url);
     return this.http.get<AssocWord>(url, httpOptions).pipe(
@@ -53,7 +61,8 @@ export class ApiService {
     if (prefix.startsWith('$')) {
       console.log('pouet');
     } else {
-      const url = `${SERVER_URL_DEV + AUTOCOMPLETE_URL}${prefix}`;
+      let url = this.isProd() ? SERVEUR_URL_PROD : SERVER_URL_DEV;
+      url += `${AUTOCOMPLETE_URL + prefix}`;
       console.log(url);
       /*return this.http.get<any>(url, httpOptions).pipe(
         tap(data => {

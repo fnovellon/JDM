@@ -35,6 +35,7 @@ export class SearchComponent implements OnInit, AfterContentInit, AfterViewInit 
       startWith(''),
       flatMap((prefix: string) => this._filter(prefix))
     );
+    console.log('isProd ? ' + this.apiService.isProd());
   }
 
   ngAfterContentInit(): void {
