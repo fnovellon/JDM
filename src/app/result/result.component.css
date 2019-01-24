@@ -215,6 +215,11 @@ drag-scroll {
 	border-left: 1px solid #c1c1c1;
 }
 
+#imgWordNotFound {
+	width: 50%;
+	height: 50%;
+}
+
 .nomResult{
 	width: 75%;
 	margin-left: 5%;
@@ -349,6 +354,11 @@ drag-scroll {
 
 	.example-chip-list {
 		width: 75%;
+	}
+
+	#imgWordNotFound {
+		width: 80%;
+		height: 80%;
 	}
 }
 

@@ -92,6 +92,8 @@ export class SearchComponent implements OnInit, AfterContentInit, AfterViewInit 
   submit() {
     console.log('submit');
     console.log(this.currentValue);
-    this.router.navigate(['results', this.currentValue]);
+    if (this.currentValue.trim() !== '') {
+      this.router.navigate(['results', this.currentValue]);
+    }
   }
 }

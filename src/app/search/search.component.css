@@ -107,17 +107,6 @@ input {
   }
 }
 
-/* Animation logo */
-.image{
-  -webkit-animation:spin 6s linear infinite;
-  -moz-animation:spin 6s linear infinite;
-  animation:spin 6s linear infinite;
-}
-@-moz-keyframes spin { 100% { -moz-transform: rotateY(360deg); } }
-@-webkit-keyframes spin { 100% { -webkit-transform: rotateY(360deg); } }
-@keyframes spin { 100% { -webkit-transform: rotateY(360deg); transform:rotateY(360deg); } }
-
-
 /* Spinner */
 .spinner {
   margin: 20px auto;

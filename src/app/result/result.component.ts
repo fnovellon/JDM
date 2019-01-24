@@ -366,7 +366,7 @@ export class ResultComponent implements OnInit, AfterViewInit {
   searchNewWord($event) {
     const selectedWord = $event.word;
     console.log('searchNewWord : ' + selectedWord);
-    // TODO: try to search how reload a component or do reload by yourself
+    window.open(window.location.protocol + '/results/' + selectedWord, '_blank');
   }
 
   /**

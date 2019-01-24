@@ -28,4 +28,4 @@
     </mat-option>
  </mat-autocomplete>
 </div>
-<button id="searchButton" mat-raised-button (click)="submit()" >Rechercher dans JeuxDeMots</button>
+<button id="searchButton" [disabled]="currentValue.trim() == ''" mat-raised-button (click)="submit()" >Rechercher dans JeuxDeMots</button>
