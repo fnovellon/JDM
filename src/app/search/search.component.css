@@ -36,6 +36,17 @@ img{
   width: 300px;
 }
 
+.popup {
+    box-sizing: border-box;
+    cursor: pointer;
+    transform-style: preserve-3d;
+}
+.popup:before {
+    content: '';
+    transform: translateZ(-100px);
+}
+
+
 #searchInput{
 	display: inline-block;
 	background-color: #e2e2e2;

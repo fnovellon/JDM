@@ -5,6 +5,7 @@ import {Observable, of} from 'rxjs';
 import {debounceTime, flatMap, distinctUntilChanged, switchMap, map, startWith, filter, debounce} from 'rxjs/operators';
 import { MatAutocompleteSelectedEvent } from '@angular/material';
 
+declare var $: any;
 // Services
 import { ApiService } from '../api.service';
 
@@ -27,6 +28,10 @@ export class SearchComponent implements OnInit, AfterContentInit, AfterViewInit 
 
   constructor(private apiService: ApiService, private router: Router) { }
 
+  ngAfterViewChecked() {
+    
+  }
+
   ngOnInit() {
     console.log('onInit');
     this.filteredWords = this.wordControl.valueChanges.pipe(
@@ -44,6 +49,28 @@ export class SearchComponent implements OnInit, AfterContentInit, AfterViewInit 
 
   ngAfterViewInit() {
     console.log('afterViewInit');
+    $(document).ready(function() {
+    var moveForce = 40; // max popup movement in pixels
+    var rotateForce = 20; // max popup rotation in deg
+    console.log('hello la famille');
+
+      $(document).mousemove(function(e) {
+        console.log('hello la smala');
+        var docX = $(document).width();
+        var docY = $(document).height();
+        
+        var moveX = (e.pageX - docX/2) / (docX/2) * -moveForce;
+        var moveY = (e.pageY - docY/2) / (docY/2) * -moveForce;
+        
+        var rotateY = (e.pageX / docX * rotateForce*2) - rotateForce;
+        var rotateX = -((e.pageY / docY * rotateForce*2) - rotateForce);
+        
+        $('.popup')
+        .css('left', moveX+'px')
+        .css('top', moveY+'px')
+        .css('transform', 'rotateX('+rotateX+'deg) rotateY('+rotateY+'deg)');
+      });
+    });
     this.wordInput.nativeElement.focus();
   }
 

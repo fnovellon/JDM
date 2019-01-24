@@ -1,5 +1,9 @@
 <app-basic-toolbar></app-basic-toolbar>
-<img class="image" alt="JeuxDeMots Logo" src="../assets/loupeJDM_Project.png">
+<div class="moving-zone">
+  <div class="popup">
+    <img class="image" alt="JeuxDeMots Logo" src="../assets/loupeJDM_Project.png">
+  </div>
+</div>
 
 <blockquote id="description">
   <p>
@@ -26,6 +30,6 @@
     <mat-option *ngFor="let option of filteredWords | async" [value]="option">
       {{option}}
     </mat-option>
- </mat-autocomplete>
+  </mat-autocomplete>
 </div>
 <button id="searchButton" [disabled]="currentValue.trim() == ''" mat-raised-button (click)="submit()" >Rechercher dans JeuxDeMots</button>
