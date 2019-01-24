@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { DragScrollModule } from 'ngx-drag-scroll';
-
+import { StorageServiceModule } from 'angular-webstorage-service';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule,
@@ -37,6 +37,7 @@ import { ScrollToolbarComponent } from './scroll-toolbar/scroll-toolbar.componen
 import { PreferenceToolbarComponent } from './preference-toolbar/preference-toolbar.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ErrorComponent } from './error/error.component';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { ErrorComponent } from './error/error.component';
     ScrollToolbarComponent,
     ModalAssociationComponent,
     PreferenceToolbarComponent,
-    ErrorComponent
+    ErrorComponent,
+    AboutComponent
   ],
   imports: [
     AppRoutingModule,
@@ -77,9 +79,10 @@ import { ErrorComponent } from './error/error.component';
     MatTooltipModule,
     DragScrollModule,
     MatSelectModule,
+    StorageServiceModule,
     MatTabsModule
   ],
-  providers: [CookieService ],
+  providers: [CookieService],
   bootstrap: [AppComponent],
   entryComponents: [
     ModalAssociationComponent
