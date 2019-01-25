@@ -13,7 +13,7 @@ export class AboutComponent implements OnInit {
   ngOnInit() {
   }
 
-  backToPrevious(){
-	this.location.back();
+  backToPrevious() {
+    this.location.back();
   }
 }

@@ -51,6 +51,9 @@ export class SearchComponent implements OnInit, AfterContentInit, AfterViewInit 
   allAssociations: AssociationData[] = [];
 
   reverseAssocChoice: AssociationData = null;
+  reverseAssocRequest: AssociationData = null;
+
+  reverseSpinner = false;
 
   // Check word exist
   wordExist = true;
@@ -63,7 +66,7 @@ export class SearchComponent implements OnInit, AfterContentInit, AfterViewInit 
     @Inject(LOCAL_STORAGE) private storage: StorageService) { }
 
   ngOnInit() {
-    console.log('onInit');
+    // console.log('onInit');
     this.filteredWords = this.wordControl.valueChanges.pipe(
       debounceTime(800),
       distinctUntilChanged(),
@@ -78,17 +81,17 @@ export class SearchComponent implements OnInit, AfterContentInit, AfterViewInit 
       flatMap((prefix: string) => this._filterReverse(prefix))
     );
 
-    console.log(this.storage.get(STORAGE_KEY));
+    // console.log(this.storage.get(STORAGE_KEY));
 
     if (this.storage.get(STORAGE_KEY) != null) {
       const data = JSON.parse(this.storage.get(STORAGE_KEY));
       this.initFiltered(data);
-      console.log('Storage en place');
+      // console.log('Storage en place');
     } else {
       this.associationsJsonService.getJSONBase().subscribe(data => {
-        console.log('str : ' + JSON.stringify(data[0].name_fr));
+        // console.log('str : ' + JSON.stringify(data[0].name_fr));
         this.storage.set(STORAGE_KEY, JSON.stringify(data));
-        console.log('Local');
+        // console.log('Local');
         this.initFiltered(data);
       });
     }
@@ -107,32 +110,32 @@ export class SearchComponent implements OnInit, AfterContentInit, AfterViewInit 
 
   // page des cards
   getData(obj, idAssoc: number) {
-    console.log('getData');
-    console.log(obj);
-    console.log(this.resultReverseAssoc.relations_entrantes[idAssoc] );
+    // console.log('getData');
+    // console.log(obj);
+    // console.log(this.resultReverseAssoc.relations_entrantes[idAssoc] );
     if (this.resultReverseAssoc.relations_entrantes[idAssoc] !== undefined) {
-      console.log('resultReverseAssoc != undefined');
+      // console.log('resultReverseAssoc != undefined');
       let index = 0;
       const startingIndex = obj.pageIndex * obj.pageSize,
             endingIndex = startingIndex + obj.pageSize;
-      console.log('startIndex : ' + startingIndex + '- endingIndex : ' + endingIndex);
+      // console.log('startIndex : ' + startingIndex + '- endingIndex : ' + endingIndex);
       const wordsResult: Word[] = this.resultReverseAssoc.relations_entrantes[idAssoc].filter(() => {
         index++;
         return (index > startingIndex && index <= endingIndex) ? true : false;
       });
-      console.log(wordsResult);
+      // console.log(wordsResult);
       this.reverseWords = wordsResult;
-      console.log('reverseWords : ' + idAssoc);
-      console.log(this.reverseWords);
+      // console.log('reverseWords : ' + idAssoc);
+      // console.log(this.reverseWords);
     }
   }
 
   ngAfterContentInit(): void {
-    console.log('afterContentInit');
+    // console.log('afterContentInit');
   }
 
   ngAfterViewInit() {
-    console.log('afterViewInit');
+    // console.log('afterViewInit');
     $(document).ready(function() {
     const moveForce = 40; // max popup movement in pixels
     const rotateForce = 20; // max popup rotation in deg
@@ -157,8 +160,8 @@ export class SearchComponent implements OnInit, AfterContentInit, AfterViewInit 
   }
 
   private _filterAssoc(value: string): AssociationData[] {
-    console.log('filter : ');
-    console.log(value);
+    // console.log('filter : ');
+    // console.log(value);
     return this.allAssociations.filter(option => {
       const strOption = option.name + '-' + option.name_fr;
       return strOption.toLowerCase().includes(value.toLocaleLowerCase());
@@ -173,41 +176,45 @@ export class SearchComponent implements OnInit, AfterContentInit, AfterViewInit 
     return this.spinner === true;
   }
 
+  showReverseSpinner() {
+    return this.reverseSpinner === true;
+  }
+
   getAutocompletion(prefix: string): Observable<string[]> {
     return this.apiService.getAutocompletion(prefix);
   }
 
   selectedReverseWord(event: MatAutocompleteSelectedEvent) {
     const option = event.option.viewValue;
-    console.log('selectedReverseWord : ' + option);
+    // console.log('selectedReverseWord : ' + option);
     this.currentReverseWordValue = option;
   }
 
   selectedReverseAssoc(event: MatAutocompleteSelectedEvent) {
     const option = event.option.value;
-    console.log('selectedReverseAssoc : ' + option);
+    // console.log('selectedReverseAssoc : ' + option);
     this.reverseAssocChoice = option;
   }
 
   private _filter(value: string): Observable<string[]> {
     this.currentValue = value;
-    console.log('filter');
+    // console.log('filter');
     if (value.length < 3) {
       this.warningAutocomplete = true;
-      console.log('inf 2 lettres');
+      // console.log('inf 2 lettres');
       return of([]);
     }
     const filterValue = value.toLowerCase();
 
     if (typeof this.valueRequest !== 'undefined' && filterValue.startsWith(this.valueRequest)) {
-      console.log('previous in new');
+      // console.log('previous in new');
       return of(this.options.filter(option => option.toLowerCase().startsWith(filterValue)));
     } else {
       this.spinner = true;
-      console.log('spinner');
+      // console.log('spinner');
       return this.getAutocompletion(filterValue).pipe(
         map((data: string[]) => {
-          console.log(data);
+          // console.log(data);
           this.options = data;
           this.valueRequest = filterValue;
           this.spinner = false;
@@ -219,23 +226,23 @@ export class SearchComponent implements OnInit, AfterContentInit, AfterViewInit 
 
   private _filterReverse(value: string): Observable<string[]> {
     this.currentReverseWordValue = value;
-    console.log('filter');
+    // console.log('filter');
     if (value.length < 3) {
       this.warningAutocomplete = true;
-      console.log('inf 2 lettres');
+      // console.log('inf 2 lettres');
       return of([]);
     }
     const filterValue = value.toLowerCase();
 
     if (typeof this.valueRequest !== 'undefined' && filterValue.startsWith(this.valueRequest)) {
-      console.log('previous in new');
+      // console.log('previous in new');
       return of(this.options.filter(option => option.toLowerCase().startsWith(filterValue)));
     } else {
       this.spinner = true;
-      console.log('spinner');
+      // console.log('spinner');
       return this.getAutocompletion(filterValue).pipe(
         map((data: string[]) => {
-          console.log(data);
+          // console.log(data);
           this.options = data;
           this.valueRequest = filterValue;
           this.spinner = false;
@@ -247,40 +254,42 @@ export class SearchComponent implements OnInit, AfterContentInit, AfterViewInit 
 
   selected(event: MatAutocompleteSelectedEvent): void {
     const option = event.option.viewValue;
-    console.log('selectedEvent : ' + option);
+    // console.log('selectedEvent : ' + option);
     this.router.navigate(['results', option]);
   }
 
   submitNormalSearch() {
-    console.log('submitNormalSearch');
-    console.log(this.currentValue);
+    /*console.log('submitNormalSearch');
+    console.log(this.currentValue);*/
     if (this.currentValue.trim() !== '') {
       this.router.navigate(['results', this.currentValue]);
     }
   }
 
   submitReverseSearch() {
-    console.log('submitReverseSearch');
+    /*console.log('submitReverseSearch');
     console.log('reverseAssocChoice : ' + this.reverseAssocChoice.name );
-    console.log('currentReverseWordValue : ' + this.currentReverseWordValue );
+    console.log('currentReverseWordValue : ' + this.currentReverseWordValue );*/
+    if (this.currentReverseWordValue.trim() === '') {
+      return;
+    }
+    this.reverseSpinner = true;
     this.apiService.getReverseWord(this.currentReverseWordValue, this.reverseAssocChoice).subscribe((data) => {
-      console.log('result getReverseWord : ');
-      console.log(data);
+      // console.log('result getReverseWord : ');
+      // console.log(data);
+      this.reverseAssocRequest = this.reverseAssocChoice;
       this.resultReverseAssoc = data;
       this.wordExist = true;
+
       if (this.resultReverseAssoc == null) {
+        this.resultReverseAssoc = null;
+        this.reverseWords = [];
         this.wordExist = false;
+        this.reverseSpinner = false;
         return;
       }
       this.getData(this.pageObject, this.reverseAssocChoice.id);
+      this.reverseSpinner = false;
     });
-  }
-
-  navigateTo(word: string) {
-    console.log('navigateTo');
-    console.log(word);
-    if (word.trim() !== '') {
-      // this.router.navigate(['results', word]);
-    }
   }
 }

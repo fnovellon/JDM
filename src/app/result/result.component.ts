@@ -104,20 +104,20 @@ export class ResultComponent implements OnInit, AfterViewInit {
 
     // Get param of url
     this.wordParam = this.activatedRoute.snapshot.paramMap.get('word');
-    console.log('word in url : ' + this.wordParam);
+    // console.log('word in url : ' + this.wordParam);
 
-    console.log(this.storage.get(STORAGE_KEY));
+    // console.log(this.storage.get(STORAGE_KEY));
 
     if (this.storage.get(STORAGE_KEY) != null) {
       const data: AssociationData[] = JSON.parse(this.storage.get(STORAGE_KEY));
       this.initAttribute(data);
-      console.log('Storage en place');
+      // console.log('Storage en place');
     } else {
       this.associationsJsonService.getJSONBase().subscribe(data => {
-        console.log('str : ' + JSON.stringify(data[0].name_fr));
+        // console.log('str : ' + JSON.stringify(data[0].name_fr));
         this.storage.set(STORAGE_KEY, JSON.stringify(data));
         this.initAttribute(data);
-        console.log('Local');
+        // console.log('Local');
       });
     }
   }
@@ -164,35 +164,35 @@ export class ResultComponent implements OnInit, AfterViewInit {
   }
 
   onDragScrollInitialized() {
-    console.log('first demo drag scroll has been initialized.');
+    // console.log('first demo drag scroll has been initialized.');
     if (this.ds === undefined) {
-      console.log('ds undefined');
+      // console.log('ds undefined');
     } else {
-      console.log('ds defined');
+      // console.log('ds defined');
       this.ds.moveTo(0);
     }
   }
 
   // Scroll
   ngAfterViewInit() {
-    console.log('afterViewInit');
+    // console.log('afterViewInit');
     if (this.wordExist) {
       this.elementPosition = this.menuElement.nativeElement.offsetTop;
     }
   }
 
   private _filter(value: string|AssociationData): AssociationData[] {
-    console.log('filter : ');
-    console.log(value);
+    // console.log('filter : ');
+    // console.log(value);
     let filterValue = '';
     if (typeof value === 'string') {
-      console.log('isString');
+      // console.log('isString');
       filterValue = value;
-      console.log(filterValue);
+      // console.log(filterValue);
     } else {
-      console.log('isObject');
+      // console.log('isObject');
       filterValue = value.name;
-      console.log(filterValue);
+      // console.log(filterValue);
     }
     this.currentValue = filterValue;
     return this.allAssociations.filter(option => {
@@ -205,8 +205,8 @@ export class ResultComponent implements OnInit, AfterViewInit {
     // this.showSpinner = true;
     if (this.resultAssoc == null && associations.length === 0) {
       this.apiService.getWord(this.wordParam, []).subscribe((word) => {
-        console.log('word first time');
-        console.log(word);
+        // console.log('word first time');
+        // console.log(word);
         if (word == null) {
           this.wordExist = false;
         }
@@ -217,12 +217,12 @@ export class ResultComponent implements OnInit, AfterViewInit {
       const relToRequest: AssociationData[] = associations.filter((assoc) => {
         return typeof this.resultAssoc.relations_sortantes[assoc.id] === 'undefined';
       });
-      console.log('requestForAssoc');
-      console.log(relToRequest);
+      // console.log('requestForAssoc');
+      // console.log(relToRequest);
       if (relToRequest.length > 0) {
         this.apiService.getWord(this.wordParam, relToRequest).subscribe((word) => {
-          console.log('requestForAssocAfterRequest');
-          console.log(word);
+          // console.log('requestForAssocAfterRequest');
+          // console.log(word);
 
           relToRequest.forEach((assoc) => {
             if (word.relations_sortantes[assoc.id] !== undefined) {
@@ -235,7 +235,7 @@ export class ResultComponent implements OnInit, AfterViewInit {
           associations.forEach((assoc) => {
             this.filterWords(assoc.id);
           });
-          console.log('Fin OnInit');
+          // console.log('Fin OnInit');
           // this.showSpinner = false;
         });
       } else {
@@ -283,38 +283,38 @@ export class ResultComponent implements OnInit, AfterViewInit {
 
   // page des cards
   getData(obj, idAssoc: number) {
-    console.log('getData');
-    console.log(obj);
-    console.log(this.filteredResultAssocData[idAssoc] );
+    // console.log('getData');
+    // console.log(obj);
+    // console.log(this.filteredResultAssocData[idAssoc] );
     if (this.filteredResultAssocData[idAssoc] !== undefined) {
       this.pageObject[idAssoc].pageIndex = obj.pageIndex;
       this.pageObject[idAssoc].pageSize = obj.pageSize;
-      console.log('filteredResultAssocData != undefined');
+      // console.log('filteredResultAssocData != undefined');
       let index = 0;
       const startingIndex = obj.pageIndex * obj.pageSize,
             endingIndex = startingIndex + obj.pageSize;
-      console.log('startIndex : ' + startingIndex + '- endingIndex : ' + endingIndex);
+      // console.log('startIndex : ' + startingIndex + '- endingIndex : ' + endingIndex);
       const wordsResult: Word[] = this.filteredResultAssocData[idAssoc].filter(() => {
         index++;
         return (index > startingIndex && index <= endingIndex) ? true : false;
       });
-      console.log(wordsResult);
+      // console.log(wordsResult);
       this.paginationResultAssocData[idAssoc] = wordsResult;
-      console.log('paginationResultAssocData : ' + idAssoc);
-      console.log(this.paginationResultAssocData[idAssoc]);
+      // console.log('paginationResultAssocData : ' + idAssoc);
+      // console.log(this.paginationResultAssocData[idAssoc]);
     }
   }
 
   // push la valeur de l'autocomplete dans les assoc selectionné
   selected(event: MatAutocompleteSelectedEvent): void {
-    console.log(event);
-    console.log('currentValue : ' + this.currentValue);
+    // console.log(event);
+    // console.log('currentValue : ' + this.currentValue);
     const selectedAssoc: AssociationData = event.option.value;
     if (this.selectedAssociation.indexOf(selectedAssoc) === -1) {
-      console.log('existe pas');
+      // console.log('existe pas');
       this.selectedAssociation.push(selectedAssoc);
     }
-    console.log('selectedAssoc : ' + selectedAssoc.name);
+    // console.log('selectedAssoc : ' + selectedAssoc.name);
     const indexAll = this.allAssociations.indexOf(selectedAssoc);
     if (indexAll !== -1 ) {
       if (selectedAssoc.state === 1) {
@@ -337,17 +337,17 @@ export class ResultComponent implements OnInit, AfterViewInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('dialogClosed : ');
+      // console.log('dialogClosed : ');
       if (result !== undefined) {
         const assocReturned: AssociationData[] = result;
         assocReturned.forEach((assoc: AssociationData) => {
-          console.log('assoc in foreach');
-          console.log(this.allAssociations);
-          console.log(assoc);
+          // console.log('assoc in foreach');
+          // console.log(this.allAssociations);
+          // console.log(assoc);
           const index = this.allAssociations.findIndex((item) => {
             return item.id === assoc.id;
           });
-          console.log('index : ' + index);
+          // console.log('index : ' + index);
           if (index !== -1) {
             if (assoc.state === 1) {
               const indexPref = this.preferences.findIndex((item) => {
@@ -363,8 +363,8 @@ export class ResultComponent implements OnInit, AfterViewInit {
           }
         });
         this.requestForAssoc(assocReturned);
-        console.log('After add new assoc');
-        console.log(this.selectedAssociation);
+        // console.log('After add new assoc');
+        // console.log(this.selectedAssociation);
         this.updateAutocompleteView('');
       }
     });
@@ -376,7 +376,7 @@ export class ResultComponent implements OnInit, AfterViewInit {
 
   searchNewWord($event) {
     const selectedWord = $event.word;
-    console.log('searchNewWord : ' + selectedWord);
+    // console.log('searchNewWord : ' + selectedWord);
     window.open(window.location.protocol + '/results/' + selectedWord, '_blank');
   }
 
@@ -386,8 +386,8 @@ export class ResultComponent implements OnInit, AfterViewInit {
   *
   */
   filterToolbarChanged(event: any) {
-    console.log('filterToolbarChanged');
-    console.log(event);
+    // console.log('filterToolbarChanged');
+    // console.log(event);
     this.filterWord = event.filter;
     this.selectedAssociation.forEach((assoc) => {
       this.filterWords(assoc.id);
@@ -395,12 +395,12 @@ export class ResultComponent implements OnInit, AfterViewInit {
   }
 
   sortToolbarChanged(event: any) {
-    console.log('sortToolbarChanged');
-    console.log(event);
+    // console.log('sortToolbarChanged');
+    // console.log(event);
     this.sortAsc = event.sortAsc;
     this.sortType = event.sortType;
     this.selectedAssociation.forEach((assoc) => {
-      console.log(this.pageObject[assoc.id]);
+      // console.log(this.pageObject[assoc.id]);
       this.sortWords(assoc.id);
     });
   }
@@ -422,8 +422,8 @@ export class ResultComponent implements OnInit, AfterViewInit {
   }
 
   private sortWords(assocId: number) {
-    console.log('sortWords');
-    console.log(this.sortType + '-' + this.sortAsc);
+    // console.log('sortWords');
+    // console.log(this.sortType + '-' + this.sortAsc);
     if (this.filteredResultAssocData[assocId] !== undefined) {
       if (this.sortType === 'weight') {
         if (this.sortAsc) {
@@ -438,23 +438,23 @@ export class ResultComponent implements OnInit, AfterViewInit {
           this.filteredResultAssocData[assocId].sort(this.compareWordAlphaDesc);
         }
       }
-      console.log(this.filteredResultAssocData[assocId]);
-      console.log('pageObjectSort');
-      console.log(this.pageObject[assocId]);
+      // console.log(this.filteredResultAssocData[assocId]);
+      // console.log('pageObjectSort');
+      // console.log(this.pageObject[assocId]);
       this.getData(this.pageObject[assocId], assocId);
     }
   }
 
   private filterWords(assocId: number) {
     if (this.resultAssoc.relations_sortantes[assocId] !== undefined) {
-      console.log('filterWords : ' + this.filterWord);
+      // console.log('filterWords : ' + this.filterWord);
       this.filteredResultAssocData[assocId] = this.resultAssoc.relations_sortantes[assocId].filter((word: Word) => {
         return word.noeud.motFormate.includes(this.filterWord);
       });
-      console.log(this.filteredResultAssocData[assocId]);
+      // console.log(this.filteredResultAssocData[assocId]);
       this.pageObject[assocId] = {'pageIndex': 0, 'pageSize': this.pageObject[assocId].pageSize};
-      console.log('pageObject');
-      console.log(this.pageObject[assocId]);
+      // console.log('pageObject');
+      // console.log(this.pageObject[assocId]);
       this.sortWords(assocId);
     }
   }
@@ -485,7 +485,7 @@ export class ModalAssociationComponent implements OnInit {
   }
 
   onNoClick(): void {
-    console.log('close');
+    // console.log('close');
     this.dialogRef.close();
   }
 

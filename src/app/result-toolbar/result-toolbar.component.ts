@@ -79,23 +79,23 @@ export class ResultToolbarComponent implements OnInit {
       this.firstSearchAutocompleteWord = false;
     }
     this.currentValue = value;
-    console.log('filter : ' + value);
+    // console.log('filter : ' + value);
     if (value.length < 3) {
       this.warningAutocomplete = true;
-      console.log('inf 2 lettres');
+      // console.log('inf 2 lettres');
       return of([]);
     }
     const filterValue = value.toLowerCase();
 
     if (typeof this.valueRequest !== 'undefined' && filterValue.startsWith(this.valueRequest)) {
-      console.log('previous in new');
+      // console.log('previous in new');
       return of(this.options.filter(option => option.toLowerCase().startsWith(filterValue)));
     } else {
       this.spinner = true;
-      console.log('spinner');
+      // console.log('spinner');
       return this.getAutocompletion(filterValue).pipe(
         map((data: string[]) => {
-          console.log(data);
+          // console.log(data);
           this.options = data;
           this.valueRequest = filterValue;
           this.spinner = false;
@@ -107,14 +107,14 @@ export class ResultToolbarComponent implements OnInit {
 
   selected(event: MatAutocompleteSelectedEvent): void {
     const option = event.option.viewValue;
-    console.log(option);
+    // console.log(option);
     this.firstSearchAutocompleteWord = true;
     this.searchNewWord.emit({'word': option });
   }
 
   submit(): void {
-    console.log('submit');
-    console.log(this.currentValue);
+    // console.log('submit');
+    // console.log(this.currentValue);
     this.firstSearchAutocompleteWord = true;
     this.searchNewWord.emit({'word': this.currentValue });
   }

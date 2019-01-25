@@ -72,13 +72,13 @@
       </div>
       <button class="searchButton" [disabled]="reverseAssocChoice == null ||  currentReverseWordValue == null || currentReverseWordValue.trim() === ''" mat-raised-button (click)="submitReverseSearch()" >Rechercher dans JeuxDeMots</button>
       
-      <div id="containerCard" *ngIf="resultReverseAssoc != null && wordExist">
+      <div id="containerCard" *ngIf="resultReverseAssoc != null && wordExist && !showReverseSpinner()">
           <mat-card class="example-card">
             <mat-card-header>
-              <mat-card-title>Les mots suivants sont liés au mot "{{currentReverseWordValue}}" par la relation "{{reverseAssocChoice.name_fr}}"</mat-card-title>
+              <mat-card-title>Les mots suivants sont liés au mot "{{resultReverseAssoc.motFormate}}" par la relation "{{reverseAssocRequest.name_fr}}"</mat-card-title>
             </mat-card-header>
             <mat-divider [inset]="true" ></mat-divider>
-            <mat-card-content *ngIf="resultReverseAssoc != null && resultReverseAssoc.relations_entrantes[reverseAssocChoice.id] !== undefined">
+            <mat-card-content *ngIf="resultReverseAssoc != null && resultReverseAssoc.relations_entrantes[reverseAssocRequest.id] !== undefined">
               <mat-grid-list cols="2" rowHeight="30px">
                   
                 <mat-grid-tile *ngFor="let rw of reverseWords">
@@ -92,19 +92,24 @@
                     </mat-grid-tile>
               </mat-grid-list>
             </mat-card-content>
-            <p *ngIf="resultReverseAssoc != null && resultReverseAssoc.relations_entrantes[reverseAssocChoice.id] == undefined">
+            <p *ngIf="resultReverseAssoc != null && resultReverseAssoc.relations_entrantes[reverseAssocRequest.id] == undefined">
               Cette association ne comporte aucun mot
             </p>
-            <mat-paginator *ngIf="resultReverseAssoc != null && resultReverseAssoc.relations_entrantes[reverseAssocChoice.id] !== undefined" [length]='resultReverseAssoc.relations_entrantes[reverseAssocChoice.id].length'
+            <mat-paginator *ngIf="resultReverseAssoc != null && resultReverseAssoc.relations_entrantes[reverseAssocRequest.id] !== undefined" [length]='resultReverseAssoc.relations_entrantes[reverseAssocRequest.id].length'
                       [pageSize]="pageObject.pageSize"
                       [pageIndex]="pageObject.pageIndex"
                       [pageSizeOptions]="[25, 50, 100]"
-                      (page)="getData($event, reverseAssocChoice.id)">
+                      (page)="getData($event, reverseAssocRequest.id)">
             </mat-paginator>
           </mat-card>
         </div>
-        <div class="wordDoesntExist" *ngIf="!wordExist">
+        <div class="wordDoesntExist && !showReverseSpinner()" *ngIf="!wordExist">
           <p>Le mot recherché n'existe pas...</p>
+        </div>
+        <div class="spinner" *ngIf="showReverseSpinner()">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
         </div>
     </mat-tab>
   </mat-tab-group>

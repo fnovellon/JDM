@@ -30,18 +30,18 @@ export class PreferenceComponent implements OnInit {
 
   ngOnInit() {
 
-    console.log(this.storage.get(STORAGE_KEY));
+    // console.log(this.storage.get(STORAGE_KEY));
 
     if (this.storage.get(STORAGE_KEY) != null) {
       const data = JSON.parse(this.storage.get(STORAGE_KEY));
       this.initTable(data);
-      console.log('Storage en place');
+      // console.log('Storage en place');
     } else {
       this.associationsJsonService.getJSONBase().subscribe(data => {
         this.initTable(data);
-        console.log('str : ' + JSON.stringify(data[0].name_fr));
+        // console.log('str : ' + JSON.stringify(data[0].name_fr));
         this.storage.set(STORAGE_KEY, JSON.stringify(data));
-        console.log('Local');
+        // console.log('Local');
       });
     }
 
@@ -86,7 +86,7 @@ export class PreferenceComponent implements OnInit {
   }
 
   updateVisibility(id: number, oldState: number) {
-    console.log('Visibility => id : ' + id + ' / oldState : ' + oldState);
+    // console.log('Visibility => id : ' + id + ' / oldState : ' + oldState);
     if (oldState !== -1) {
       this.updateAsso(id, -1);
     } else {
@@ -95,7 +95,7 @@ export class PreferenceComponent implements OnInit {
   }
 
   updateFav(id: number, oldState: number) {
-    console.log('Fav => id : ' + id + ' / oldState : ' + oldState);
+    // console.log('Fav => id : ' + id + ' / oldState : ' + oldState);
     if (oldState !== 1) {
       this.updateAsso(id, 1);
     } else {
@@ -111,7 +111,7 @@ export class PreferenceComponent implements OnInit {
   }
 
   addSelectionByState(state: number) {
-    console.log('addSelectionByState');
+    // console.log('addSelectionByState');
     this.selection.selected.forEach(association => {
       this.updateAsso(association.id, state);
     });
@@ -121,7 +121,7 @@ export class PreferenceComponent implements OnInit {
   // Doesn't work on localhost
   savePreferences(event) {
     this.storage.set(STORAGE_KEY, JSON.stringify(this.associations));
-    console.log('Save !');
+    // console.log('Save !');
   }
 
 }

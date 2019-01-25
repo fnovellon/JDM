@@ -28,7 +28,7 @@ export class PreferenceToolbarComponent implements OnInit {
   }
 
   clickSavePreference() {
-    console.log('Need Save Toolbar');
+    // console.log('Need Save Toolbar');
     this.savePreferences.emit();
   }
 

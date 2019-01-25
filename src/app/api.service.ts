@@ -39,10 +39,10 @@ export class ApiService {
     } else {
       url += `${SERVER_URL + WORD_URL + name}`;
     }
-    console.log(url);
+    // console.log(url);
     return this.http.get<AssocWord>(url, httpOptions).pipe(
       tap(data => {
-        console.log(`fetched word name=${name}`);
+        // console.log(`fetched word name=${name}`);
         // console.log(data);
       }),
       catchError(this.handleError<AssocWord>(`get word name=${name}`))
@@ -51,16 +51,16 @@ export class ApiService {
 
   getAutocompletion(prefix: string): Observable<string[]> {
     const url = `${SERVER_URL + AUTOCOMPLETE_URL + prefix}`;
-    console.log(url);
+    // console.log(url);
     return this.http.get<any>(url, httpOptions);
   }
 
   getReverseWord(name: string, association: AssociationData): Observable<AssocWord> {
     const url = `${SERVER_URL + WORD_URL + name}/entrante?rels=${association.name}`;
-    console.log(url);
+    // console.log(url);
     return this.http.get<AssocWord>(url, httpOptions).pipe(
       tap(data => {
-        console.log(`fetched reverse word name=${name}`);
+        // console.log(`fetched reverse word name=${name}`);
         // console.log(data);
       }),
       catchError(this.handleError<AssocWord>(`get reverse word name=${name}`))
@@ -80,7 +80,7 @@ export class ApiService {
       console.error(error); // log to console instead
 
       // TODO: better job of transforming error for user consumption
-      console.log(`${operation} failed: ${error.message}`);
+      // console.log(`${operation} failed: ${error.message}`);
 
       // Let the app keep running by returning an empty result.
       return of(result as T);
