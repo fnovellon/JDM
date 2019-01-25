@@ -1,4 +1,10 @@
-import { Component, OnInit, ViewChild, ElementRef, AfterContentInit, AfterViewInit } from '@angular/core';
+import { Component,
+  OnInit,
+  ViewChild,
+  ElementRef,
+  AfterContentInit,
+  AfterViewInit,
+  Inject } from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {Router} from '@angular/router';
 import {Observable, of} from 'rxjs';
@@ -8,6 +14,13 @@ import { MatAutocompleteSelectedEvent } from '@angular/material';
 declare var $: any;
 // Services
 import { ApiService } from '../api.service';
+import { AssociationsJsonService, AssociationData } from '../associations-json.service';
+import { LOCAL_STORAGE, StorageService } from 'angular-webstorage-service';
+
+import {AssocWord} from '../assocWord';
+import {Word} from '../word';
+
+const STORAGE_KEY = 'JDM_Preferences';
 
 @Component({
   selector: 'app-search',
@@ -24,9 +37,17 @@ export class SearchComponent implements OnInit, AfterContentInit, AfterViewInit 
   warningAutocomplete: boolean;
   currentValue = '';
 
+  // Reverse
+  pageObject = {pageIndex: 0, pageSize: 25};
+  reverseWords: Word[] = [];
+  resultAssoc: AssocWord = null;
+
   @ViewChild('wordInput') wordInput: ElementRef<HTMLInputElement>;
 
-  constructor(private apiService: ApiService, private router: Router) { }
+  constructor(private apiService: ApiService,
+    private router: Router,
+    private associationsJsonService: AssociationsJsonService,
+    @Inject(LOCAL_STORAGE) private storage: StorageService) { }
 
   ngOnInit() {
     console.log('onInit');
@@ -36,6 +57,19 @@ export class SearchComponent implements OnInit, AfterContentInit, AfterViewInit 
       startWith(''),
       flatMap((prefix: string) => this._filter(prefix))
     );
+
+    console.log(this.storage.get(STORAGE_KEY));
+
+    if (this.storage.get(STORAGE_KEY) != null) {
+      const data = JSON.parse(this.storage.get(STORAGE_KEY));
+      console.log('Storage en place');
+    } else {
+      this.associationsJsonService.getJSONBase().subscribe(data => {
+        console.log('str : ' + JSON.stringify(data[0].name_fr));
+        this.storage.set(STORAGE_KEY, JSON.stringify(data));
+        console.log('Local');
+      });
+    }
   }
 
   ngAfterContentInit(): void {

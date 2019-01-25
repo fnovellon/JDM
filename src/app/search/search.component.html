@@ -5,39 +5,101 @@
   </div>
 </div>
 
-<blockquote id="description">
-  <p>
-    Vous pouvez rechercher des mots de n'importe quelle longueur.
-  </p>
-  <p>
-    Une aide à la recherche est disponible à partir de 3 lettres.
-  </p>
-</blockquote>
 <div [@.disabled]="true">
   <mat-tab-group>
     <mat-tab label="Chercher un mot">
-        <div class="input-form"> 
-          <div id="searchInput">
-            <mat-icon id="searchIcon">search</mat-icon>
-            <input #wordInput type="search" placeholder="Saisissez un mot à rechercher" aria-label="Mot" matInput [matAutocomplete]="auto" [formControl]="wordControl">
-          </div>
-          <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
-            <mat-option *ngIf="showSpinner()">
-              <div class="spinner">
-                <div class="bounce1"></div>
-                <div class="bounce2"></div>
-                <div class="bounce3"></div>
-              </div>
-            </mat-option>
-            <mat-option *ngFor="let option of filteredWords | async" [value]="option">
-              {{option}}
-            </mat-option>
-          </mat-autocomplete>
+      <blockquote id="description">
+        <p>
+          Vous pouvez rechercher des mots de n'importe quelle longueur.
+        </p>
+        <p>
+          Une aide à la recherche est disponible à partir de 3 lettres.
+        </p>
+      </blockquote>
+      <div class="input-form"> 
+        <div id="searchInput">
+          <mat-icon id="searchIcon">search</mat-icon>
+          <input #wordInput type="search" placeholder="Saisissez un mot à rechercher" aria-label="Mot" matInput [matAutocomplete]="auto" [formControl]="wordControl">
         </div>
-        <button id="searchButton" [disabled]="currentValue.trim() == ''" mat-raised-button (click)="submitNormalSearch()" >Rechercher dans JeuxDeMots</button>
+        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+          <mat-option *ngIf="showSpinner()">
+            <div class="spinner">
+              <div class="bounce1"></div>
+              <div class="bounce2"></div>
+              <div class="bounce3"></div>
+            </div>
+          </mat-option>
+          <mat-option *ngFor="let option of filteredWords | async" [value]="option">
+            {{option}}
+          </mat-option>
+        </mat-autocomplete>
+      </div>
+      <button class="searchButton" [disabled]="currentValue.trim() == ''" mat-raised-button (click)="submitNormalSearch()" >Rechercher dans JeuxDeMots</button>
     </mat-tab>
     <mat-tab label="Recherche inversée">
-        <button id="searchButton" [disabled]="currentValue.trim() == ''" mat-raised-button (click)="submitReverseSearch()" >Rechercher dans JeuxDeMots</button>
+      <blockquote id="description">
+        <p>
+          Complétez les deux champs et appuyez sur le bouton de recherche
+        </p>
+        <p>
+          Une aide à la recherche pour le mot est disponible à partir de 3 lettres.
+        </p>
+      </blockquote>
+      <div class="containerReverseForm">
+        <mat-form-field class="formReverseInput">
+          <input type="text" placeholder="Association" aria-label="Association" matInput [formControl]="myControl" [matAutocomplete]="autoAssoc">
+          <mat-autocomplete #autoAssoc="matAutocomplete" [displayWith]="displayFn">
+            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+              {{option.name}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+        <mat-form-field class="formReverseInput">
+          <input type="text" placeholder="Mot" aria-label="Mot" matInput [formControl]="myControl" [matAutocomplete]="autoWord">
+          <mat-autocomplete #autoWord="matAutocomplete" [displayWith]="displayFn">
+            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+              {{option.name}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </div>
+      <button class="searchButton" [disabled]="currentValue.trim() == ''" mat-raised-button (click)="submitReverseSearch()" >Rechercher dans JeuxDeMots</button>
+      <div id="containerCard">
+          <mat-card class="example-card">
+            <mat-card-header>
+              <mat-card-title>Les mots suivants sont liés au mot "leMot" par la relation "laRelation"</mat-card-title>
+            </mat-card-header>
+            <mat-divider [inset]="true" ></mat-divider>
+            <div class="spinner">
+              <div class="bounce1"></div>
+              <div class="bounce2"></div>
+              <div class="bounce3"></div>
+            </div>
+            <mat-card-content>
+              <mat-grid-list cols="2" rowHeight="30px">
+                  
+                <mat-grid-tile *ngFor="let rw of reverseWords">
+                    
+                      <div class="nomResult" matTooltip="{{rw.noeud.motFormate}}" matTooltipPosition="above" matTooltipShowDelay="400">
+                          <a routerLink="results/{{rw.noeud.motFormate}}">
+                            {{rw.noeud.motFormate}}
+                          </a>
+                      </div> 
+                      <div class="poidsResult">{{rw.poids}}</div>
+                    </mat-grid-tile>
+              </mat-grid-list>
+            </mat-card-content>
+            <p>
+              Cette association ne comporte aucun mot
+            </p>
+            <mat-paginator [length]='reverseWords.length'
+                      [pageSize]="pageObject.pageSize"
+                      [pageIndex]="pageObject.pageIndex"
+                      [pageSizeOptions]="[25, 50, 100]"
+                      (page)="getData($event)">
+            </mat-paginator>
+          </mat-card>
+        </div>
     </mat-tab>
   </mat-tab-group>
 </div>

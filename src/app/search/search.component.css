@@ -2,9 +2,8 @@
   width: 45%;
   display: flex;
   flex-direction: column;
-  margin-left: auto;
   margin-top: 1%;
-  margin-bottom: 1%;
+  margin-bottom: 30px;
   text-align: left;
 }
 
@@ -70,7 +69,7 @@ img{
 	float: left;	
 }
 
-input {
+#searchInput input {
 	display: block;
 	float: right;
   color: #333;
@@ -86,9 +85,81 @@ input {
   -webkit-appearance: none;
 }
 
-#searchButton {
+.searchButton {
   margin-top: 20px;
 }
+
+.containerReverseForm {
+  display: flex;
+  width: 65%;
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: space-evenly;
+}
+
+.nomResult{
+	width: 75%;
+	margin-left: 5%;
+	text-align: left;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+.nomResult a:link {
+	color: black;
+	text-decoration: none;
+}
+
+/* visited link */
+.nomResult a:visited {
+	color: black;
+	text-decoration: none;
+}
+
+/* mouse over link */
+.nomResult a:hover {
+	color: black;
+	text-decoration: underline;
+}
+
+/* selected link */
+.nomResult a:active {
+	color: black;
+	text-decoration: none;
+}
+
+.poidsResult{
+	width: 20%;
+}
+
+::ng-deep .mat-card-content {
+	margin-bottom: 0px !important;
+	/*min-height: 319px;*/
+}
+
+::ng-deep .mat-grid-tile .mat-figure{
+	border-left: 1px solid #c1c1c1;
+}
+
+mat-card-content{
+	margin-top: 2%;
+}
+
+#containerCard {
+	display: flex;
+	flex-wrap: wrap;
+	width: 100%;
+	justify-content: space-evenly;
+	align-items: flex-start;
+}
+
+.example-card {
+	margin-top: 30px;
+	width: 45%;
+}
+
+
 
 @media (max-width: 1280px){
 	#searchInput {
@@ -105,6 +176,10 @@ input {
     width: 80%;
   }
 
+  .example-card {
+    width: 80%;
+  }
+
   #searchIcon {
     display: none;
   }
@@ -116,12 +191,39 @@ input {
   img {
     width: 250px;
   }
+
+  blockquote p{
+    font-size: 12pt;
+  }
+
+  .containerReverseForm {
+    width: 100%;
+  }
 }
 
 
-@media (max-width: 340px){
+@media (max-width: 450px){
   img {
     width: 200px;
+  }
+
+  #searchInput {
+    height: 35px;
+    font-size: 1em;
+  }
+
+  #searchInput input {
+    height: 35px;
+    font-size: 1em;
+  }
+
+  blockquote p{
+    font-size: 11pt;
+  }
+
+  .containerReverseForm {
+    flex-direction: column;
+    width: 85%;
   }
 }
 

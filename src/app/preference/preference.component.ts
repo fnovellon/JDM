@@ -39,7 +39,7 @@ export class PreferenceComponent implements OnInit {
     } else {
       this.associationsJsonService.getJSONBase().subscribe(data => {
         this.initTable(data);
-        console.log("str : " + JSON.stringify(data[0].name_fr));
+        console.log('str : ' + JSON.stringify(data[0].name_fr));
         this.storage.set(STORAGE_KEY, JSON.stringify(data));
         console.log('Local');
       });
@@ -121,13 +121,7 @@ export class PreferenceComponent implements OnInit {
   // Doesn't work on localhost
   savePreferences(event) {
     this.storage.set(STORAGE_KEY, JSON.stringify(this.associations));
-    console.log('???' + this.storage.get(STORAGE_KEY));
     console.log('Save !');
   }
-
-  /*getWord(word: string): void {
-    this.apiService.getWord(word, [])
-      .subscribe(resWord => console.log(resWord));
-  }*/
 
 }

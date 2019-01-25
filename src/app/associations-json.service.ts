@@ -24,7 +24,7 @@ export class AssociationsJsonService {
 
   constructor(private http: HttpClient, @Inject(LOCAL_STORAGE) private storage: StorageService) {  }
 
-  public getJSON(): Observable<any> {
+  public getJSON(): AssociationData[] {
     return JSON.parse(this.storage.get(STORAGE_KEY));
   }
 

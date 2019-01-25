@@ -84,7 +84,7 @@ export class ResultComponent implements OnInit, AfterViewInit {
   constructor(public dialog: MatDialog,
     private associationsJsonService: AssociationsJsonService,
     private activatedRoute: ActivatedRoute,
-    private apiService: ApiService, 
+    private apiService: ApiService,
     @Inject(LOCAL_STORAGE) private storage: StorageService) { }
 
   @HostListener('window:scroll', ['$event'])
@@ -106,10 +106,24 @@ export class ResultComponent implements OnInit, AfterViewInit {
     this.wordParam = this.activatedRoute.snapshot.paramMap.get('word');
     console.log('word in url : ' + this.wordParam);
 
+    console.log(this.storage.get(STORAGE_KEY));
 
-    // Get associations from JSON
-    const dataPref = this.associationsJsonService.getJSON()
-    dataPref.forEach(assoc => {
+    if (this.storage.get(STORAGE_KEY) != null) {
+      const data: AssociationData[] = JSON.parse(this.storage.get(STORAGE_KEY));
+      this.initAttribute(data);
+      console.log('Storage en place');
+    } else {
+      this.associationsJsonService.getJSONBase().subscribe(data => {
+        console.log('str : ' + JSON.stringify(data[0].name_fr));
+        this.storage.set(STORAGE_KEY, JSON.stringify(data));
+        this.initAttribute(data);
+        console.log('Local');
+      });
+    }
+  }
+
+  initAttribute(data: AssociationData[]) {
+    data.forEach(assoc => {
       if (assoc.state !== -1) {
           this.allAssociations.push(assoc);
           if (assoc.state === 1) {
