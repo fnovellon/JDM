@@ -1,0 +1,14 @@
+#wordNotFound {
+	display: flex;
+}
+
+#wordNotFound img {
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 60px;
+}
+
+#imgWordNotFound {
+	width: 50%;
+	height: 50%;
+}
