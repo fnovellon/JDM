@@ -8,4 +8,5 @@ export class AssocWord {
     definition: string;
     motFormate: string;
     relations_sortantes: Word[][];
+    relations_entrantes: Word[][];
 }

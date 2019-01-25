@@ -56,7 +56,7 @@ export class ApiService {
   }
 
   getReverseWord(name: string, association: AssociationData): Observable<AssocWord> {
-    const url = `${SERVER_URL + WORD_URL + name}/sortante?rels=${association.name}`;
+    const url = `${SERVER_URL + WORD_URL + name}/entrante?rels=${association.name}`;
     console.log(url);
     return this.http.get<AssocWord>(url, httpOptions).pipe(
       tap(data => {

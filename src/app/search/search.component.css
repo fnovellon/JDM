@@ -201,6 +201,10 @@ mat-card-content{
   }
 }
 
+.wordDoesntExist {
+  color: red;
+}
+
 
 @media (max-width: 450px){
   img {

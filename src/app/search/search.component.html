@@ -34,7 +34,7 @@
           </mat-option>
         </mat-autocomplete>
       </div>
-      <button class="searchButton" [disabled]="currentValue.trim() == ''" mat-raised-button (click)="submitNormalSearch()" >Rechercher dans JeuxDeMots</button>
+      <button class="searchButton" [disabled]="currentValue == null ||currentValue.trim() == ''" mat-raised-button (click)="submitNormalSearch()" >Rechercher dans JeuxDeMots</button>
     </mat-tab>
     <mat-tab label="Recherche inversée">
       <blockquote id="description">
@@ -47,41 +47,37 @@
       </blockquote>
       <div class="containerReverseForm">
         <mat-form-field class="formReverseInput">
-          <input type="text" placeholder="Association" aria-label="Association" matInput [formControl]="myControl" [matAutocomplete]="autoAssoc">
-          <mat-autocomplete #autoAssoc="matAutocomplete" [displayWith]="displayFn">
-            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-              {{option.name}}
+          <input type="text" placeholder="Association" aria-label="Association" matInput [formControl]="assocReverseControl" [matAutocomplete]="autoAssoc">
+          <mat-autocomplete #autoAssoc="matAutocomplete" [displayWith]="displayFnAssoc" (optionSelected)="selectedReverseAssoc($event)">
+            <mat-option *ngFor="let assoc of filteredAssocData | async" [value]="assoc">
+              {{assoc.name}} - {{assoc.name_fr}}
             </mat-option>
           </mat-autocomplete>
         </mat-form-field>
         <mat-form-field class="formReverseInput">
-          <input type="text" placeholder="Mot" aria-label="Mot" matInput [formControl]="myControl" [matAutocomplete]="autoWord">
-          <mat-autocomplete #autoWord="matAutocomplete" [displayWith]="displayFn">
-            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-              {{option.name}}
+          <input type="text" placeholder="Mot" aria-label="Mot" matInput [formControl]="wordReverseControl" [matAutocomplete]="autoWord">
+          <mat-autocomplete #autoWord="matAutocomplete" (optionSelected)="selectedReverseWord($event)">
+            <mat-option *ngFor="let word of filteredReverseWords | async" [value]="word">
+              {{word}}
             </mat-option>
           </mat-autocomplete>
         </mat-form-field>
       </div>
-      <button class="searchButton" [disabled]="currentValue.trim() == ''" mat-raised-button (click)="submitReverseSearch()" >Rechercher dans JeuxDeMots</button>
-      <div id="containerCard">
+      <button class="searchButton" [disabled]="reverseAssocChoice == null ||  currentReverseWordValue == null || currentReverseWordValue.trim() === ''" mat-raised-button (click)="submitReverseSearch()" >Rechercher dans JeuxDeMots</button>
+      
+      <div id="containerCard" *ngIf="resultReverseAssoc != null && wordExist">
           <mat-card class="example-card">
             <mat-card-header>
-              <mat-card-title>Les mots suivants sont liés au mot "leMot" par la relation "laRelation"</mat-card-title>
+              <mat-card-title>Les mots suivants sont liés au mot "{{currentReverseWordValue}}" par la relation "{{reverseAssocChoice.name_fr}}"</mat-card-title>
             </mat-card-header>
             <mat-divider [inset]="true" ></mat-divider>
-            <div class="spinner">
-              <div class="bounce1"></div>
-              <div class="bounce2"></div>
-              <div class="bounce3"></div>
-            </div>
-            <mat-card-content>
+            <mat-card-content *ngIf="resultReverseAssoc != null && resultReverseAssoc.relations_entrantes[reverseAssocChoice.id] !== undefined">
               <mat-grid-list cols="2" rowHeight="30px">
                   
                 <mat-grid-tile *ngFor="let rw of reverseWords">
                     
                       <div class="nomResult" matTooltip="{{rw.noeud.motFormate}}" matTooltipPosition="above" matTooltipShowDelay="400">
-                          <a routerLink="results/{{rw.noeud.motFormate}}">
+                          <a [routerLink]="['/results', rw.noeud.motFormate]">
                             {{rw.noeud.motFormate}}
                           </a>
                       </div> 
@@ -89,16 +85,19 @@
                     </mat-grid-tile>
               </mat-grid-list>
             </mat-card-content>
-            <p>
+            <p *ngIf="resultReverseAssoc != null && resultReverseAssoc.relations_entrantes[reverseAssocChoice.id] == undefined">
               Cette association ne comporte aucun mot
             </p>
-            <mat-paginator [length]='reverseWords.length'
+            <mat-paginator *ngIf="resultReverseAssoc != null && resultReverseAssoc.relations_entrantes[reverseAssocChoice.id] !== undefined" [length]='resultReverseAssoc.relations_entrantes[reverseAssocChoice.id].length'
                       [pageSize]="pageObject.pageSize"
                       [pageIndex]="pageObject.pageIndex"
                       [pageSizeOptions]="[25, 50, 100]"
-                      (page)="getData($event)">
+                      (page)="getData($event, reverseAssocChoice.id)">
             </mat-paginator>
           </mat-card>
+        </div>
+        <div class="wordDoesntExist" *ngIf="!wordExist">
+          <p>Le mot recherché n'existe pas...</p>
         </div>
     </mat-tab>
   </mat-tab-group>

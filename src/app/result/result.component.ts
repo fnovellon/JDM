@@ -196,7 +196,7 @@ export class ResultComponent implements OnInit, AfterViewInit {
     }
     this.currentValue = filterValue;
     return this.allAssociations.filter(option => {
-      const strOption = option.name + '#' + option.name_fr;
+      const strOption = option.name + '-' + option.name_fr;
       return strOption.toLowerCase().includes(filterValue.toLocaleLowerCase());
     });
   }
