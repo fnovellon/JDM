@@ -271,6 +271,7 @@ drag-scroll {
 #footerDiv {
 	visibility: hidden;
 	height: 50px;
+	margin-top: 20px;
 }
 
 #wordNotFound {

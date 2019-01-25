@@ -91,7 +91,7 @@ img{
 
 .containerReverseForm {
   display: flex;
-  width: 65%;
+  width: 50%;
   margin-left: auto;
   margin-right: auto;
   justify-content: space-evenly;
@@ -159,7 +159,18 @@ mat-card-content{
 	width: 45%;
 }
 
+.formReverseInput {
+  width: 45%;
+}
 
+.wordDoesntExist {
+  color: red;
+}
+
+#footerDiv {
+	visibility: hidden;
+	height: 50px;
+}
 
 @media (max-width: 1280px){
 	#searchInput {
@@ -167,6 +178,10 @@ mat-card-content{
   }
 
   #description {
+    width: 65%;
+  }
+
+  .containerReverseForm {
     width: 65%;
   }
 }
@@ -188,6 +203,10 @@ mat-card-content{
     width: 80%;
   }
 
+  .formReverseInput {
+    width: 40%;
+  }
+
   img {
     width: 250px;
   }
@@ -200,11 +219,6 @@ mat-card-content{
     width: 100%;
   }
 }
-
-.wordDoesntExist {
-  color: red;
-}
-
 
 @media (max-width: 450px){
   img {
@@ -219,6 +233,10 @@ mat-card-content{
   #searchInput input {
     height: 35px;
     font-size: 1em;
+  }
+
+  .formReverseInput {
+    width: 100%;
   }
 
   blockquote p{
