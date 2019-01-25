@@ -16,21 +16,7 @@
       <mat-icon>search</mat-icon>
     </button>
 
-    
-
-    <!-- Input Text
-    <mat-form-field id="formFieldInput">
-      <input matInput id="search-input" type="text" />
-    </mat-form-field>
-    -->
     <input #wordInput type="search" placeholder="Saisissez un mot à rechercher" aria-label="Mot" matInput [matAutocomplete]="auto" [formControl]="wordControl">
-    
-    <!--<input type="search" matInput placeholder="Saisissez un mot à rechercher" aria-label="Mot" [(ngModel)]="value" matInput [matAutocomplete]="auto">
-    <mat-autocomplete #auto="matAutocomplete">
-      <mat-option *ngFor="let option of options" [value]="option">
-        {{option}}
-      </mat-option>
-    </mat-autocomplete>-->
 
     <button id="searchBarClose" mat-icon-button (click)="endSearchBar()">
       <mat-icon>close</mat-icon>
@@ -55,7 +41,6 @@
   </button>
   <mat-menu id="menu" #appMenu="matMenu" [overlapTrigger]="false">
     <button mat-menu-item routerLink='/preferences'>Mes préférences</button>
-    <button mat-menu-item>Aide</button>
-    <button mat-menu-item>À propos</button>
+    <button mat-menu-item routerLink='/about'>À propos</button>
   </mat-menu>
 </mat-toolbar>
